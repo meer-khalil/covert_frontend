@@ -20,8 +20,8 @@ jobs:
     
     - name: 🔨 Build Project
       run: |
-        npm install --legacy-peer-deps
-        npm run build
+        CI=false npm install --legacy-peer-deps
+        CI=false npm run build
 
     # sync files via FTP
     - name: 📂 Sync files via FTP

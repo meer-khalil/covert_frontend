@@ -27,6 +27,7 @@ const steps = [
 export default function SellProperty() {
 
     const [activeStep, setActiveStep] = useState(0)
+
     return (
         <Layout>
             <PageTitle
@@ -35,7 +36,7 @@ export default function SellProperty() {
                 small={true}
             />
             <PropertyProvider>
-                <Box sx={{ width: '100%', my: 9 }}>
+                <div className='my-9 mx-20'>
                     <Stepper activeStep={activeStep} alternativeLabel>
                         {steps.map((label) => (
                             <Step key={label}>
@@ -43,7 +44,7 @@ export default function SellProperty() {
                             </Step>
                         ))}
                     </Stepper>
-                </Box>
+                </div>
 
                 <div className='mx-16'>
                     {(activeStep === 0) && <VerifyAddress />}
@@ -53,7 +54,6 @@ export default function SellProperty() {
                 </div>
                 <div>
                     {
-                        // activeStep !== 3 &&
                         <Buttons setActiveStep={setActiveStep} activeStep={activeStep} />
                     }
                 </div>

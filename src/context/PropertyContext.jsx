@@ -17,6 +17,8 @@ export const PropertyContext = createContext();
 export const PropertyProvider = ({ children }) => {
   const [propertyData, setPropertyData] = useState(null);
   const [images, setImages] = useState([]);
+
+  const [defaultImage, setDefaultImage] = useState(0);
   const [selectedImages, setSelectedImages] = useState([]);
   const [files, setFiles] = useState([]);
 
@@ -28,6 +30,7 @@ export const PropertyProvider = ({ children }) => {
   const [downPayment, setDownPayment] = useState(0);
 
   const handlePropertyData = (e) => {
+    console.log('event: ', e);
     const { name, value, type, checked } = e.target;
 
     if (type === 'checkbox') {
@@ -40,13 +43,12 @@ export const PropertyProvider = ({ children }) => {
 
 
   useEffect(() => {
-
     console.log('PropertyData: ', propertyData);
-
   }, [propertyData])
 
   const handleProperty = async () => {
     const formData = new FormData();
+    propertyData.defaultImage = defaultImage
     formData.append('property', JSON.stringify(propertyData))
     for (let i = 0; i < images.length; i++) {
       formData.append('images', images[i]);
@@ -75,6 +77,7 @@ export const PropertyProvider = ({ children }) => {
     <PropertyContext.Provider
       value={{
         propertyData, handlePropertyData,
+        defaultImage, setDefaultImage,
         images, setImages,
         files, setFiles,
         selectedImages, setSelectedImages,

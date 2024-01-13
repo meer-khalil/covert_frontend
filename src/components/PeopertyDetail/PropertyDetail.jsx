@@ -84,7 +84,7 @@ function PropertyDetails() {
               />
 
               <div className='px-3 page-size'>
-
+                
                 <Images property={property} />
                 <BasicDetail property={property} />
 

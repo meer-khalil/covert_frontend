@@ -2,13 +2,10 @@ import * as React from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 
-export default function BasicDatePicker({ handlePropertyData, propertyData }) {
+export default function ShowDatePicker({ propertyData }) {
 
-  const handleClick = (e) => {
-    let target = { name: 'builtYear', value: e?.$y }
-    handlePropertyData({ target })
-  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -16,7 +13,7 @@ export default function BasicDatePicker({ handlePropertyData, propertyData }) {
         fullWidth
         views={['year']}
         label="Year Built"
-        onChange={handleClick}
+        value={dayjs(propertyData?.builtYear || '2000')}
       />
     </LocalizationProvider>
   );

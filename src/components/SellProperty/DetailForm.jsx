@@ -3,46 +3,45 @@ import React, { useContext, useState } from 'react'
 import { PropertyContext } from '../../context/PropertyContext'
 import ImageUploader from './ImageUploader';
 import { Checkbox, FormControlLabel, FormGroup } from '@material-ui/core';
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, IconButton, InputAdornment, TextField } from '@mui/material';
 import { useEffect } from 'react';
 import BasicDatePicker from './components/BasicDatePicker';
+
+// icons
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import PercentIcon from '@mui/icons-material/Percent';
+// custom css
+import './DetailForm.css';
+import ShowDatePicker from './components/ShowDatePicker';
 
 function DetailForm({ data }) {
 
   const [propertyType, setPropertyType] = useState('');
   const [hoa, setHOA] = useState('');
   const [propertyCondition, setPropertyCondition] = useState('');
+  const [defaultImage, setDefaultImage] = useState(0);
 
   const { propertyData, selectedImages, handlePropertyData } = useContext(PropertyContext);
 
 
   const handlePropertyTypeChange = (event, newValue) => {
-    setPropertyType(newValue);
+    handlePropertyData({ target: { name: 'propertyType', value: newValue } });
   };
 
   const handlePropertyConditionChange = (event, newValue) => {
-    setPropertyCondition(newValue);
+    handlePropertyData({ target: { name: 'propertyCondition', value: newValue } });
   };
 
   const handleHOAChange = (event, newValue) => {
-    setHOA(newValue);
+    handlePropertyData({ target: { name: 'hasHoa', value: newValue } });
   };
 
-  useEffect(() => {
-    handlePropertyData({ target: { name: 'propertyType', value: propertyType } });
-  }, [propertyType])
-
-  useEffect(() => {
-    handlePropertyData({ target: { name: 'propertyCondition', value: propertyCondition } });
-  }, [propertyCondition])
-
-  useEffect(() => {
-    handlePropertyData({ target: { name: 'hasHoa', value: hoa } });
-  }, [hoa])
-
+  const handleChange = (idx) => {
+    setDefaultImage(idx)
+  }
 
   return (
-    <div className='p-9 rounded-xl' style={{ boxShadow: '2px 2px 4px 4px rgba(0, 0, 0, 0.05)' }}>
+    <div className='p-9 max-w-max mx-auto rounded-xl' style={{ boxShadow: '2px 2px 4px 4px rgba(0, 0, 0, 0.05)' }}>
 
       <h1 className='font-semibold text-2xl mb-5'>Property Details</h1>
 
@@ -55,6 +54,7 @@ function DetailForm({ data }) {
             onChange={handlePropertyData}
             label="Number of Beds"
             type="number"
+            value={propertyData?.numberOfBeds}
           />
         </div>
 
@@ -63,13 +63,26 @@ function DetailForm({ data }) {
             fullWidth
             name='numberOfBaths'
             onChange={handlePropertyData}
-            label="Number of Beds"
+            label="Number of Baths"
             type="number"
+            value={propertyData?.numberOfBaths}
           />
         </div>
 
         <div className='flex-1'>
-          <BasicDatePicker handlePropertyData={handlePropertyData} />
+          {
+            data ? (
+              <ShowDatePicker
+                propertyData={propertyData}
+              />
+            ) : (
+              <BasicDatePicker
+                handlePropertyData={handlePropertyData}
+                propertyData={propertyData}
+              />
+            )
+          }
+
         </div>
 
         <div className="flex-1">
@@ -79,6 +92,7 @@ function DetailForm({ data }) {
             onChange={handlePropertyData}
             label="SqFt"
             type="number"
+            value={propertyData?.sqFt}
           />
         </div>
 
@@ -89,12 +103,13 @@ function DetailForm({ data }) {
             onChange={handlePropertyData}
             label="Lot SqFt"
             type="number"
+            value={propertyData?.lotSqft}
           />
         </div>
 
       </div>
 
-      <div className="flex gap-2 my-10">
+      <div className="flex gap-5 my-10">
         <div className="flex-1">
           <TextField
             fullWidth
@@ -102,6 +117,16 @@ function DetailForm({ data }) {
             onChange={handlePropertyData}
             label="Price"
             type="number"
+            value={propertyData?.price}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position='start'>
+                  {/* <IconButton> */}
+                  <AttachMoneyIcon fontSize='small' />
+                  {/* </IconButton> */}
+                </InputAdornment>
+              )
+            }}
           />
         </div>
 
@@ -112,6 +137,16 @@ function DetailForm({ data }) {
             onChange={handlePropertyData}
             label="Actual CAP"
             type="number"
+            value={propertyData?.actualCAP}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment>
+                  <IconButton>
+                    <PercentIcon fontSize='small' />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
           />
         </div>
 
@@ -122,6 +157,16 @@ function DetailForm({ data }) {
             onChange={handlePropertyData}
             label="Pro Forma CAP"
             type="number"
+            value={propertyData?.proFormaCAP}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment>
+                  <IconButton>
+                    <PercentIcon fontSize='small' />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
           />
         </div>
 
@@ -132,13 +177,9 @@ function DetailForm({ data }) {
             onChange={handlePropertyData}
             label="Units"
             type="number"
+            value={propertyData?.units}
           />
         </div>
-
-      </div>
-
-      <div className="flex items-center gap-5 mb-10">
-
         <div className='flex-1'>
           <Autocomplete
             disablePortal
@@ -146,9 +187,13 @@ function DetailForm({ data }) {
             id="combo-box-for-property-type"
             options={['Single Family', 'Townhomes', 'Multifamily', 'Apartments']}
             onChange={handlePropertyTypeChange}
+            value={propertyData?.propertyType}
             renderInput={(params) => <TextField {...params} label="Property Type" />}
           />
         </div>
+      </div>
+
+      <div className="flex items-center gap-5 mb-10">
 
         <div className="flex-1">
           <TextField
@@ -182,12 +227,10 @@ function DetailForm({ data }) {
               'Renovated/Updated'
             ]}
             onChange={handlePropertyConditionChange}
+            value={propertyData?.propertyCondition}
             renderInput={(params) => <TextField {...params} label="Property Condition" />}
           />
         </div>
-
-      </div>
-      <div className='flex gap-5'>
 
         <div className="flex-1">
           <TextField
@@ -218,33 +261,60 @@ function DetailForm({ data }) {
             id="combo-box-for-hoa"
             options={['Yes', 'No', 'Maybe']}
             onChange={handleHOAChange}
+            value={propertyData?.hasHoa}
             renderInput={(params) => <TextField {...params} label="Has HOA" />}
           />
         </div>
-
       </div>
 
-      <div className="flex gap-4 mt-5">
 
+      {/* Checkboxes */}
+      <div className="flex gap-4">
 
         <div>
           <FormGroup>
-            <FormControlLabel control={<Checkbox name='finance_cash' onChange={handlePropertyData} />} label={'Cash'} />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name='finance_cash'
+                  onChange={handlePropertyData}
+                  checked={propertyData?.finance_cash}
+                />
+              }
+              label={'Cash'}
+            />
           </FormGroup>
         </div>
 
         <div>
           <FormGroup>
-            <FormControlLabel control={<Checkbox name='finance_sellerFinance' onChange={handlePropertyData} />} label={'Seller Finance'} />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name='finance_sellerFinance'
+                  onChange={handlePropertyData}
+                  checked={propertyData?.finance_sellerFinance}
+                />
+              }
+              label={'Seller Finance'}
+            />
           </FormGroup>
         </div>
 
         <div>
           <FormGroup>
-            <FormControlLabel control={<Checkbox name='finance_mortgage' onChange={handlePropertyData} />} label={'Mortgage'} />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name='finance_mortgage'
+                  onChange={handlePropertyData}
+                  checked={propertyData?.finance_mortgage}
+                />
+              } label={'Mortgage'} />
           </FormGroup>
         </div>
       </div>
+
       {
         !data && (
           <ImageUploader />
@@ -253,19 +323,27 @@ function DetailForm({ data }) {
 
       {
         data && (
-          <div className='mt-20'>
-            <h1 className='font-semibold text-2xl mb-5'>Property Details</h1>
+          <div className='mt-10'>
+            <h1 className='font-semibold text-2xl mb-5'>Images</h1>
             <div className="flex gap-5 mt-5 flex-wrap">
               {selectedImages.map((image, index) => (
                 <div key={index} className=" h-44 w-44">
                   <img src={image} alt={`Image ${index}`} />
+                  <FormControlLabel
+                    label="Default"
+                    control={
+                      <Checkbox
+                        checked={defaultImage === index}
+                        onChange={() => handleChange(index)}
+                      />
+                    }
+                  />
                 </div>
               ))}
             </div>
           </div>
         )
       }
-
     </div>
   )
 }

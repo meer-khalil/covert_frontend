@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 
 import { Route, Routes } from "react-router-dom";
-// import Navbar from './components/Layouts/Navbar'
 import Home from "./components/Home/Home";
 import Login from './components/Login/Login'
 import Buy from './components/Buy/Buy'
@@ -23,10 +22,7 @@ import Popup from "./components/Home/Popup";
 import Data from "./components/Data/Data";
 import { ToastContainer } from "react-toastify";
 
-
-
 import 'react-toastify/dist/ReactToastify.css';
-import DialogBox from "./components/Buy/DialogBox";
 
 export default function App() {
 

@@ -58,15 +58,11 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
 
         <div className="bg-white rounded-xl shadow-xl md:mx-5 relative">
             <Link to={`/property-details/${property?._id}`}>
-                {/* <div style={{
-                    backgroundImage: `url(${backend_resource}/images/${property?.images[0]?.filename})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                }} className=' py-32 rounded-tl-xl rounded-tr-xl overflow-hidden'>
-                </div> */}
                 <div className=' h-[300px] rounded-tl-xl rounded-tr-xl overflow-hidden'>
-                    <img className='h-full w-full' src={`${backend_resource}/images/${property?.images[0]?.filename}`} alt="Property Image" />
+                    <img
+                        className='h-full w-full' src={`${backend_resource}/images/${property?.images[property?.defaultImage || 0]?.filename}`}
+                        alt="Property Image"
+                    />
                 </div>
                 <div className='px-3 py-3'>
                     <h2 className="text-lg font-semibold mb-2">

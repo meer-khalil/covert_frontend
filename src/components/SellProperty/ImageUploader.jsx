@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { PropertyContext } from '../../context/PropertyContext';
+import { Checkbox, FormControlLabel } from '@mui/material';
 
 const ImageUploader = () => {
 
-  const { setImages,selectedImages, setSelectedImages, files, setFiles } = useContext(PropertyContext);
+  const { setImages, selectedImages, defaultImage, setDefaultImage, setSelectedImages, files, setFiles } = useContext(PropertyContext);
 
   const handleImageChange = (e) => {
     const files = e.target.files;
@@ -41,10 +42,16 @@ const ImageUploader = () => {
     const newFiles = [...files];
     newFiles.splice(index, 1);
     setFiles(newFiles)
+    setDefaultImage(0)
   };
+
+  const handleChange = (idx) => {
+    setDefaultImage(idx)
+  }
+
   return (
     <>
-      <div className='flex gap-5 mt-10'>
+      <div className='flex gap-5 mt-4'>
         <div className="flex-1">
           <label for="fileInput" class="flex flex-col items-center justify-center px-4 py-12 bg-white border border-gray-300 rounded-lg shadow-sm cursor-pointer h-48">
             <svg class="w-12 h-12 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -64,11 +71,21 @@ const ImageUploader = () => {
             {selectedImages.map((image, index) => (
               <div key={index} className=" h-44 w-44">
                 <img src={image} alt={`Image ${index}`} />
+                <FormControlLabel
+                  label="Default"
+                  control={
+                    <Checkbox
+                      checked={defaultImage === index}
+                      onChange={() => handleChange(index)}
+                    />
+                  }
+                />
                 <button onClick={() => handleImageRemove(index)} className=' bg-gray-400 px-3 py-1 my-1 rounded text-white'>Remove</button>
               </div>
             ))}
           </div>
         </div>
+
         <div className="flex-1">
           <label id="dropArea" class="flex cursor-pointer items-center justify-center h-48 border-2 border-dashed border-gray-400 rounded-lg">
             <div class="text-center">

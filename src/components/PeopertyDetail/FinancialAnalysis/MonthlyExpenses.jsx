@@ -1,16 +1,17 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Field } from './ExpensesLeft';
+import { Field } from './OneTimeExpenses';
 import { PropertyContext } from '../../../context/PropertyContext';
 import { useContext } from 'react';
 
-const ExpensesRight = () => {
+const MonthlyExpenses = () => {
+
   const [values, setValues] = useState({});
   const [total, setTotal] = useState(0)
   const [newValues, setNewValues] = useState([]);
 
-  const { setMonthlyExpense } = useContext(PropertyContext);
+  const { mortgage, setMonthlyExpense } = useContext(PropertyContext);
 
   const addNewField = () => {
     let content = <Field handleChange={handleChange} values={values} />
@@ -50,6 +51,19 @@ const ExpensesRight = () => {
         Monthly Expenses
       </div>
       <div className='md:border-l-2 md:border-blue-400 md:pl-12 md:mx-5 pt-5'>
+        <div className='flex justify-between items-center mb-5'>
+          <p>Mortgage</p>
+          <div class="relative flex items-center">
+            <span class="absolute inset-y-0 left-0 flex bg-blue-500 rounded-tl-lg rounded-bl-lg items-center justify-center px-3">
+              <span class="text-white">$</span>
+            </span>
+            <input
+              type="text"
+              disabled={true}
+              value={mortgage}
+              class="pl-12 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 w-24" placeholder="500" />
+          </div>
+        </div>
         {
           [
             {
@@ -92,7 +106,6 @@ const ExpensesRight = () => {
                     onChange={handleChange}
                     class="pl-12 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 w-24" placeholder="500" />
                 </div>
-
               </div>
             ))
         }
@@ -112,4 +125,4 @@ const ExpensesRight = () => {
   )
 }
 
-export default ExpensesRight
+export default MonthlyExpenses

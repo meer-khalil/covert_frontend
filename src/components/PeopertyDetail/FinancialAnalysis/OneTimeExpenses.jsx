@@ -35,7 +35,7 @@ export const Field = ({ handleChange, values }) => {
     </div>
   )
 }
-const ExpensesLeft = () => {
+const OneTimeExpenses = () => {
 
   const [values, setValues] = useState({});
   const [total, setTotal] = useState(0)
@@ -84,6 +84,7 @@ const ExpensesLeft = () => {
       </div>
 
       <div className='m-5'>
+        
         {
           [
             {
@@ -118,7 +119,6 @@ const ExpensesLeft = () => {
                   onChange={handleChange}
                   className="pl-12 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 w-24" placeholder="500" />
               </div>
-
             </div>
           ))
         }
@@ -140,4 +140,4 @@ const ExpensesLeft = () => {
   )
 }
 
-export default ExpensesLeft
+export default OneTimeExpenses

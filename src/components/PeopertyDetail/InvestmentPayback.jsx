@@ -26,7 +26,7 @@ const InvestmentPayback = ({ property }) => {
       investment = investment - cashflow;
       count += 1;
 
-      temp.push(investment.toFixed(0));
+      temp.push(investment.toFixed(2).replace(/[.,]00$/, ""));
     }
     setPayback(temp);
   }
@@ -42,7 +42,7 @@ const InvestmentPayback = ({ property }) => {
       rent = rent + rent * 0.1;
       count += 1;
       // console.log('investment: ', investment);
-      temp.push((rent * 12).toFixed(0));
+      temp.push((rent * 12).toFixed(2).replace(/[.,]00$/, ""));
     }
 
     setYearlyRent(temp);
@@ -64,7 +64,7 @@ const InvestmentPayback = ({ property }) => {
             fontWeight: 'bold',
             letterSpacing: '2px'
           }}>
-            Investment Payback Balance Table
+            Investment Payback Balance Table (in Thousands)
           </Typography>
           <Divider sx={{ width: '25%', height: '5px', bgcolor: '#716EDC', borderRadius: '13px' }} />
         </Box>
@@ -99,7 +99,7 @@ const InvestmentPayback = ({ property }) => {
               {
                 yearlyRent.map((e, index) => (
                   <td key={index}>$ {
-                    (((yearlyRent[index]) - (yearlyRent[index] * 0.1)) / 1000).toFixed(0) || 0
+                    (((yearlyRent[index]) - (yearlyRent[index] * 0.1)) / 1000).toFixed(2).replace(/[.,]00$/, "") || 0
                   }</td>
                 ))
               }
@@ -115,7 +115,7 @@ const InvestmentPayback = ({ property }) => {
               {
                 yearlyRent.map((e, index) => (
                   <td key={index}>$ {
-                    (yearlyRent[index] / 1000).toFixed(0) || 0
+                    (yearlyRent[index] / 1000).toFixed(2).replace(/[.,]00$/, "") || 0
                   }</td>
                 ))
               }
@@ -131,7 +131,7 @@ const InvestmentPayback = ({ property }) => {
               {
                 yearlyRent.map((rent, index) => (
                   <td key={index} className=' text-red-500'>$ {
-                    ((rent * 0.1) / 1000).toFixed(0) || 0
+                    ((rent * 0.1) / 1000).toFixed(2).replace(/[.,]00$/, "") || 0
                   }</td>
                 ))
               }
@@ -144,7 +144,7 @@ const InvestmentPayback = ({ property }) => {
               {
                 yearlyRent.map((e, index) => (
                   <td key={index} className=' text-red-500'>$ {
-                    (((+monthlyExpense + +mortgage) * 12) / 1000).toFixed(0) || 0
+                    (((+monthlyExpense + +mortgage) * 12) / 1000).toFixed(2).replace(/[.,]00$/, "") || 0
                   }</td>
                 ))
               }
@@ -160,7 +160,7 @@ const InvestmentPayback = ({ property }) => {
               {
                 (new Array(10).fill(0)).map((e, index) => (
                   <td key={index} className=' text-red-500'>$ {
-                    ((monthlyExpense * 12) / 1000).toFixed(0) || 0
+                    ((monthlyExpense * 12) / 1000).toFixed(2).replace(/[.,]00$/, "") || 0
                   }</td>
                 ))
               }
@@ -176,7 +176,7 @@ const InvestmentPayback = ({ property }) => {
               {
                 (new Array(10).fill(0)).map((e, index) => (
                   <td key={index} className=' text-red-500'>$ {
-                    ((mortgage * 12) / 1000).toFixed(0) || 0}</td>
+                    ((mortgage * 12) / 1000).toFixed(2).replace(/[.,]00$/, "") || 0}</td>
                 ))
               }
             </tr>
@@ -188,13 +188,13 @@ const InvestmentPayback = ({ property }) => {
                 yearlyRent.map((rent, index) => (
                   <>
                     {
-                      (rent - (monthlyExpense * 12) - (rent * 0.1).toFixed(0) - mortgage * 12) > 0 ? (
+                      (rent - (monthlyExpense * 12) - (rent * 0.1).toFixed(2).replace(/[.,]00$/, "") - mortgage * 12) > 0 ? (
                         <td key={index}>$ {
                           ((
                             rent -
-                            (monthlyExpense * 12) - (rent * 0.1).toFixed(0) -
+                            (monthlyExpense * 12) - (rent * 0.1).toFixed(2).replace(/[.,]00$/, "") -
                             (mortgage * 12)
-                          ) / 1000).toFixed(0)
+                          ) / 1000).toFixed(2).replace(/[.,]00$/, "")
                           || 0
                         }
                         </td>
@@ -203,9 +203,9 @@ const InvestmentPayback = ({ property }) => {
                           Math.abs(
                             ((
                               rent -
-                              (monthlyExpense * 12) - (rent * 0.1).toFixed(0) -
+                              (monthlyExpense * 12) - (rent * 0.1).toFixed(2).replace(/[.,]00$/, "") -
                               (mortgage * 12)
-                            ) / 1000).toFixed(0)
+                            ) / 1000).toFixed(2).replace(/[.,]00$/, "")
                           )
                           || 0
                         }
@@ -225,7 +225,7 @@ const InvestmentPayback = ({ property }) => {
               <td className=' text-red-500'>$ {
                 (
                   (downPayment + initialExpense) / 1000
-                ).toFixed(0)
+                ).toFixed(2).replace(/[.,]00$/, "")
                 || 0
               }
               </td>
@@ -239,7 +239,7 @@ const InvestmentPayback = ({ property }) => {
                 </li>
               </td>
               <td className=' text-red-500'>$ {
-                (initialExpense / 1000).toFixed(0)
+                (initialExpense / 1000).toFixed(2).replace(/[.,]00$/, "")
                 || 0
               }
               </td>
@@ -253,7 +253,7 @@ const InvestmentPayback = ({ property }) => {
                 </li>
               </td>
               <td className=' text-red-500'>$ {
-                (downPayment / 1000).toFixed(0)
+                (downPayment / 1000).toFixed(2).replace(/[.,]00$/, "")
                 || 0
               }
               </td>
@@ -268,9 +268,9 @@ const InvestmentPayback = ({ property }) => {
                     {
                       e > 0 ? (
                         <td key={index} className=' text-red-500'>$ {
-                          (e / 1000).toFixed(0)}</td>
+                          (e / 1000).toFixed(2).replace(/[.,]00$/, "")}</td>
                       ) : (
-                        <td key={index}>$ {Math.abs((e / 1000).toFixed(0))}</td>
+                        <td key={index}>$ {Math.abs((e / 1000).toFixed(2).replace(/[.,]00$/, ""))}</td>
 
                       )
                     }

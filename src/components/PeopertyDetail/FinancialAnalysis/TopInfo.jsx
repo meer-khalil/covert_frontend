@@ -10,7 +10,7 @@ const TopInfo = ({ property, downPaymentCashFlow }) => {
 
   const [showPopUp, setShowPopup] = useState(false);
 
-  const { monthlyExpense, initialExpense } = useContext(PropertyContext);
+  const { mortgage, monthlyExpense, initialExpense } = useContext(PropertyContext);
 
   useEffect(() => {
     console.log('check the cash on cash');
@@ -27,15 +27,15 @@ const TopInfo = ({ property, downPaymentCashFlow }) => {
             title: 'Rental Income', price: `$${property.rentalIncome}`, popup: 'See comes',
             price2: Math.floor(property.rentalIncome / 30),
           },
-          { title: 'Total Monthly Expense.', price: `$${monthlyExpense}`, link_text: 'Customize Mortgage Calculator', link_url: '/', },
+          { title: 'Total Monthly Expense.', price: `$${monthlyExpense + +mortgage}`, link_text: 'Customize Mortgage Calculator', link_url: '/', },
           {
-            title: 'Cash Flow', price: `$${property.rentalIncome - monthlyExpense}`, link_text: 'Customize Mortgage Calculator', link_url: '/',
+            title: 'Cash Flow', price: `$${property.rentalIncome - monthlyExpense - mortgage}`, link_text: 'Customize Mortgage Calculator', link_url: '/',
             info: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum, provident similique aspernatur eveniet accusamus suscipit alias atque aliquid eaque quos vitae itaque quam sint error aperiam necessitatibus. Alias, deserunt hic?'
           },
           {
             title: 'Cash on Cash', price: `${Math.floor(
               ((
-                (property.rentalIncome - monthlyExpense) * 12)
+                (property.rentalIncome - monthlyExpense - mortgage) * 12)
                 /
                 ((downPaymentCashFlow) + initialExpense)) * 100
             )}%`

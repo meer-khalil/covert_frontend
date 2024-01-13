@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useContext } from 'react';
 import { PropertyContext } from '../../context/PropertyContext';
 
-const ManageCalculator = ({ price, setDownPaymentCashFlow }) => {
+const MortgageCalculator = ({ price, setDownPaymentCashFlow }) => {
 
   const [monthlyPayment, setMonthlyPayment] = useState(20);
   const [propertyPriceFromData, setPropertyPriceFromData] = useState(price);
@@ -14,12 +14,11 @@ const ManageCalculator = ({ price, setDownPaymentCashFlow }) => {
   const [dollarPer, setDollarPer] = useState(true);
 
   // const [downPayment, setDownPayment] = useState(Math.floor((propertyPrice / 100) * 20));
-  const [loanPayment, setLoanPayment] = useState(Math.floor((propertyPrice / 100) * 20));
+  const [loanPayment, setLoanPayment] = useState(20);
   const [loanTerm, setLoanTerm] = useState(30);
   const [interestRate, setInterestRate] = useState(6.5);
 
-  const [initSlider, setInitSlider] = useState(Math.floor((propertyPrice / 100) * 20));
-
+  const [initSlider, setInitSlider] = useState(propertyPrice);
 
 
   const { setMortgage, downPayment, setDownPayment } = useContext(PropertyContext);
@@ -59,18 +58,18 @@ const ManageCalculator = ({ price, setDownPaymentCashFlow }) => {
   }, [downPayment])
 
   useEffect(() => {
-    let downTemp = Math.floor((propertyPrice / 100) * 20)
+    let downTemp = Math.floor(propertyPrice)
     setDownPayment(downTemp);
     setDownPaymentCashFlow(downTemp);
   }, [propertyPrice])
 
   useEffect(() => {
     if (dollarPer) {
-      setInitSlider(Math.floor((propertyPrice / 100) * 20))
-      setDownPayment(Math.floor((propertyPrice / 100) * 20))
+      setInitSlider(propertyPrice)
+      setDownPayment(propertyPrice)
     } else {
-      setInitSlider(20)
-      setDownPayment(Math.floor((propertyPrice / 100) * 20))
+      setInitSlider(propertyPrice)
+      setDownPayment(propertyPrice)
     }
   }, [dollarPer])
 
@@ -241,14 +240,20 @@ const ManageCalculator = ({ price, setDownPaymentCashFlow }) => {
             </div>
           </div>
           <div className='my-4'>
-            <p className='mb-2 font-opensans text-xl'>Manage Type</p>
+            <p className='mb-2 font-opensans text-xl'>Mortgage Type</p>
             <Autocomplete
               disablePortal
               fullWidth
               id="combo-box-demo"
               options={['Fixed Rate Mortgage']}
               // sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Fixed Rate Mortage" />}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  // label="Fixed Rate Mortage"
+                  placeholder='Select Mortgage Type'
+                />)
+              }
             />
           </div>
           <div className='my-4'>
@@ -282,12 +287,18 @@ const ManageCalculator = ({ price, setDownPaymentCashFlow }) => {
                 '30 Years Fixed',
               ]}
               sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="30 Years Fixed" />}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  // label="30 Years Fixed"
+                  placeholder='Select Load Term'
+                />
+              )}
             />
           </div>
           <div className='my-4'>
             <label className='mb-2 font-opensans text-xl'>Interest Rate</label>
-            
+
             <input
               type="number"
               name="interest"
@@ -297,17 +308,19 @@ const ManageCalculator = ({ price, setDownPaymentCashFlow }) => {
             />
 
           </div>
-          <div className='flex justify-between mt-5 items-center'>
+
+          {/* Don't Delete */}
+          {/* <div className='flex justify-between mt-5 items-center'>
             <p className=' text-primary font-opensans text-xl'>Was This Information Helpful?</p>
             <div className='flex gap-3'>
               <Button variant="outlined" color='success'>Yes</Button>
               <Button variant="outlined" color='error'>No</Button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
   )
 }
 
-export default ManageCalculator
+export default MortgageCalculator

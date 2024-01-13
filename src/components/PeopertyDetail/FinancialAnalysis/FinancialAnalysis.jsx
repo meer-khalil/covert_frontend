@@ -1,16 +1,15 @@
 import React from 'react'
 import { Autocomplete, Box, Button, Divider, TextField, Typography } from '@mui/material'
 
-import ExpensesRight from './ExpensesRight'
-import ExpensesLeft from './ExpensesLeft'
+import MonthlyExpenses from './MonthlyExpenses'
+import OneTimeExpenses from './OneTimeExpenses'
 import TopInfo from './TopInfo'
 import { useState } from 'react'
 import { useContext } from 'react'
+import { PropertyContext } from '../../../context/PropertyContext'
 
 const FinancialAnalysis = ({ property, downPaymentCashFlow }) => {
 
-  const [monthlyExpense, setMonthlyExpense] = useState(0);
-  const [initialExpense, setInitialExpense] = useState(0);
 
   return (
     <div>
@@ -40,8 +39,8 @@ const FinancialAnalysis = ({ property, downPaymentCashFlow }) => {
         </div>
 
         <div className='flex flex-col md:flex-row'>
-          <ExpensesLeft  />
-          <ExpensesRight  />
+          <OneTimeExpenses />
+          <MonthlyExpenses />
         </div>
 
       </div>

@@ -12,7 +12,7 @@ import api from '../../util/api';
 import Images from './Images';
 import BasicDetail from './BasicDetail';
 import Map from './Map';
-import ManageCalculator from './ManageCalculator';
+import MortgageCalculator from './MortgageCalculator';
 import MarketAnalysis from './MarketAnalysis';
 import FinancialAnalysis from './FinancialAnalysis/FinancialAnalysis';
 import PopUp from './PopUp';
@@ -84,7 +84,7 @@ function PropertyDetails() {
               />
 
               <div className='px-3 page-size'>
-                
+
                 <Images property={property} />
                 <BasicDetail property={property} />
 
@@ -96,7 +96,7 @@ function PropertyDetails() {
                 }
 
                 <div className='flex mt-20 flex-col md:flex-row'>
-                  <ManageCalculator price={property?.price} setDownPaymentCashFlow={setDownPaymentCashFlow} />
+                  <MortgageCalculator price={property?.price} setDownPaymentCashFlow={setDownPaymentCashFlow} />
                   {
                     zipData &&
                     <MarketAnalysis zipCode={property?.zipcode} data={zipData['medianGrossRent']} capData={zipData['capData']} />

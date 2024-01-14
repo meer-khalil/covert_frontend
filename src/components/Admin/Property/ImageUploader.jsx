@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { backend_resource } from "../../../util/variables";
 
 function ImageUploader({ images, setImages, setSelectedImages }) {
   const ref = useRef(null);

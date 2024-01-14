@@ -1,9 +1,5 @@
 import React from 'react';
-
-import image from '../../images/check.png'
-import { Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { backend_resource } from '../../util/variables';
 
 const CardGrid = ({ blogs }) => {
   // const cardData = [
@@ -37,7 +33,7 @@ const CardGrid = ({ blogs }) => {
                 }} className=' py-40 rounded-xl overflow-hidden'>
                 </div> */}
                 <div className=' w-full  h-[300px] overflow-hidden rounded-tl-lg rounded-tr-lg'>
-                  <img src={`${backend_resource}/images/blog/${card?.cover?.filename}`} alt="blog image" className=' w-full h-full' />
+                  <img src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${card?.cover?.filename}`} alt="blog image" className=' w-full h-full' />
                   {/* <img src={`${backend_resource}/${card?.cover?.path}`.replaceAll('\\', '/').replace('public/', '')} alt="blog image" className=' w - full h - full' /> */}
                 </div>
                 <p className='mt-5 mb-6'>{card.title}</p>

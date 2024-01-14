@@ -27,8 +27,6 @@ import { UploadSingleFile } from '../../upload';
 import api from '../../../util/api';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { backend_resource } from '../../../util/variables';
-import axios from 'axios';
 // import Editor from './Editor';
 //
 // import BlogNewPostPreview from './BlogNewPostPreview';
@@ -177,7 +175,7 @@ export default function BlogNewPostForm() {
 
       setFieldValue('cover', blog.cover);
       setFieldValue('coverpreview', {
-        preview: `${backend_resource}/images/blog/${blog.cover.filename}`
+        preview: `${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${blog.cover.filename}`
       });
       setFieldValue('tags', blog.tags)
       console.log('Blog', blog);

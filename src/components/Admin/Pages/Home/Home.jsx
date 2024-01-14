@@ -1,32 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-
-import Logo from "../../../Home/Logo";
-
 import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-// import twitter from "../images/twitter.svg";
-// import facebook from "../images/facebook.svg";
-// import google from "../images/google.svg";
-
-import login from "../../../../images/check2.png";
 import { Divider } from "@mui/material";
-import { UserContext } from "../../../../context/UserContext";
-import axios from "axios";
-import { backend_url } from "../../../../util/variables";
-import api from "../../../../util/api";
 import Card from "./Card";
 import { toast } from "react-toastify";
-
-// const icons = [twitter, facebook, google];
+import api from "../../../../util/api";
 
 export default function Home() {
 

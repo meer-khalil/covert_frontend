@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 import StarIcon from '@mui/icons-material/Star';
-// import image from '../../images/check.png'
+
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
-import { backend_resource, backend_url } from '../../util/variables';
 import api from '../../util/api';
 import { toast } from 'react-toastify';
 
@@ -60,7 +59,7 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
             <Link to={`/property-details/${property?._id}`}>
                 <div className=' h-[300px] rounded-tl-xl rounded-tr-xl overflow-hidden'>
                     <img
-                        className='h-full w-full' src={`${backend_resource}/images/${property?.images[property?.defaultImage || 0]?.filename}`}
+                        className='h-full w-full' src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/${property?.images[property?.defaultImage || 0]?.filename}`}
                         alt="Property Image"
                     />
                 </div>

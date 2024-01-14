@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import Layout from '../Layouts/Layout'
 import api from '../../util/api'
 import { toast } from 'react-toastify'
-import { backend_resource } from '../../util/variables'
 import Markdown from './Markdown'
 import Edit from '../SVGs/Edit'
 import { UserContext } from '../../context/UserContext'
@@ -58,7 +57,7 @@ const SingleBlog = () => {
           }} className=' py-40 rounded-xl overflow-hidden'>
           </div> */}
             <div className=' w-full  h-[300px] overflow-hidden rounded-tl-lg rounded-tr-lg'>
-              <img src={`${backend_resource}/images/blog/${blog?.cover?.filename}`} alt="blog image" className=' w-full h-full' />
+              <img src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${blog?.cover?.filename}`} alt="blog image" className=' w-full h-full' />
             </div>
             <div className='flex flex-wrap gap-4 py-3'>
               {

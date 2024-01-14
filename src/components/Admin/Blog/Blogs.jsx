@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-
-import { backend_resource, backend_url } from '../../../util/variables'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 
 import Cross from '../../SVGs/Cross'
@@ -279,7 +277,7 @@ const Blogs = () => {
 
                   <div className='flex gap-5'>
                     <div className='flex-1 h-28 overflow-hidden bg-cover'>
-                      <img src={`${backend_resource}/images/blog/${post?.cover?.filename}`} alt="post" className=' w-full h-full' />
+                      <img src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${post?.cover?.filename}`} alt="post" className=' w-full h-full' />
                     </div>
                     <div style={{ flex: 3 }}>
                       <h3 className='text-2xl font-semibold tracking-widest'>{post.title}</h3>

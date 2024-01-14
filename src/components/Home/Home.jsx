@@ -6,7 +6,6 @@ import Devider from "./Devider";
 
 import api from "../../util/api";
 import { useEffect, useState } from "react";
-import Popup from "./Popup";
 import Layout from "../Layouts/Layout";
 
 export default function Home() {

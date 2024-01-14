@@ -8,6 +8,9 @@ jobs:
   web-deploy:
     name: 🎉 Deploy website
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_BACKEND_URL: https://covertnest.com/api/v1
+      REACT_APP_BACKEND_RESOURCE: https://covertnest.com
     steps:
     # Checkout the repository
     - name: 🚚 Get latest code

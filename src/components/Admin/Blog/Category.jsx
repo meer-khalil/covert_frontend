@@ -124,6 +124,7 @@ const Category = () => {
                                 <div className='relative w-fit'>
                                     <li key={i} className=' list-disc'>{el.name}</li>
                                     <span onClick={() => removeCategory(el._id)} className=' absolute hidden text-xl font-bold cursor-pointer group-hover:block -right-20 -top-1'>x</span>
+                                    <Chip label={e.name} onDelete={() => removeCategory(el._id)} />
                                 </div>
                             </div>
                         ))

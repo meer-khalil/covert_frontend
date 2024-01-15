@@ -31,15 +31,10 @@ export default function Home() {
 
     <Layout>
       <div className="relative">
-
         <Hero />
-
         <BelowHero commingSoon={home?.commingSoon} />
-
         <Process cards={home?.cardsData} />
-
         <PastDetails />
-
         <Devider />
       </div>
     </Layout>

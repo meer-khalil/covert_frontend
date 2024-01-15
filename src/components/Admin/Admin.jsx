@@ -26,7 +26,7 @@ const Admin = () => {
               </div>
 
               <main className="mt-40 md:mt-0 flex-1">
-                <div className="px-2 md:px-6 py-8">
+                <div className="px-2 md:px-6 py-8 flex justify-center">
                   <Routes>
 
                     <Route index path="pages/*" element={<Pages />} />
@@ -41,9 +41,7 @@ const Admin = () => {
                     <Route path="blog/edit/:id" element={<BlogNewPostForm />} />
 
                     <Route path="blogs" element={<Blogs />} />
-
                     <Route path="category" element={<Category />} />
-
                     <Route path="emails" element={<Emails />} />
 
                   </Routes>

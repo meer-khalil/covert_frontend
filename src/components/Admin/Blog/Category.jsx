@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import api from '../../../util/api';
 import { toast } from 'react-toastify';
+import { Chip } from '@mui/material';
 
 
 
@@ -57,57 +58,29 @@ const Category = () => {
     }, []);
 
     return (
-        <div>
+        <div className='w-full md:max-w-xl border-gray-400 border rounded p-4'>
+            <h3 className="mb-5 font-bold">Category</h3>
             <form onSubmit={handleSubmit}>
-                <div className='mt-5'>
-                    <label className=" font-bold">Category</label>
+                <div className=' flex items-center gap-3'>
                     <TextField
-                        // label="Title"
                         placeholder="Enter the Benefit"
                         variant="outlined"
                         name="benefit"
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                         fullWidth
+                        size='medium'
                         autoComplete="off"
                         inputProps={{ style: { fontSize: 15 } }}
                         InputLabelProps={{
                             style: { fontSize: 15, color: "GrayText" },
                         }}
-                        sx={{ marginTop: "10px" }}
                     />
-                    {/* <div className="flex justify-end">
-                        <Button
-                            variant="contained"
-                            sx={{
-                                mt: 3,
-                                mb: 2,
-                                p: 1,
-                                bgcolor: "#716EDC",
-                                "&:hover": {
-                                    backgroundColor: "#716EDC",
-                                },
-                            }}
-                        >
-                            Add Benefit
-                        </Button>
-                    </div> */}
-                </div>
-
-                <div className="flex justify-end">
-
                     <Button
                         type="submit"
+                        size='small'
                         variant="contained"
-                        sx={{
-                            mt: 3,
-                            mb: 2,
-                            p: 1,
-                            bgcolor: "#716EDC",
-                            "&:hover": {
-                                backgroundColor: "#716EDC",
-                            },
-                        }}
+                        className=' h-[3.3rem] rounded'
                         onClick={handleSubmit}
                     >
                         Update
@@ -115,20 +88,13 @@ const Category = () => {
                 </div>
             </form>
             <div>
-
-                <h3 className=' text-xl font-bold'>Categories</h3>
-                <ul className=' pl-12'>
+                <div className='flex flex-wrap mt-5 gap-3'>
                     {
                         categories?.map((el, i) => (
-                            <div className='group'>
-                                <div className='relative w-fit'>
-                                    <li key={i} className=' list-disc'>{el.name}</li>
-                                    <span onClick={() => removeCategory(el._id)} className=' absolute hidden text-xl font-bold cursor-pointer group-hover:block -right-20 -top-1'>x</span>
-                                </div>
-                            </div>
+                            <Chip label={el.name} onDelete={() => removeCategory(el._id)} />
                         ))
                     }
-                </ul>
+                </div>
             </div>
         </div>
     )

@@ -35,7 +35,7 @@ const Hero = () => {
         <h1
           className=" text-white px-4 md:px-0 font-medium font-jost leading-[50px] lg:leading-[80px] text-[30px] md:text-[45px] lg:text-[72px] text-center"
         >
-          Unbelievable Off Market Deal 
+          Unbelievable Off Market Deal
           <br /> at a discounted Rate.
         </h1>
 
@@ -49,12 +49,23 @@ const Hero = () => {
               <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
             </svg>
 
-            <input type="email" name="email" id="email" placeholder="email@kemuscorp.com" class="form-input border border-gray-900 py-2 md:py-3 px-4 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none" />
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              id="email"
+              placeholder="email@example.com"
+              className="form-input border border-gray-900 py-2 md:py-3 px-4 bg-white placeholder-gray-400 text-gray-500 appearance-none w-full block pl-14 focus:outline-none"
+            />
           </label>
 
           {error && <p className=" text-white font-bold text-xl -mt-5">{error}</p>}
           <div className=" text-center" >
-            <button class="bg-primary text-white uppercase tracking-[1px] font-medium rounded-md md:rounded-[12px] w-[120px] md:w-[168px] h-[42px] md:h-[54px] text-[16px] md:text-[21px]">
+            <button
+              className="bg-primary text-white uppercase tracking-[1px] font-medium rounded-md md:rounded-[12px] w-[120px] md:w-[168px] h-[42px] md:h-[54px] text-[16px] md:text-[21px]"
+              onClick={storeEmail}
+            >
               Sign Up
             </button>
           </div>

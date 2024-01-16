@@ -16,9 +16,6 @@ import ShowDatePicker from './components/ShowDatePicker';
 
 function DetailForm({ data }) {
 
-  const [propertyType, setPropertyType] = useState('');
-  const [hoa, setHOA] = useState('');
-  const [propertyCondition, setPropertyCondition] = useState('');
   const [defaultImage, setDefaultImage] = useState(0);
 
   const { propertyData, selectedImages, handlePropertyData } = useContext(PropertyContext);

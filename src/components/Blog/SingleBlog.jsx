@@ -8,6 +8,11 @@ import Markdown from './Markdown'
 import Edit from '../SVGs/Edit'
 import { UserContext } from '../../context/UserContext'
 import Container from '../Layouts/Container'
+
+// icons
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
 const SingleBlog = () => {
 
   const navigate = useNavigate();
@@ -19,14 +24,27 @@ const SingleBlog = () => {
   const getBlogData = async () => {
     try {
       const { data } = await api.get(`/blog/${blog_id}`)
-      console.log('data: ', data.blog);
-      setBlog(data.blog);
+      console.log('data: ', data);
+      setBlog(data);
     } catch (error) {
-      console.log('Error: ', error);
+      console.log(error);
       toast(error?.message);
     }
   }
 
+
+  const deletePost = async (id) => {
+    try {
+      const { data } = await api.delete(`/admin/blog/${id}`);
+
+      toast("Blog Deleted Successfully");
+      navigate('/blogs')
+
+    } catch (error) {
+      console.error(error);
+      toast('Error Deleting Blog')
+    }
+  };
 
   useEffect(() => {
     getBlogData();
@@ -39,10 +57,11 @@ const SingleBlog = () => {
           <div className="bg-white p-3 rounded-xl shadow-xl relative">
             {
               user?.role == 'admin' && (
-                <div onClick={() => {
-                  navigate(`/admin/blog/edit/${blog?._id}`)
-                }} className=' absolute right-4 top-5 cursor-pointer'>
-                  <Edit />
+                <div className='absolute right-4 top-5 cursor-pointer flex gap-4'>
+                  <DeleteIcon onClick={() => deletePost(blog._id)} />
+                  <EditIcon onClick={() => {
+                    navigate(`/admin/blog/edit/${blog?._id}`)
+                  }} />
                 </div>
               )
             }

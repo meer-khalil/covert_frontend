@@ -6,29 +6,52 @@ import login from "../../../images/check2.png";
 // import './PropertyForm.css'
 import ImageUploader from './ImageUploader';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Autocomplete, Checkbox, FormControl, FormControlLabel, FormGroup, IconButton, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
+
 import { toast } from 'react-toastify';
 import DisplayImages from './DisplayImages';
 import ImageUploader2 from './ImageUploader2';
+import ShowDatePicker from '../../SellProperty/components/ShowDatePicker';
+import BasicDatePicker from '../../SellProperty/components/BasicDatePicker';
+
+
+// icons
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import PercentIcon from '@mui/icons-material/Percent';
+import SendIcon from '@mui/icons-material/Send';
 
 const PropertyForm = () => {
 
 	const { id } = useParams();
 
+	const [propertyData, setPropertyData] = useState({});
+	const [editDate, setEditDate] = useState(false)
+	const [btnLoading, setBtnLoading] = useState(false);
+	const [defaultImage, setDefaultImage] = useState(0);
+
 	const [selectedImages, setSelectedImages] = useState([])
 
-	const [address, setAddress] = useState('');
-	// const [description, setDescription] = useState('');
-	const [price, setPrice] = useState('');
-	const [category, setCategory] = useState('');
-	const [actualCAP, setActualCAP] = useState('');
-	const [proFormaCAP, setProFormaCAP] = useState('');
-	const [occupancy, setOccupancy] = useState('');
-	const [units, setUnits] = useState('');
 	const [images, setImages] = useState([]);
 	const [feature, setFeature] = useState('');
 	const [features, setFeatures] = useState([]);
 	const [oldImages, setOldImages] = useState([]);
+
+	const handlePropertyTypeChange = (event, newValue) => {
+		handlePropertyData({ target: { name: 'propertyType', value: newValue } });
+	};
+
+	const handlePropertyConditionChange = (event, newValue) => {
+		handlePropertyData({ target: { name: 'propertyCondition', value: newValue } });
+	};
+
+	const handleHOAChange = (event, newValue) => {
+		handlePropertyData({ target: { name: 'hasHoa', value: newValue } });
+	};
+
+	const handleChange = (idx) => {
+		setDefaultImage(idx)
+	}
 
 	async function getPropertyData(id) {
 		let url = `/properties/${id}`;
@@ -39,25 +62,55 @@ const PropertyForm = () => {
 		console.log('Property Updating: ', property);
 		const {
 			address,
-			// description,
+			numberOfBeds,
+			numberOfBaths,
+			builtYear,
+			sqFt,
+			lotSqft,
 			price,
 			actualCAP,
 			proFormaCAP,
-			occupancy,
 			units,
+			propertyType,
+			zipcode,
+			propertyCondition,
+			occupancy,
+			rentalIncome,
+			hasHoa,
+
+			finance_cash,
+			finance_sellerFinance,
+			finance_mortgage,
+			defaultImage,
 			images,
 			category,
 			features
 		} = property;
 
-		setAddress(address);
-		// setDescription(description);
-		setPrice(price);
-		setCategory(category);
-		setActualCAP(actualCAP);
-		setProFormaCAP(proFormaCAP);
-		setOccupancy(occupancy);
-		setUnits(units);
+		setPropertyData({
+			address,
+			numberOfBeds,
+			numberOfBaths,
+			builtYear,
+			sqFt,
+			lotSqft,
+			price,
+			actualCAP,
+			proFormaCAP,
+			units,
+			propertyType,
+			zipcode,
+			propertyCondition,
+			occupancy,
+			rentalIncome,
+			hasHoa,
+
+			finance_cash,
+			finance_sellerFinance,
+			finance_mortgage,
+		})
+
+		setDefaultImage(defaultImage)
 		setImages(images);
 		setSelectedImages(images);
 		setOldImages(images);
@@ -72,35 +125,32 @@ const PropertyForm = () => {
 		}
 	}, [id]);
 
+	useEffect(() => {
+		console.log('current: ', propertyData);
+	}, [propertyData])
+
+	const handlePropertyData = (e) => {
+		console.log('event: ', e);
+		const { name, value, type, checked } = e.target;
+
+		if (type === 'checkbox') {
+			setPropertyData(prev => ({ ...prev, [name]: checked }))
+		} else {
+			setPropertyData(prev => ({ ...prev, [name]: value }))
+		}
+
+	}
 	const handleSubmit = async (event) => {
 		// event.preventDefault();
-
+		setBtnLoading(true);
 		const formData = new FormData();
-
-		// let property = {
-		// 	address,
-		// 	price,
-		// 	actualCAP,
-		// 	proFormaCAP,
-		// 	occupancy,
-		// 	units,
-		// 	category,
-		// 	features
-		// }
-		// formData.append('property', JSON.stringify(property))
-
-		formData.append('address', address)
-		// formData.append('description', description)
-		formData.append('price', price)
-		formData.append('actualCAP', actualCAP)
-		formData.append('proFormaCAP', proFormaCAP)
-		formData.append('occupancy', occupancy)
-		formData.append('units', units)
-		formData.append('category', category)
+		propertyData.defaultImage = defaultImage;
+		formData.append('property', JSON.stringify(propertyData))
 
 		for (let i = 0; i < features.length; i++) {
 			formData.append('features', features[i])
 		}
+
 		try {
 			if (id) {
 
@@ -136,7 +186,7 @@ const PropertyForm = () => {
 						'Content-Type': 'multipart/form-data'
 					}
 				});
-				console.log('Updated Property: ', data.property);
+				console.log('Updated Property: ', data);
 				toast("Property Updated")
 			} else {
 
@@ -154,6 +204,7 @@ const PropertyForm = () => {
 			console.error('Error Updating/Creating Property:', error.message);
 			toast(error.message);
 		}
+		setBtnLoading(false);
 	};
 
 
@@ -169,7 +220,7 @@ const PropertyForm = () => {
 
 	return (
 		<div className='flex justify-center'>
-			<div className='max-w-2xl'>
+			<div className=' max-w-4xl'>
 				<h1 className="text-2xl md:text-4xl font-extrabold mb-4 font-poppins uppercase -tracking-tight">
 					{
 						id ? "Update Property" : "Create Property"
@@ -180,8 +231,9 @@ const PropertyForm = () => {
 					<TextField
 						label="Address"
 						variant="outlined"
-						value={address}
-						onChange={(e) => setAddress(e.target.value)}
+						name='address'
+						value={propertyData?.address}
+						onChange={handlePropertyData}
 						fullWidth
 						autoComplete="off"
 						inputProps={{ style: { fontSize: 15 } }}
@@ -190,11 +242,76 @@ const PropertyForm = () => {
 						}}
 					/>
 
-					<div className="flex gap-2 my-3">
+					<div className="flex items-center gap-5 mt-3">
+
 						<div className="flex-1">
 							<TextField
-								value={price}
-								onChange={(e) => setPrice(e.target.value)}
+								fullWidth
+								name='numberOfBeds'
+								onChange={handlePropertyData}
+								label="Number of Beds"
+								type="number"
+								value={propertyData?.numberOfBeds}
+							/>
+						</div>
+
+						<div className="flex-1">
+							<TextField
+								fullWidth
+								name='numberOfBaths'
+								onChange={handlePropertyData}
+								label="Number of Baths"
+								type="number"
+								value={propertyData?.numberOfBaths}
+							/>
+						</div>
+
+						<div className='flex-1'>
+							{
+								!editDate ? (
+									<ShowDatePicker
+										propertyData={propertyData}
+									/>
+								) : (
+									<BasicDatePicker
+										handlePropertyData={handlePropertyData}
+										propertyData={propertyData}
+									/>
+								)
+							}
+
+						</div>
+
+						<div className="flex-1">
+							<TextField
+								fullWidth
+								name='sqFt'
+								onChange={handlePropertyData}
+								label="SqFt"
+								type="number"
+								value={propertyData?.sqFt}
+							/>
+						</div>
+
+						<div className="flex-1">
+							<TextField
+								fullWidth
+								name='lotSqft'
+								onChange={handlePropertyData}
+								label="Lot SqFt"
+								type="number"
+								value={propertyData?.lotSqft}
+							/>
+						</div>
+
+					</div>
+
+					{/* <div className="flex gap-2 my-3">
+						<div className="flex-1">
+							<TextField
+								value={propertyData?.price}
+								name='price'
+								onChange={handlePropertyData}
 								label="Price"
 								type="number"
 							/>
@@ -228,38 +345,216 @@ const PropertyForm = () => {
 								type="number"
 							/>
 						</div>
-					</div>
+					</div> */}
 
 
-					<div className="flex gap-2 mb-3">
-
+					<div className="flex gap-5 my-10">
 						<div className="flex-1">
 							<TextField
-								value={proFormaCAP}
-								onChange={(e) => setProFormaCAP(e.target.value)}
-								label="Pro Forma CAP"
+								fullWidth
+								name='price'
+								onChange={handlePropertyData}
+								label="Price"
 								type="number"
+								value={propertyData?.price}
+								InputProps={{
+									startAdornment: (
+										<InputAdornment position='start'>
+											{/* <IconButton> */}
+											<AttachMoneyIcon fontSize='small' />
+											{/* </IconButton> */}
+										</InputAdornment>
+									)
+								}}
 							/>
 						</div>
+
 						<div className="flex-1">
 							<TextField
-								value={occupancy}
-								onChange={(e) => setOccupancy(e.target.value)}
+								fullWidth
+								name='actualCAP'
+								onChange={handlePropertyData}
+								label="Actual CAP"
+								type="number"
+								value={propertyData?.actualCAP}
+								InputProps={{
+									endAdornment: (
+										<InputAdornment>
+											<IconButton>
+												<PercentIcon fontSize='small' />
+											</IconButton>
+										</InputAdornment>
+									)
+								}}
+							/>
+						</div>
+
+						<div className="flex-1">
+							<TextField
+								fullWidth
+								name='proFormaCAP'
+								onChange={handlePropertyData}
+								label="Pro Forma CAP"
+								type="number"
+								value={propertyData?.proFormaCAP}
+								InputProps={{
+									endAdornment: (
+										<InputAdornment>
+											<IconButton>
+												<PercentIcon fontSize='small' />
+											</IconButton>
+										</InputAdornment>
+									)
+								}}
+							/>
+						</div>
+
+						<div className="flex-1">
+							<TextField
+								fullWidth
+								name='units'
+								onChange={handlePropertyData}
+								label="Units"
+								type="number"
+								value={propertyData?.units}
+							/>
+						</div>
+						<div className='flex-1'>
+							<Autocomplete
+								disablePortal
+								fullWidth
+								id="combo-box-for-property-type"
+								options={['Single Family', 'Townhomes', 'Multifamily', 'Apartments']}
+								// defaultValue='Single Family'
+								onChange={handlePropertyTypeChange}
+								value={propertyData?.propertyType}
+								renderInput={(params) => <TextField {...params} label="Property Type" />}
+							/>
+						</div>
+					</div>
+
+					<div className="flex items-center gap-5 mb-10">
+
+						<div className="flex-1">
+							<TextField
+								name='zipcode'
+								fullWidth
+								value={propertyData?.zipcode}
+								onChange={(e) => {
+									if (e.target.value.length <= 5) {
+										handlePropertyData(e)
+									}
+								}}
+								label="Zipcode"
+								type="text"
+							/>
+						</div>
+
+						<div className='flex-1'>
+							<Autocomplete
+								disablePortal
+								fullWidth
+								id="combo-box-for-property-condition"
+								options={[
+									'Move-In Ready',
+									'Good Condition',
+									'Fair Condition',
+									'Fixer-Upper',
+									'Distressed Property',
+									'As-Is',
+									'Needs TLC (Tender Loving Care)',
+									'New Construction',
+									'Renovated/Updated'
+								]}
+								onChange={handlePropertyConditionChange}
+								value={propertyData?.propertyCondition}
+								renderInput={(params) => <TextField {...params} label="Property Condition" />}
+							/>
+						</div>
+
+						<div className="flex-1">
+							<TextField
+								name='occupancy'
+								fullWidth
+								value={propertyData?.occupancy}
+								onChange={handlePropertyData}
 								label="Occupancy"
 								type="number"
 							/>
 						</div>
+
 						<div className="flex-1">
 							<TextField
-								value={units}
-								onChange={(e) => setUnits(e.target.value)}
-								label="Units"
+								fullWidth
+								name='rentalIncome'
+								value={propertyData?.rentalIncome}
+								onChange={handlePropertyData}
+								label="Rental Income"
 								type="number"
+							/>
+						</div>
+
+						<div className='flex-1'>
+							<Autocomplete
+								disablePortal
+								fullWidth
+								id="combo-box-for-hoa"
+								options={['Yes', 'No', 'Maybe']}
+								onChange={handleHOAChange}
+								value={propertyData?.hasHoa}
+								renderInput={(params) => <TextField {...params} label="Has HOA" />}
 							/>
 						</div>
 					</div>
 
 
+					<div className="flex gap-4">
+
+						<div>
+							<FormGroup>
+								<FormControlLabel
+									control={
+										<Checkbox
+											name='finance_cash'
+											onChange={handlePropertyData}
+											checked={propertyData.finance_cash === true}
+										/>
+									}
+									label={'Cash'}
+								/>
+							</FormGroup>
+						</div>
+
+						<div>
+							<FormGroup>
+								<FormControlLabel
+									control={
+										<Checkbox
+											name='finance_sellerFinance'
+											onChange={handlePropertyData}
+											checked={propertyData.finance_sellerFinance === true}
+										/>
+									}
+									label={'Seller Finance'}
+								/>
+							</FormGroup>
+						</div>
+
+						<div>
+							<FormGroup>
+								<FormControlLabel
+									control={
+										<Checkbox
+											name='finance_mortgage'
+											onChange={handlePropertyData}
+											checked={propertyData.finance_mortgage === true}
+										/>
+									}
+									label={'Mortgage'}
+								/>
+							</FormGroup>
+						</div>
+					</div>
 					{
 						// id ? (
 
@@ -285,11 +580,13 @@ const PropertyForm = () => {
 								selectedImages={selectedImages}
 								setSelectedImages={setSelectedImages}
 								setImages={setImages}
+								defaultImage={defaultImage}
+								setDefaultImage={setDefaultImage}
 							/>
 						)
 					}
 
-					<div>
+					{/* <div>
 						<div className='flex gap-2'>
 
 							<TextField
@@ -322,13 +619,23 @@ const PropertyForm = () => {
 								))
 							}
 						</div>
-					</div>
+					</div> */}
 
 					<div className='flex justify-end mt-5'>
-						<button
+						{/* <button
 							class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
 							onClick={handleSubmit}
-						>{id ? 'Update Property' : 'Create Property'}</button>
+						>{id ? 'Update Property' : 'Create Property'}</button> */}
+						<LoadingButton
+							size="large"
+							color="success"
+							onClick={handleSubmit}
+							loading={btnLoading}
+							loadingPosition="start"
+							startIcon={<SendIcon />}
+							variant="outlined">
+							Send
+						</LoadingButton>
 					</div>
 				</form>
 			</div>

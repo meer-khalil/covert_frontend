@@ -113,6 +113,17 @@ export default function BlogNewPostForm() {
           formData.append("cover", cover)
         }
 
+        let result = []
+        values.tags.forEach((e) => {
+          for (let i = 0; i < categories.length; i++) {
+            if (categories[i].name === e) {
+              result.push(categories[i]._id)
+              break;
+            }
+          }
+        })
+        copy.tags = result
+
         formData.append("data", JSON.stringify(copy));
 
         if (id) {
@@ -162,13 +173,14 @@ export default function BlogNewPostForm() {
 
   const getCategories = async () => {
     const { data } = await api.get('/categories')
+    console.log('categories: ', data.categories);
     setCategories(data.categories)
   }
 
   const getPostData = async (id) => {
     try {
       const { data } = await api.get(`/blog/${id}`)
-      const blog = data.blog
+      const blog = data
       setFieldValue('title', blog.title);
       setFieldValue('description', blog.description);
       setFieldValue('content', blog.content);
@@ -284,6 +296,7 @@ export default function BlogNewPostForm() {
                     value={values.tags}
                     onChange={(event, newValue) => {
                       setFieldValue('tags', newValue);
+                      console.log('newValue: ', newValue);
                       // setFieldValue('tags', categories.filter(e => { if (e.name === newValue) return e._id }));
                     }}
                     options={categories.map((option) => option.name)}

@@ -24,7 +24,7 @@ function Blog() {
     let url = ''
     if (category) {
 
-      url = `/categories/${category}`
+      url = `/blogs/tag/${category}`
     } else {
       url = `/blogs`
     }
@@ -36,7 +36,10 @@ function Blog() {
         }
       });
 
-      setBlogs(data.blogs);
+      const { blogs, filteredPropertiesCount, resultPerPage } = data
+      const pages = Math.ceil(filteredPropertiesCount / resultPerPage);
+      setPages(pages)
+      setBlogs(blogs);
       // toast(`Blogs for: ${category}`);
       console.log('Blog Data: ', data);
 
@@ -48,7 +51,8 @@ function Blog() {
 
   useEffect(() => {
     fetchBlogData();
-  }, [category]);
+  }, [category, page]);
+
   return (
     <Layout>
 

@@ -7,6 +7,12 @@ import { UserContext } from '../../context/UserContext';
 import api from '../../util/api';
 import { toast } from 'react-toastify';
 
+
+// Icons
+import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
+
 function Card({ getPropertiesData, property, bulkData, setBulkData }) {
 
     const { user } = useContext(UserContext)
@@ -30,8 +36,9 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
 
     const handleClick = async (showHome, id) => {
 
+        let temp = { ...property, showHome }
         let data = {
-            showHome
+            property: JSON.stringify(temp)
         }
 
         let url = `/admin/properties/${id}`;
@@ -121,17 +128,19 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
                                 </label>
                             </div>
                             <div>
-                                <a href={`/admin/property/edit/${property?._id}`} target='_blank'>
+                                <a href={`/admin/property/edit/${property?._id}`} target='_blank' className=' mr-3'>
 
-                                    <button className=' bg-blue-500 px-2 py-1 rounded-md text-lg text-white'>Edit</button>
+                                    {/* <button className=' bg-blue-500 px-2 py-1 rounded-md text-lg text-white'>Edit</button> */}
+                                    <ModeEditOutlinedIcon />
                                 </a>
                             </div>
                         </div>
                         <div
                             onClick={() => handleClick(!property?.showHome, property?._id)}
-                            className="absolute -right-5 cursor-pointer -top-4 text-3xl font-bold">
+                            className="absolute -right-7 cursor-pointer -top-4 text-3xl font-bold">
                             {
-                                property?.showHome ? "-" : "+"
+                                property?.showHome ?
+                                    <AddOutlinedIcon /> : <RemoveOutlinedIcon />
                             }
                         </div>
                     </>

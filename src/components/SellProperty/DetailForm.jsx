@@ -118,9 +118,7 @@ function DetailForm({ data }) {
             InputProps={{
               startAdornment: (
                 <InputAdornment position='start'>
-                  {/* <IconButton> */}
                   <AttachMoneyIcon fontSize='small' />
-                  {/* </IconButton> */}
                 </InputAdornment>
               )
             }}
@@ -237,6 +235,15 @@ function DetailForm({ data }) {
             onChange={handlePropertyData}
             label="Occupancy"
             type="number"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment>
+                  <IconButton>
+                    <PercentIcon fontSize='small' />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
           />
         </div>
 
@@ -248,6 +255,13 @@ function DetailForm({ data }) {
             onChange={handlePropertyData}
             label="Rental Income"
             type="number"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position='start'>
+                  <AttachMoneyIcon fontSize='small' />
+                </InputAdornment>
+              )
+            }}
           />
         </div>
 

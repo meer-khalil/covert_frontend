@@ -8,6 +8,7 @@ import api from '../../util/api';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AdminButtons from './AdminButtons';
+import Pagination from '../Blog/Pagination';
 
 const ListingGrid = () => {
 
@@ -24,6 +25,9 @@ const ListingGrid = () => {
   const [showDialogue, setShowDialogue] = useState(false);
   const [operation, setOperation] = useState('')
 
+  // for pagination
+  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState(1);
 
   const [category, setCategory] = useState('All');
 
@@ -128,23 +132,25 @@ const ListingGrid = () => {
           'Content-Type': 'application/json'
         },
         params: {
-          ...filter
+          ...filter,
+          page
         }
       })
 
-      setProperties(data.properties)
+      const { properties, resultPerPage, filteredPropertiesCount } = data
+      const pages = Math.ceil(filteredPropertiesCount / resultPerPage);
+      setPages(pages)
+      setProperties(properties)
       console.log('Properties: ', data);
-
     } catch (error) {
       toast("Error while getting properties");
       console.log('Error: ', error);
     }
   }
 
-
   useEffect(() => {
     getPropertiesData();
-  }, [selectedOption]);
+  }, [selectedOption, page]);
 
 
   if (!properties) return <div>Loading.....</div>
@@ -202,22 +208,7 @@ const ListingGrid = () => {
           }
         </div>
         <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
-          <Button
-            variant="contained"
-            sx={{
-              mt: 3,
-              mb: 2,
-              p: 1,
-              px: 4,
-              bgcolor: "#716EDC",
-              "&:hover": {
-                backgroundColor: "#716EDC",
-              },
-              mx: 'auto'
-            }}
-          >
-            Load More
-          </Button>
+          <Pagination page={page} pages={pages} changePage={setPage} />
         </Box>
       </div>
       {

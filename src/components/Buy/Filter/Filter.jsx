@@ -5,6 +5,7 @@ import FilterItem from './FilterItem';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import api from '../../../util/api';
 
 
 // const filters = [
@@ -74,9 +75,25 @@ const PropertyTypeDropdown = ({ setFilter }) => {
 const StateDropdown = ({ setFilter }) => {
 
 
+    const [states, setStates] = useState([]);
+
     const handleStateChange = (event, newValue) => {
         setFilter({ 'state': newValue });
     };
+
+    const getStates = () => {
+        api.get('/states')
+            .then(({ data }) => {
+                setStates(data)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    useEffect(() => {
+        getStates();
+    }, [])
 
     return (
         <div className='flex-1'>
@@ -84,26 +101,7 @@ const StateDropdown = ({ setFilter }) => {
                 disablePortal
                 fullWidth
                 id="combo-box-for-property-type"
-                options={[
-                    'Alabama', 'Alaska', 'Arizona',
-                    'Arkansas', 'California', 'Colorado',
-                    'Connecticut', 'Deleware', 'Florida',
-                    'Georgia', 'Hawaii', 'Idaho',
-                    'Illinois', 'Indiana', 'Iowa',
-                    'Kansas', 'Kentucky', 'Louisiana',
-                    'Maine', 'Maryland', 'Massachusetts',
-                    'Michigan', 'Minnesota', 'Mississippi',
-                    'Missouri', 'Montana', 'North Carolina',
-                    'North Dakota', 'Nebraska', 'Nevada',
-                    'New Hampshire', 'New Jersey', 'New Mexico',
-                    'New York', 'Ohio', 'Oklahoma',
-                    'Oregon', 'Pennsylvania', 'Puerto Rico',
-                    'Rhode Island', 'South Carolina', 'South Dakota',
-                    'Tennessee', 'Texas', 'Texas',
-                    'Utah', 'Vermont', 'Virgina',
-                    'Washington DC', 'Washington', 'West Virginia',
-                    'Wisconsin', 'Wyoming'
-                ]}
+                options={states}
                 onChange={handleStateChange}
                 renderInput={(params) => <TextField {...params} label="Filter by state" />}
             />

@@ -35,7 +35,7 @@ const BasicDetail = ({ property }) => {
       <div className='flex flex-col md:flex-row md:items-center md:space-x-32 w-full'>
 
         <h2 className='text-[35px] font-semibold'>
-          {property.title}
+          {property.address}
         </h2>
 
         <h3 className=' text-blue-500 font-semibold text-[44px]'>

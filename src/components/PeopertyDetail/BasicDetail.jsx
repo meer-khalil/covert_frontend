@@ -10,18 +10,19 @@ import { toast } from 'react-toastify';
 const BasicDetail = ({ property }) => {
 
   const [info, setInfo] = useState('')
+  const [city, setCity] = useState('')
 
   const searchCityInfo = () => {
     api.get(`/properties/wikipedia?query=${property.zipcode}`)
       .then((response) => {
-        const data = response.data;
+        let { data, city } = response.data;
         const pageId = Object.keys(data.query.pages)[0];
         const content = data.query.pages[pageId].extract;
         setInfo(content);
+        setCity(city);
       })
       .catch((error) => {
-        console.error('Error:', error);
-        alert('Error Wiki ')
+        console.error(error);
       });
   };
 
@@ -131,7 +132,7 @@ const BasicDetail = ({ property }) => {
               <>
                 {info.slice(0, 1000) + '...'}
                 <a
-                  href={`https://en.wikipedia.org/wiki/Special:Search?search=Utah`}
+                  href={`https://en.wikipedia.org/wiki/Special:Search?search=${city}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className=' text-blue-500'
@@ -143,8 +144,6 @@ const BasicDetail = ({ property }) => {
               <>
                 {
                   info
-                  // ||
-                  // "Lorem ipsum dolor sit amet consectetur. Id sed sapien consequat nibh. Sed viverra proin integer adipiscing euismod dictum amet tellus augue. Quis egestas vulputate adipiscing fusce mus. Id tellus massa facilisi magna semper eu auctor. Adipiscing ullamcorper ridiculus eget sit. Aliquet mauris ullamcorper eu felis. Sed etiam blandit sed cras cursus lectus aliquam porttitor. Sociis mattis etiam mauris dolor eget quis viverra mi. A mi pellentesque in urna et sed. Quis mauris ullamcorper accumsan in nulla. Feugiat volutpat cursus pharetra elit. Amet tortor quam eu mi auctor lacinia mattis dignissim quam. Rutrum faucibus bibendum nunc diam amet sed pharetra iaculis. Lobortis sit nisi nisi eget. In malesuada congue mauris sit eget ridiculus phasellus. Purus posuere urna vel quis viverra. Feugiat porttitor auctor sapien ut nec egestas. Ante ullamcorper nec magna egestas etiam. Condimentum nisl ac turpis enim et sollicitudin urna aliquam id. Amet."
                 }
               </>
             )

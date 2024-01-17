@@ -155,30 +155,13 @@ const PropertyForm = () => {
 			if (id) {
 
 				let newImages = images.filter((obj) => !obj.hasOwnProperty('_id'));
-				let oldPreserved = images.filter((obj) => obj.hasOwnProperty('_id'));
-
-				let deleteImages = oldImages.filter(e => {
-					let del = true;
-					for (let index = 0; index < oldPreserved.length; index++) {
-						const element = oldPreserved[index];
-						if (element?._id === e._id) {
-							del = false
-							break;
-						}
-					}
-					if (del) {
-						return e;
-					}
-				})
+				let oldImages = images.filter((obj) => obj.hasOwnProperty('_id'));
 
 				for (let i = 0; i < newImages.length; i++) {
 					formData.append('images', newImages[i]);
 				}
-				for (let i = 0; i < deleteImages.length; i++) {
-					formData.append('deleteImages', JSON.stringify(deleteImages[i]))
-				}
-				for (let i = 0; i < oldPreserved.length; i++) {
-					formData.append('oldImages', JSON.stringify(oldPreserved[i]))
+				for (let i = 0; i < oldImages.length; i++) {
+					formData.append('oldImages', JSON.stringify(oldImages[i]))
 				}
 
 				const { data } = await api.put(`/admin/properties/${id}`, formData, {

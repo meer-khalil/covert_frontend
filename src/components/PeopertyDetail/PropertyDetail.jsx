@@ -19,6 +19,7 @@ import PopUp from './PopUp';
 import InvestmentPayback from './InvestmentPayback';
 import { PropertyProvider } from '../../context/PropertyContext';
 import Layout from '../Layouts/Layout';
+import SlideShow from './SlideShow';
 
 
 
@@ -27,6 +28,7 @@ function PropertyDetails() {
   const { propertyId } = useParams();
   const [property, setProperty] = useState(null)
   const [zipData, setZipData] = useState(null)
+  const [showSlide, setShowSlide] = useState(false);
 
   const [downPaymentCashFlow, setDownPaymentCashFlow] = useState(1);
 
@@ -85,7 +87,7 @@ function PropertyDetails() {
 
               <div className='px-3 page-size'>
 
-                <Images property={property} />
+                <Images property={property} setShowSlide={setShowSlide}/>
                 <BasicDetail property={property} />
 
 
@@ -107,8 +109,20 @@ function PropertyDetails() {
 
                 <InvestmentPayback
                   property={property}
-
                 />
+                {
+                  showSlide && (
+                    <div className='absolute left-0 top-0 right-0 bottom-0 z-50'>
+                      <div className='absolute left-0 top-0 right-0 bottom-0 bg-gray-600 bg-opacity-50' onClick={() => setShowSlide(false)}>
+                      </div>
+                      <div className=' h-full w-full flex justify-center items-center'>
+                        <div className=' w-[60rem]'>
+                          <SlideShow images={property.images} />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                }
               </div >
             </>
           ) : (

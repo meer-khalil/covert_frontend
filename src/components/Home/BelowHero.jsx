@@ -1,13 +1,13 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-import image from "../../images/below_hero.png";
+import image from "../../images/webp/home/below_hero.webp";
 
 const BelowHero = ({ commingSoon }) => {
 
   return (
     <div
-    className="
+      className="
     page-size 
     pt-7 md:pt-[40px] pb-10 md:pb-[203px] px-5 md:px-[60px]
     "
@@ -25,7 +25,7 @@ const BelowHero = ({ commingSoon }) => {
           </p>
           <p className=" font-[Poppins] font-normal text-lg text-justify mt-2">
             {
-              commingSoon 
+              commingSoon
               ||
               "When you sign up you’ll get deals with information catered specifically to your choice of State or City. Each deal is personally designed by our team to meet the needs of indivitual investor. We only send deals we would recommend to our family and friends."
             }

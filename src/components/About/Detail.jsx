@@ -1,7 +1,7 @@
 import { Box, Grid, Typography, Divider } from "@mui/material";
 import React from "react";
 
-import image from "../../images/below_hero.png";
+import image from "../../images/webp/home/below_hero.webp";
 
 const Detail = ({ whatWeDo }) => {
     return (

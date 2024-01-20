@@ -63,7 +63,7 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
     return (
 
         <div className="bg-white rounded-xl shadow-xl md:mx-5 relative">
-            <Link to={`/property-details/${property?._id}`}>
+            <Link to={`/property-details/${property?.slug}`}>
                 <div className=' h-[300px] rounded-tl-xl rounded-tr-xl overflow-hidden'>
                     <img
                         className='h-full w-full' src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/${property?.images[property?.defaultImage || 0]?.filename}`}

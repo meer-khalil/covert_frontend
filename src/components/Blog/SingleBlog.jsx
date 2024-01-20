@@ -12,6 +12,7 @@ import Container from '../Layouts/Container'
 // icons
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { Chip } from '@mui/material'
 
 const SingleBlog = () => {
 
@@ -80,9 +81,10 @@ const SingleBlog = () => {
             </div>
             <div className='flex flex-wrap gap-4 py-3'>
               {
-                blog?.tags?.map((cat) => (
+                blog?.tags?.map((cat, index) => (
                   // <Link key={cat} to={`/blogs/category/:id`}>
-                  <span className=' bg-primary text-white px-2 rounded-full' key={cat}>{cat}</span>
+                  <Chip key={cat.name} size="small" label={cat.name} />
+                  // <span className=' bg-primary text-white px-2 rounded-full' key={cat._id}>{cat.name}</span>
                   // </Link>
                 ))
               }

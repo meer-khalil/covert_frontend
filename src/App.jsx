@@ -55,7 +55,7 @@ export default function App() {
 
         <Route path="/buy" element={<Buy />} />
 
-        <Route path="/property-details/:propertyId" element={
+        <Route path="/property-details/:slug" element={
           <PropertyDetails />
         } />
 

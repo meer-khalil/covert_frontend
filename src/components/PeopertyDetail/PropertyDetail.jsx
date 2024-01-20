@@ -20,12 +20,13 @@ import InvestmentPayback from './InvestmentPayback';
 import { PropertyProvider } from '../../context/PropertyContext';
 import Layout from '../Layouts/Layout';
 import SlideShow from './SlideShow';
+import { toast } from 'react-toastify';
 
 
 
 function PropertyDetails() {
 
-  const { propertyId } = useParams();
+  const { slug } = useParams();
   const [property, setProperty] = useState(null)
   const [zipData, setZipData] = useState(null)
   const [showSlide, setShowSlide] = useState(false);
@@ -50,21 +51,20 @@ function PropertyDetails() {
   const getPropertyData = async () => {
     try {
 
-      const { data } = await api.get(`/properties/${propertyId}`, {
+      const { data: property } = await api.get(`/properties/${slug}`, {
         headers: {
           'Content-Type': 'application/json'
         }
       })
 
-      const { property } = data;
       setProperty(property)
       const zipcode = property?.zipcode
-      console.log('Data for Properties: ', data);
+      console.log('Data for Properties: ', property);
       getZipCodeData(zipcode);
+
     } catch (error) {
       console.log('Error: ', error.message);
-      alert('Property Detail: ', error.message);
-      alert("Property Error")
+      toast(error.message)
     }
   }
 
@@ -87,7 +87,7 @@ function PropertyDetails() {
 
               <div className='px-3 page-size'>
 
-                <Images property={property} setShowSlide={setShowSlide}/>
+                <Images property={property} setShowSlide={setShowSlide} />
                 <BasicDetail property={property} />
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Paper, Typography, Box } from "@mui/material";
 
-import bg from "../../images/process.png";
+import bg from "../../images/webp/home/process.webp";
 
 const data = [
   {
@@ -65,3 +65,9 @@ const Process = ({ cards }) => {
 };
 
 export default Process;
+
+
+/*
+
+https://api.covertnest.com/images/blog/1703050752245-DALLÂ·E 2023-12-16 22.17.16 - A detailed, colorful infographic showing the U.S. rental market trends based on Zillow's data. The infographic includes a map of the United States hig.png
+*/

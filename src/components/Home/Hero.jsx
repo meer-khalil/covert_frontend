@@ -1,16 +1,7 @@
 import React, { useContext } from "react";
-import {
-  Box,
-  Button,
-  InputAdornment,
-  TextField,
-  Typography,
-} from "@mui/material";
-import heroBackground from "../../images/hero_background.png";
-import { Email } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
+import heroBackground from "../../images/webp/home/hero_background.webp";
 import { UserContext } from "../../context/UserContext";
-import api from "../../util/api";
 
 const Hero = () => {
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import PageTitle from '../About/PageTitle'
 
-import image from '../../images/PageTitles/BuyPageTitle.png';
+import image from '../../images/PageTitles/BuyPageTitle.webp';
 
 import ListingGrid from './ListingGrid'
 import Layout from '../Layouts/Layout'

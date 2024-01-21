@@ -31,7 +31,7 @@ const Admin = () => {
 
                     <Route index path="pages/*" element={<Pages />} />
                     {/* <Route path="property" element={<PropertyForm />} /> */}
-                    <Route path="property/edit/:id" element={<PropertyForm />} />
+                    <Route path="property/edit/:slug" element={<PropertyForm />} />
                     {/* <Route path="blog/new" element={<AddBlog />} /> */}
                     <Route path="blog/new" element={<BlogNewPostForm />} />
                     <Route path="blog/edit/:id" element={<BlogNewPostForm />} />

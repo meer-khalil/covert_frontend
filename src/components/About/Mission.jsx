@@ -1,7 +1,7 @@
 import { Box, Divider, Typography } from '@mui/material'
 import React from 'react'
 
-import image from '../../images/About/OurMission.png'
+import image from '../../images/About/OurMission.webp'
 
 function Mission({ mission }) {
     return (

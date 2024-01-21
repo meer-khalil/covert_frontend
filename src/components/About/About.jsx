@@ -8,7 +8,7 @@ import Container from "../Layouts/Container";
 import Layout from "../Layouts/Layout";
 
 
-import image from "../../images/PageTitles/AboutPageTitle.png";
+import image from "../../images/PageTitles/AboutPageTitle.webp";
 
 const About = () => {
 

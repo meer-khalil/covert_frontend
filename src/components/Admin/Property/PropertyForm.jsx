@@ -23,7 +23,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 const PropertyForm = () => {
 
-	const { id } = useParams();
+	const { slug } = useParams();
 
 	const [propertyData, setPropertyData] = useState({});
 	const [editDate, setEditDate] = useState(false)
@@ -53,11 +53,11 @@ const PropertyForm = () => {
 		setDefaultImage(idx)
 	}
 
-	async function getPropertyData(id) {
-		let url = `/properties/${id}`;
+	async function getPropertyData(slug) {
+		let url = `/properties/${slug}`;
 		const { data } = await api.get(url);
 
-		let { property } = data
+		let property = data
 
 		console.log('Property Updating: ', property);
 		const {
@@ -117,13 +117,13 @@ const PropertyForm = () => {
 		setFeatures(features);
 	}
 	useEffect(() => {
-		if (id) {
-			console.log('Here is Id: ', id);
-			getPropertyData(id);
+		if (slug) {
+			console.log('Here is Slug: ', slug);
+			getPropertyData(slug);
 		} else {
-			console.log('There is no id', id);
+			console.log('There is no id', slug);
 		}
-	}, [id]);
+	}, [slug]);
 
 	useEffect(() => {
 		console.log('current: ', propertyData);
@@ -152,7 +152,7 @@ const PropertyForm = () => {
 		}
 
 		try {
-			if (id) {
+			if (slug) {
 
 				let newImages = images.filter((obj) => !obj.hasOwnProperty('_id'));
 				let oldImages = images.filter((obj) => obj.hasOwnProperty('_id'));
@@ -164,7 +164,7 @@ const PropertyForm = () => {
 					formData.append('oldImages', JSON.stringify(oldImages[i]))
 				}
 
-				const { data } = await api.put(`/admin/properties/${id}`, formData, {
+				const { data } = await api.put(`/admin/properties/${slug}`, formData, {
 					headers: {
 						'Content-Type': 'multipart/form-data'
 					}
@@ -206,7 +206,7 @@ const PropertyForm = () => {
 			<div className=' max-w-4xl'>
 				<h1 className="text-2xl md:text-4xl font-extrabold mb-4 font-poppins uppercase -tracking-tight">
 					{
-						id ? "Update Property" : "Create Property"
+						slug ? "Update Property" : "Create Property"
 					}
 				</h1>
 				<form onSubmit={(e) => { e.preventDefault() }} className='flex-1'>

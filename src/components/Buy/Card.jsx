@@ -128,7 +128,7 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
                                 </label>
                             </div>
                             <div>
-                                <a href={`/admin/property/edit/${property?._id}`} target='_blank' className=' mr-3'>
+                                <a href={`/admin/property/edit/${property?.slug}`} target='_blank' className=' mr-3'>
 
                                     {/* <button className=' bg-blue-500 px-2 py-1 rounded-md text-lg text-white'>Edit</button> */}
                                     <ModeEditOutlinedIcon />

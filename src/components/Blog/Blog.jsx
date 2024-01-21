@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PageTitle from '../About/PageTitle'
 
-import image from '../../images/PageTitles/BlogPageTitle.png';
+import image from '../../images/PageTitles/BlogPageTitle.webp';
 import Categaries from './Categaries'
 import Title from './Title'
 import CardGrid from './CardGrid'

@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from '@mui/material'
 import React from 'react'
 
-import image from '../../images/About/contactform.png'
+import image from '../../images/About/contactform.webp'
 import Container from '../Layouts/Container';
 import ContactForm from './ContactForm';
 

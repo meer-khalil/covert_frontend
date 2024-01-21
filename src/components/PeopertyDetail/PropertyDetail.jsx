@@ -1,14 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-
-import PageTitle from '../About/PageTitle'
-
-import image from '../../images/PageTitles/DetailPageTitle.png'
-
-import { Autocomplete, Box, Button, Divider, TextField, Typography } from '@mui/material'
-import Table from './Table';
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { UserContext } from '../../context/UserContext';
-import api from '../../util/api';
+import { toast } from 'react-toastify';
+
+// components
+import PageTitle from '../About/PageTitle'
 import Images from './Images';
 import BasicDetail from './BasicDetail';
 import Map from './Map';
@@ -20,9 +15,10 @@ import InvestmentPayback from './InvestmentPayback';
 import { PropertyProvider } from '../../context/PropertyContext';
 import Layout from '../Layouts/Layout';
 import SlideShow from './SlideShow';
-import { toast } from 'react-toastify';
+import api from '../../util/api';
 
-
+// images
+import image from '../../images/PageTitles/DetailPageTitle.webp'
 
 function PropertyDetails() {
 

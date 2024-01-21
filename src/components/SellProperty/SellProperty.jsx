@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 
 
 import PageTitle from '../About/PageTitle'
-import image from '../../images/PageTitles/SellPageTitle.png';
+import image from '../../images/PageTitles/SellPageTitle.webp';
 import VerifyAddress from './VerifyAddress';
 import VerifyHomeFacts from './VerifyHomeFacts';
 import ReviewInfo from './ReviewInfo';

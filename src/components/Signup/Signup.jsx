@@ -56,36 +56,12 @@ export default function Signup() {
     const data = {
       firstName: formData.get('firstName'),
       lastName: formData.get('lastName'),
-      username: formData.get('firstName') + formData.get('lastName'),
       email: formData.get('email'),
       password: formData.get('password'),
-      // cardName: formData.get('cardName'),
-      // cardNumber: formData.get('cardNumber'),
-      // cardMonth: formData.get('cardMonth'),
-      // cardYear: formData.get('cardYear'),
-      // cardCvv: formData.get('cardCvv')
     }
 
     register(data)
   };
-
-  // const restrictTo2 = (value, fn) => {
-  //   if (value.length <= 2) {
-  //     fn(value);
-  //   }
-  // }
-
-  // const restrictTo3 = (value, fn) => {
-  //   if (value.length <= 3) {
-  //     fn(value);
-  //   }
-  // }
-
-  // const cardNumberFormat = (value, fn) => {
-  //   if (value.length <= 19) {
-  //     setCardNumber(value)
-  //   }
-  // }
 
   return (
     <div className=" max-w-[1440px] mx-auto h-screen lg:max-h-[800px]">

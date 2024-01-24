@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -31,6 +31,8 @@ import google from "../../images/google.svg";
 import login from "../../images/upgrade.png";
 import { Divider } from "@mui/material";
 import api from "../../util/api";
+import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const icons = [twitter, facebook, google];
 
@@ -45,9 +47,12 @@ const data = [
 const theme = createTheme();
 
 export default function Upgrade() {
+
+  const navigate = useNavigate()
+  const { user } = useContext(UserContext)
   const [upgrade, setUpgrade] = React.useState(null);
 
-  const fetchHomeData = async () => {
+  const fetchPageData = async () => {
     try {
       const { data } = await api.get("/pages/upgrade");
 
@@ -60,19 +65,17 @@ export default function Upgrade() {
   };
 
   React.useEffect(() => {
-    fetchHomeData();
+    fetchPageData();
   }, []);
 
-  console.log("Upgrade: ", data);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const handleClick = async () => {
+    if (!user) {
+      navigate("/signup")
+    } else {
+      const { data } = await api.post('/payment/process')
+      window.location.href = data.url
+    }
+  }
 
   return (
     <div className=" max-w-[1440px] mx-auto lg:max-h-[800px]">
@@ -127,7 +130,7 @@ export default function Upgrade() {
               </Box>
 
               <List
-                sx={{ width: "100%",  maxWidth: 360, bgcolor: "background.paper" }}
+                sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
               >
                 {upgrade?.benefits.map((item) => (
                   <ListItem>
@@ -149,6 +152,7 @@ export default function Upgrade() {
                 type="submit"
                 fullWidth
                 variant="contained"
+                onClick={handleClick}
                 sx={{
                   mt: 3,
                   mb: 2,

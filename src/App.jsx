@@ -30,7 +30,6 @@ export default function App() {
 
   return (
     <>
-      {/* <Navbar /> */}
       <ToastContainer />
       {
         showPopUp && <Popup />

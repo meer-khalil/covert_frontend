@@ -16,10 +16,10 @@ export const UserProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const login = async (_user) => {
-    console.log("User For Login: ", user);
+    console.log("User For Login: ", _user);
 
     try {
-      const { data } = await api.post("/login", {
+      const { data } = await api.post("/user/login", {
         ..._user,
       });
 
@@ -30,11 +30,9 @@ export const UserProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(user));
 
       setAuthToken(jwt);
-
       navigate("/buy");
     } catch (error) {
-      console.error("Failed to Login User:", error.response);
-      console.error("Failed to Login User:", error.response.status);
+      console.error(error);
       if (error.response.status === 401) {
         toast("User Doesn't Exist");
       } else {
@@ -46,7 +44,7 @@ export const UserProvider = ({ children }) => {
   const register = async (data) => {
     try {
       const response = await api.post(
-        "/register",
+        "/user/register",
         {
           ...data,
         },
@@ -60,13 +58,14 @@ export const UserProvider = ({ children }) => {
       setUser(response.data.user);
       let token = response.data.token;
       localStorage.setItem("realstate_token", token);
-
+      toast(response.data.message)
       setAuthToken(token);
       navigate("/");
+
     } catch (error) {
 
-      alert("Error While creating User: ", error.message);
-      console.error(error.message);
+      console.error(error);
+      toast(error.response.data.message);
 
     }
   };

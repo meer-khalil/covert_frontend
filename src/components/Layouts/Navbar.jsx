@@ -109,13 +109,13 @@ function DrawerAppBar(props) {
             {
               user ? (
                 <>
-                  <Link
+                  <div
                     to={`${process.env.PUBLIC_URL}/login`}
                     className=" mr-5 tracking-[2px]"
                     onClick={logout}
                   >
                     Logout
-                  </Link>
+                  </div>
                   <img style={{ width: '30px', height: '30px', borderRadius: '50%' }} src={person} alt="logo" />
                 </>
 
@@ -134,7 +134,7 @@ function DrawerAppBar(props) {
                   </Link>
 
                   <Link
-                    to={`${process.env.PUBLIC_URL}/upgrade`}
+                    to={`/upgrade`}
                     style={{ textDecoration: "none" }}
                   >
                     <Button

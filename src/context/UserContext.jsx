@@ -33,7 +33,7 @@ export const UserProvider = ({ children }) => {
       navigate("/buy");
     } catch (error) {
       console.error(error);
-      if (error.response.status === 401) {
+      if (error?.response?.status === 401) {
         toast("User Doesn't Exist");
       } else {
         toast(error?.message);
@@ -47,11 +47,6 @@ export const UserProvider = ({ children }) => {
         "/user/register",
         {
           ...data,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
         }
       );
 
@@ -90,9 +85,8 @@ export const UserProvider = ({ children }) => {
   const logout = async () => {
     localStorage.removeItem("realstate_token");
     localStorage.removeItem("user");
-    await api.get("/logout");
     setUser(null);
-    navigate("/login");
+    navigate("/");
   };
 
 

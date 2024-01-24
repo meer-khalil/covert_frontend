@@ -24,10 +24,10 @@ import { UserContext } from '../../context/UserContext'
 
 const drawerWidth = 240;
 const navItems = [
-  { item: "Home", url: `${process.env.PUBLIC_URL}/` },
-  { item: "Buy", url: `${process.env.PUBLIC_URL}/buy` },
-  { item: "Sell", url: `${process.env.PUBLIC_URL}/sell-property` },
-  { item: "Data", url: `${process.env.PUBLIC_URL}/data` },
+  { item: "Home", url: `/` },
+  { item: "Buy", url: `/buy` },
+  { item: "Sell", url: `/sell-property` },
+  { item: "Data", url: `/data` },
   { item: "About", url: "/about" },
   { item: "Blog", url: "/blogs" },
 ];
@@ -110,8 +110,7 @@ function DrawerAppBar(props) {
               user ? (
                 <>
                   <div
-                    to={`${process.env.PUBLIC_URL}/login`}
-                    className=" mr-5 tracking-[2px]"
+                    className="mr-5 tracking-[2px] cursor-pointer"
                     onClick={logout}
                   >
                     Logout
@@ -122,7 +121,7 @@ function DrawerAppBar(props) {
               ) : (
                 <>
                   <Link
-                    to={`${process.env.PUBLIC_URL}/login`}
+                    to={`/login`}
                     style={{
                       color: "#000",
                       letterSpacing: "2px",
@@ -152,7 +151,7 @@ function DrawerAppBar(props) {
               (
                 <>
                   <Link
-                    to={`${process.env.PUBLIC_URL}/login`}
+                    to={`/login`}
                     style={{
                       color: "#000",
                       letterSpacing: "2px",
@@ -164,7 +163,7 @@ function DrawerAppBar(props) {
                   </Link>
 
                   <Link
-                    to={`${process.env.PUBLIC_URL}/upgrade`}
+                    to={`/upgrade`}
                     style={{ textDecoration: "none" }}
                   >
                     <Button

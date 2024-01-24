@@ -22,6 +22,7 @@ import login from "../../images/check2.png";
 import { Divider } from "@mui/material";
 import { UserContext } from "../../context/UserContext";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 // const icons = [twitter, facebook, google];
 
@@ -277,6 +278,7 @@ export default function Signup() {
                   Sign UP
                 </Button>
               </Box>
+            <p>Already have an Account? <Link to="/login" className=" text-primary ml-3 text-lg">Login</Link></p>
             </Box>
           </Grid>
           <Grid

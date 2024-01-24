@@ -119,8 +119,8 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
                                 <input
                                     id={`item${property?._id}`}
                                     type="checkbox"
-                                    checked={bulkData.includes(property?._id)}
-                                    onChange={() => handleCheckboxChange(property?._id)}
+                                    checked={bulkData.includes(property?.slug)}
+                                    onChange={() => handleCheckboxChange(property?.slug)}
                                     className=' cursor-pointer h-4 w-4'
                                 />
                                 <label htmlFor={`item${property?._id}`} className='cursor-pointer'>

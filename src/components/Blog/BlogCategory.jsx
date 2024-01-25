@@ -1,8 +1,7 @@
 import React from 'react'
 import PageTitle from '../About/PageTitle'
 
-import image from '../../images/check.png'
-import { Box, Button, Divider, Typography } from '@mui/material'
+import image from '../../images/check.webp'
 import Categaries from './Categaries'
 import Title from './Title'
 import CardGrid from './CardGrid'
@@ -22,7 +21,7 @@ function BlogCategory() {
       <div className='px-20 pt-12'>
         <Title />
         <Categaries />
-        <CardGrid blogs={[]}/>
+        <CardGrid blogs={[]} />
       </div>
     </>
   )

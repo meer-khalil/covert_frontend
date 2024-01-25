@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-import loginPic from '../../images/login.png';
+import loginPic from '../../images/login/login.webp';
 import Logo from '../Home/Logo';
 
 import Typography from "@mui/material/Typography";

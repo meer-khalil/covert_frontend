@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 
-import image from '../../images/check.png'
-import { Box, Button, TextField } from '@mui/material'
+import image from '../../images/check.webp'
+import { TextField } from '@mui/material'
 import { PropertyContext } from '../../context/PropertyContext'
 
 function VerifyAddress() {

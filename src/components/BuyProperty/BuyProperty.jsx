@@ -1,7 +1,7 @@
 import React from 'react'
 import PageTitle from '../About/PageTitle'
 
-import image from '../../images/check.png'
+import image from '../../images/check.webp'
 import FirstForm from './FirstForm'
 import Layout from '../Layouts/Layout'
 import SecondForm from './SecondForm'

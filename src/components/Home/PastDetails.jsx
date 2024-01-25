@@ -1,62 +1,9 @@
 import Grid from "@mui/material/Grid";
-import FormLabel from "@mui/material/FormLabel";
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import RadioGroup from "@mui/material/RadioGroup";
-import Radio from "@mui/material/Radio";
-import Paper from "@mui/material/Paper";
 import MediaCard from "./MediaCard";
-import { Box, Button, Divider, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-
-// Images(Default)
-import first from "../../images/login.png";
-import second from "../../images/check.png";
-import third from "../../images/check2.png";
-
 import api from "../../util/api";
 
-// const data = [
-//   {
-//     title: "Large 4-room apartment with a beautiful terrace",
-//     price: 320000,
-//     images: [
-//       {
-//         url: first
-//       }
-//     ],
-//     units: 10,
-//     actualCAP: 9.94,
-//     proFormaCAP: 9.94,
-//     occupancy: 80,
-//   },
-//   {
-//     title: "Large 4-room apartment with a beautiful terrace",
-//     images: [
-//       {
-//         url: second
-//       }
-//     ],
-//     units: 13,
-//     price: 320000,
-//     actualCAP: 9.94,
-//     proFormaCAP: 9.94,
-//     occupancy: 80,
-//   },
-//   {
-//     title: "Large 4-room apartment with a beautiful terrace",
-//     price: 320000,
-//     images: [
-//       {
-//         url: third
-//       }
-//     ],
-//     units: 15,
-//     actualCAP: 9.94,
-//     proFormaCAP: 9.94,
-//     occupancy: 80,
-//   },
-// ];
 
 export default function PastDetails() {
 
@@ -136,12 +83,12 @@ export default function PastDetails() {
           <div className="grid grid-cols-1 gap-y-3  md:grid-cols-3">
 
             {
-            // (properties?.length !== 0 ? properties : data)?
-            properties?.map((item, index) => (
-              <div key={index}>
-                <MediaCard item={item} />
-              </div>
-            ))}
+              // (properties?.length !== 0 ? properties : data)?
+              properties?.map((item, index) => (
+                <div key={index}>
+                  <MediaCard item={item} />
+                </div>
+              ))}
           </div>
 
         </Grid>

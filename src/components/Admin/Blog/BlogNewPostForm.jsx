@@ -189,7 +189,7 @@ export default function BlogNewPostForm() {
       setFieldValue('coverpreview', {
         preview: `${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${blog.cover.filename}`
       });
-      setFieldValue('tags', blog.tags)
+      setFieldValue('tags', blog.tags.map(tag => tag.name))
       console.log('Blog', blog);
     } catch (error) {
       console.log('error', error);

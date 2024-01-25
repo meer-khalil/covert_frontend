@@ -3,8 +3,6 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import PropertyForm from "./Property/PropertyForm";
 import Aside from "./Aside";
 import Pages from "./Pages/Pages";
-import Blogs from "./Blog/Blogs";
-import AddBlog from "./Blog/AddBlog";
 import Category from "./Blog/Category";
 import Emails from "./Emails";
 import Layout from "../Layouts/Layout";

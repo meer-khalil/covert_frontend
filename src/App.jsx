@@ -1,39 +1,43 @@
-import React, { useContext } from "react";
+import React, { Suspense, lazy, useContext } from "react";
 
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Login from './components/Login/Login'
-import Buy from './components/Buy/Buy'
-import Upgrade from './components/Upgrade/Upgrade'
-import About from './components/About/About'
-import Footer from "./components/Layouts/Footer";
-import Blog from "./components/Blog/Blog";
-import PropertyDetails from "./components/PeopertyDetail/PropertyDetail";
-import SellProperty from "./components/SellProperty/SellProperty";
-import BuyProperty from "./components/BuyProperty/BuyProperty";
-import Signup from "./components/Signup/Signup";
-import CopyRight from "./components/Home/CopyRight";
-
-import BlogCategory from "./components/Blog/BlogCategory";
-import SingleBlog from "./components/Blog/SingleBlog";
-import Admin from "./components/Admin/Admin";
 import { UserContext } from "./context/UserContext";
-import Popup from "./components/Home/Popup";
-import Data from "./components/Data/Data";
+import { Audio, Rings, Triangle } from 'react-loader-spinner'
 import { ToastContainer } from "react-toastify";
-
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from "./components/Common/Loading";
+
+// components
+const Home = lazy(() => import('./components/Home/Home'));
+const Login = lazy(() => import('./components/Login/Login'));
+const Buy = lazy(() => import('./components/Buy/Buy'));
+const Upgrade = lazy(() => import('./components/Upgrade/Upgrade'));
+const About = lazy(() => import('./components/About/About'));
+const Footer = lazy(() => import('./components/Layouts/Footer'));
+const Blog = lazy(() => import('./components/Blog/Blog'));
+const PropertyDetails = lazy(() => import('./components/PeopertyDetail/PropertyDetail'));
+const SellProperty = lazy(() => import('./components/SellProperty/SellProperty'));
+const BuyProperty = lazy(() => import('./components/BuyProperty/BuyProperty'));
+const Signup = lazy(() => import("./components/Signup/Signup"));
+const CopyRight = lazy(() => import("./components/Home/CopyRight"));
+const BlogCategory = lazy(() => import("./components/Blog/BlogCategory"));
+const SingleBlog = lazy(() => import("./components/Blog/SingleBlog"));
+const Admin = lazy(() => import("./components/Admin/Admin"));
+const Popup = lazy(() => import("./components/Home/Popup"));
+const Data = lazy(() => import("./components/Data/Data"));
+
 
 export default function App() {
 
   const { showPopUp, user } = useContext(UserContext)
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <ToastContainer />
       {
         showPopUp && <Popup />
       }
+
       <Routes>
 
         <Route path="/" element={<Home />} />
@@ -68,10 +72,8 @@ export default function App() {
         <Route path="data/:zipcodet/:categoryt" element={<Data />} />
 
       </Routes>
+
       <Footer />
-
       <CopyRight />
-
-    </>
-  );
+    </Suspense>);
 }

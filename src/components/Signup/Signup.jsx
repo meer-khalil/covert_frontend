@@ -14,11 +14,7 @@ import Logo from "../Home/Logo";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-// import twitter from "../images/twitter.svg";
-// import facebook from "../images/facebook.svg";
-// import google from "../images/google.svg";
-
-import login from "../../images/check2.png";
+import login from "../../images/check2.webp";
 import { Divider } from "@mui/material";
 import { UserContext } from "../../context/UserContext";
 import { toast } from "react-toastify";
@@ -278,7 +274,7 @@ export default function Signup() {
                   Sign UP
                 </Button>
               </Box>
-            <p>Already have an Account? <Link to="/login" className=" text-primary ml-3 text-lg">Login</Link></p>
+              <p>Already have an Account? <Link to="/login" className=" text-primary ml-3 text-lg">Login</Link></p>
             </Box>
           </Grid>
           <Grid

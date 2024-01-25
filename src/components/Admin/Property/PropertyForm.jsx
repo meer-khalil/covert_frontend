@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../../util/api';
 
-import login from "../../../images/check2.png";
+import login from "../../../images/check2.webp";
 
 // import './PropertyForm.css'
 import ImageUploader from './ImageUploader';

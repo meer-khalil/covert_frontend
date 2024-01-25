@@ -189,7 +189,7 @@ export default function BlogNewPostForm() {
       setFieldValue('coverpreview', {
         preview: `${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${blog.cover.filename}`
       });
-      setFieldValue('tags', blog.tags.map(tag => tag.name))
+      setFieldValue('tags', blog.tags?.map(tag => tag.name))
       console.log('Blog', blog);
     } catch (error) {
       console.log('error', error);
@@ -299,9 +299,9 @@ export default function BlogNewPostForm() {
                       console.log('newValue: ', newValue);
                       // setFieldValue('tags', categories.filter(e => { if (e.name === newValue) return e._id }));
                     }}
-                    options={categories.map((option) => option.name)}
+                    options={categories?.map((option) => option.name)}
                     renderTags={(value, getTagProps) =>
-                      value.map((option, index) => (
+                      value?.map((option, index) => (
                         <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
                       ))
                     }
@@ -326,9 +326,9 @@ export default function BlogNewPostForm() {
                     onChange={(event, newValue) => {
                       setFieldValue('metaKeywords', newValue);
                     }}
-                    options={TAGS_OPTION.map((option) => option)}
+                    options={TAGS_OPTION?.map((option) => option)}
                     renderTags={(value, getTagProps) =>
-                      value.map((option, index) => (
+                      value?.map((option, index) => (
                         <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
                       ))
                     }

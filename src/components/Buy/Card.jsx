@@ -117,7 +117,7 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
                         <div className='flex justify-between items-center  mx-5 my-3'>
                             <div className='flex items-center gap-2'>
                                 <input
-                                    id={`item${property?._id}`}
+                                    id={`item${property?.slug}`}
                                     type="checkbox"
                                     checked={bulkData.includes(property?.slug)}
                                     onChange={() => handleCheckboxChange(property?.slug)}
@@ -129,14 +129,12 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
                             </div>
                             <div>
                                 <a href={`/admin/property/edit/${property?.slug}`} target='_blank' className=' mr-3'>
-
-                                    {/* <button className=' bg-blue-500 px-2 py-1 rounded-md text-lg text-white'>Edit</button> */}
                                     <ModeEditOutlinedIcon />
                                 </a>
                             </div>
                         </div>
                         <div
-                            onClick={() => handleClick(!property?.showHome, property?._id)}
+                            onClick={() => handleClick(!property?.showHome, property?.slug)}
                             className="absolute -right-7 cursor-pointer -top-4 text-3xl font-bold">
                             {
                                 property?.showHome ?

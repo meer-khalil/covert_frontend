@@ -82,9 +82,11 @@ export default function Login() {
                 id="password"
                 autoComplete="current-password"
               />
-              <Typography sx={{ alignSelf: "end", textAlign: "end" }}>
-                Forgot password?
-              </Typography>
+              <div className="text-end">
+                <Link to="/password/forgot">
+                  Forgot password?
+                </Link>
+              </div>
               <div className=" text-center mt-8 mb-4" >
                 <button class="bg-primary text-white font-medium w-full md:w-[464px] h-[42px] md:h-[54px] text-[16px] md:text-[21px]">
                   Log In

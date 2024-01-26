@@ -25,7 +25,8 @@ const SingleBlog = lazy(() => import("./components/Blog/SingleBlog"));
 const Admin = lazy(() => import("./components/Admin/Admin"));
 const Popup = lazy(() => import("./components/Home/Popup"));
 const Data = lazy(() => import("./components/Data/Data"));
-
+const ForgotPassword = lazy(() => import('./components/Password/ForgotPassword'))
+const ResetPassword = lazy(() => import('./components/Password/ResetPassword'))
 
 export default function App() {
 
@@ -71,9 +72,11 @@ export default function App() {
         <Route path="/data" element={<Data />} />
         <Route path="data/:zipcodet/:categoryt" element={<Data />} />
 
+        <Route path="/password/forgot" element={<ForgotPassword />} />
+        <Route path="/password/reset/:token" element={<ResetPassword />} />
       </Routes>
-
       <Footer />
       <CopyRight />
-    </Suspense>);
+    </Suspense>
+  );
 }

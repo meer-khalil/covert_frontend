@@ -36,7 +36,7 @@ export const UserProvider = ({ children }) => {
       if (error?.response?.status === 401) {
         toast("User Doesn't Exist");
       } else {
-        toast(error?.message);
+        toast(error?.response?.data?.message);
       }
     }
   };

@@ -164,7 +164,7 @@ const ListingGrid = () => {
         </div>
       </div>
 
-      <div style={{ flex: (width > 680) ? 4 : 1 }} className='md:px-4'>
+      <div className={`md:px-4 flex-[${(width > 680) ? 4 : 1}]`}>
         {
           user?.role === 'admin' && (
             <div className='flex justify-between items-center gap-3 mb-5'>

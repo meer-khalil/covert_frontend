@@ -124,7 +124,7 @@ const ResetPassword = () => {
                             </form>
                             {/* <!-- input container --> */}
 
-                            <Link to="/signup" class="font-medium text-sm text-primary-blue">New to Covertnest? Create an account</Link>
+                            <p class="font-medium text-sm text-primary-blue">New to Covertnest? <Link to="/signup" className='text-primary'>Create an Account</Link></p>
                         </div>
                         {/* <!-- edit info container --> */}
 

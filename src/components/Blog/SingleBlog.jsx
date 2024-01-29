@@ -12,6 +12,7 @@ import Container from '../Layouts/Container'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Chip } from '@mui/material'
+import BackButton from '../Common/BackButton'
 
 const SingleBlog = () => {
 
@@ -53,7 +54,7 @@ const SingleBlog = () => {
   return (
     <Layout>
       <Container>
-        <div className='pt-8'>
+        <div className=''>
           <div className="bg-white p-3 rounded-xl shadow-xl relative">
             {
               user?.role == 'admin' && (
@@ -65,27 +66,32 @@ const SingleBlog = () => {
                 </div>
               )
             }
-            <h3 className=' text-2xl lg:text-4xl font-bold font-poppins mb-5'>
-              {blog?.title}
-            </h3>
+            <div>
+              <BackButton />
+            </div>
+            <div className=' px-3'>
+              <h3 className=' text-2xl lg:text-4xl font-bold font-poppins mb-5'>
+                {blog?.title}
+              </h3>
 
-            <div className=' w-full  h-[300px] overflow-hidden rounded-tl-lg rounded-tr-lg'>
-              <img src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${blog?.cover?.filename}`} alt="blog image" className=' w-full h-full' />
+              <div className=' w-full  h-[300px] overflow-hidden rounded-tl-lg rounded-tr-lg'>
+                <img src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${blog?.cover?.filename}`} alt="blog image" className=' w-full h-full' />
+              </div>
+              <div className='flex flex-wrap gap-4 py-3'>
+                {
+                  blog?.tags?.map((cat, index) => (
+                    // <Link key={cat} to={`/blogs/category/:id`}>
+                    <Chip key={cat.name} size="small" label={cat.name} />
+                    // <span className=' bg-primary text-white px-2 rounded-full' key={cat._id}>{cat.name}</span>
+                    // </Link>
+                  ))
+                }
+              </div>
+              <p className='mt-5 mb-6'>
+                {blog?.description}
+              </p>
+              <Markdown children={blog?.content} />
             </div>
-            <div className='flex flex-wrap gap-4 py-3'>
-              {
-                blog?.tags?.map((cat, index) => (
-                  // <Link key={cat} to={`/blogs/category/:id`}>
-                  <Chip key={cat.name} size="small" label={cat.name} />
-                  // <span className=' bg-primary text-white px-2 rounded-full' key={cat._id}>{cat.name}</span>
-                  // </Link>
-                ))
-              }
-            </div>
-            <p className='mt-5 mb-6'>
-              {blog?.description}
-            </p>
-            <Markdown children={blog?.content} />
           </div>
         </div>
       </Container>

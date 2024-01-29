@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // components
@@ -19,9 +19,11 @@ import api from '../../util/api';
 
 // images
 import image from '../../images/PageTitles/DetailPageTitle.webp'
+import BackButton from '../Common/BackButton';
 
 function PropertyDetails() {
 
+  const navigate = useNavigate();
   const { slug } = useParams();
   const [property, setProperty] = useState(null)
   const [zipData, setZipData] = useState(null)
@@ -69,7 +71,9 @@ function PropertyDetails() {
   }, [])
 
 
+
   return (
+
     <Layout>
       <PropertyProvider>
         {
@@ -82,30 +86,32 @@ function PropertyDetails() {
               />
 
               <div className='px-3 page-size'>
+                <BackButton />
+                <div className=' px-2'>
+                  <Images property={property} setShowSlide={setShowSlide} />
+                  <BasicDetail property={property} />
 
-                <Images property={property} setShowSlide={setShowSlide} />
-                <BasicDetail property={property} />
 
-
-                {
-                  zipData && (
-                    <Map zipCode={zipData?.zipcode} />
-                  )
-                }
-
-                <div className='flex mt-20 flex-col md:flex-row'>
-                  <MortgageCalculator price={property?.price} setDownPaymentCashFlow={setDownPaymentCashFlow} />
                   {
-                    zipData &&
-                    <MarketAnalysis zipCode={property?.zipcode} data={zipData['medianGrossRent']} capData={zipData['capData']} />
+                    zipData && (
+                      <Map zipCode={zipData?.zipcode} />
+                    )
                   }
+
+                  <div className='flex mt-20 flex-col md:flex-row'>
+                    <MortgageCalculator price={property?.price} setDownPaymentCashFlow={setDownPaymentCashFlow} />
+                    {
+                      zipData &&
+                      <MarketAnalysis zipCode={property?.zipcode} data={zipData['medianGrossRent']} capData={zipData['capData']} />
+                    }
+                  </div>
+
+                  <FinancialAnalysis downPaymentCashFlow={downPaymentCashFlow} property={property} />
+
+                  <InvestmentPayback
+                    property={property}
+                  />
                 </div>
-
-                <FinancialAnalysis downPaymentCashFlow={downPaymentCashFlow} property={property} />
-
-                <InvestmentPayback
-                  property={property}
-                />
                 {
                   showSlide && (
                     <div className='absolute left-0 top-0 right-0 bottom-0 z-50'>

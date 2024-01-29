@@ -33,21 +33,23 @@ const BasicDetail = ({ property }) => {
 
   return (
     <>
-      <div className='flex flex-col md:flex-row md:items-center md:space-x-32 w-full'>
+      <div className='flex flex-col md:flex-row md:items-center w-full'>
 
-        <h2 className='text-[35px] font-semibold'>
+        <h2 className='text-[35px] font-semibold flex-1'>
           {property.address}
         </h2>
 
-        <h3 className=' text-blue-500 font-semibold text-[44px]'>
-          ${property.price}
-        </h3>
+        <div className=' flex gap-6'>
+          <h3 className=' text-blue-500 font-semibold text-[44px]'>
+            ${property.price}
+          </h3>
 
-        <button
-          className=' w-[180px] h-[61px] rounded-lg bg-primary text-white font-semibold text-[21px]'
-        >
-          BUY NOW
-        </button>
+          <button
+            className=' w-[180px] h-[61px] rounded-lg bg-primary text-white font-semibold text-[21px]'
+          >
+            BUY NOW
+          </button>
+        </div>
       </div>
 
       <div className='flex gap-4 my-3'>

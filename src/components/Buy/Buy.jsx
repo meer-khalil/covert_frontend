@@ -5,8 +5,6 @@ import image from '../../images/PageTitles/BuyPageTitle.webp';
 
 import ListingGrid from './ListingGrid'
 import Layout from '../Layouts/Layout'
-import { UserContext } from '../../context/UserContext';
-import DialogBox from './DialogBox';
 
 function Buy() {
 
@@ -15,7 +13,7 @@ function Buy() {
             <PageTitle
                 title="Buy"
                 image={image}
-            // small={true}
+                small={true}
             />
             <div className=' page-size'>
                 <ListingGrid />

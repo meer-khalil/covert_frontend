@@ -86,8 +86,10 @@ function PropertyDetails() {
               />
 
               <div className='px-3 page-size'>
-                <BackButton />
-                <div className=' px-2'>
+                <div className='py-2'>
+                  <BackButton />
+                </div>
+                <div className=''>
                   <Images property={property} setShowSlide={setShowSlide} />
                   <BasicDetail property={property} />
 

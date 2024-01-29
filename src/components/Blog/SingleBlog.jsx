@@ -66,10 +66,10 @@ const SingleBlog = () => {
                 </div>
               )
             }
-            <div>
+            <div className=' py-2'>
               <BackButton />
             </div>
-            <div className=' px-3'>
+            <div className=''>
               <h3 className=' text-2xl lg:text-4xl font-bold font-poppins mb-5'>
                 {blog?.title}
               </h3>

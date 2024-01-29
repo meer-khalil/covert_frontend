@@ -9,7 +9,6 @@ import { UserContext } from '../../context/UserContext';
 import DialogBox from './DialogBox';
 
 function Buy() {
-    const { user } = useContext(UserContext);
 
     return (
         <Layout>
@@ -19,13 +18,7 @@ function Buy() {
             // small={true}
             />
             <div className=' page-size'>
-                {
-                    ['buyer', 'admin'].includes(user?.role) ? (
-                        <ListingGrid />
-                    ) : (
-                        <DialogBox />
-                    )
-                }
+                <ListingGrid />
             </div>
         </Layout>
     )

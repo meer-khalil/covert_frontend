@@ -1,12 +1,43 @@
 import { Button } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { useContext } from 'react'
 import { PropertyContext } from '../../context/PropertyContext'
 
 const Buttons = ({ activeStep, setActiveStep }) => {
 
-  const { handleProperty } = useContext(PropertyContext);
+  const { propertyData, handleProperty } = useContext(PropertyContext);
 
+
+  const play = () => {
+    if (activeStep == 0 && propertyData?.hasOwnProperty('address') && propertyData?.address?.length > 10) {
+      return false
+    }
+    else if (
+      activeStep == 1 &&
+      propertyData?.hasOwnProperty('numberOfBeds') &&
+      propertyData?.hasOwnProperty('numberOfBaths') &&
+      propertyData?.hasOwnProperty('builtYear') &&
+      propertyData?.hasOwnProperty('sqFt') &&
+      propertyData?.hasOwnProperty('lotSqft') &&
+      propertyData?.hasOwnProperty('actualCAP') &&
+      propertyData?.hasOwnProperty('proFormaCAP') &&
+      propertyData?.hasOwnProperty('units') &&
+      propertyData?.hasOwnProperty('propertyType') &&
+      propertyData?.hasOwnProperty('zipcode') &&
+      propertyData?.hasOwnProperty('propertyCondition') &&
+      propertyData?.hasOwnProperty('occupancy') &&
+      propertyData?.hasOwnProperty('rentalIncome') &&
+      propertyData?.hasOwnProperty('hasHoa') &&
+      propertyData?.hasOwnProperty('finance_cash') &&
+      propertyData?.hasOwnProperty('finance_sellerFinance') &&
+      propertyData?.hasOwnProperty('finance_mortgage')
+    ) {
+      return false
+    }
+    else {
+      return true
+    }
+  }
   return (
     <div className=' flex gap-5 justify-center'>
       <Button
@@ -66,7 +97,7 @@ const Buttons = ({ activeStep, setActiveStep }) => {
                 backgroundColor: "#716EDC",
               },
             }}
-            disabled={activeStep == 4}
+            disabled={activeStep == 4 || play()}
             onClick={() => setActiveStep(prev => prev + 1)}
           >
             Next

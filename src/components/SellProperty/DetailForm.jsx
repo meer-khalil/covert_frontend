@@ -324,6 +324,19 @@ function DetailForm({ data }) {
               } label={'Mortgage'} />
           </FormGroup>
         </div>
+
+        <div>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name='one_percent'
+                  onChange={handlePropertyData}
+                  checked={propertyData?.finance_mortgage}
+                />
+              } label={'1 %'} />
+          </FormGroup>
+        </div>
       </div>
 
       {

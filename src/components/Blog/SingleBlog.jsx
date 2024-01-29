@@ -5,7 +5,6 @@ import Layout from '../Layouts/Layout'
 import api from '../../util/api'
 import { toast } from 'react-toastify'
 import Markdown from './Markdown'
-import Edit from '../SVGs/Edit'
 import { UserContext } from '../../context/UserContext'
 import Container from '../Layouts/Container'
 
@@ -69,13 +68,7 @@ const SingleBlog = () => {
             <h3 className=' text-2xl lg:text-4xl font-bold font-poppins mb-5'>
               {blog?.title}
             </h3>
-            {/* <div style={{
-            backgroundImage: `url(${check})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }} className=' py-40 rounded-xl overflow-hidden'>
-          </div> */}
+
             <div className=' w-full  h-[300px] overflow-hidden rounded-tl-lg rounded-tr-lg'>
               <img src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${blog?.cover?.filename}`} alt="blog image" className=' w-full h-full' />
             </div>

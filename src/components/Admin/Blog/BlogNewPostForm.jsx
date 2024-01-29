@@ -115,7 +115,7 @@ export default function BlogNewPostForm() {
 
         let result = []
         values.tags.forEach((e) => {
-          for (let i = 0; i < categories.length; i++) {
+          for (let i = 0; i < categories?.length; i++) {
             if (categories[i].name === e) {
               result.push(categories[i]._id)
               break;
@@ -290,23 +290,27 @@ export default function BlogNewPostForm() {
                     />
                   </div>
 
-                  <Autocomplete
-                    multiple
-                    freeSolo
-                    value={values.tags}
-                    onChange={(event, newValue) => {
-                      setFieldValue('tags', newValue);
-                      console.log('newValue: ', newValue);
-                      // setFieldValue('tags', categories.filter(e => { if (e.name === newValue) return e._id }));
-                    }}
-                    options={categories?.map((option) => option.name)}
-                    renderTags={(value, getTagProps) =>
-                      value?.map((option, index) => (
-                        <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
-                      ))
-                    }
-                    renderInput={(params) => <TextField {...params} label="Tags" />}
-                  />
+                  {
+                    categories && (
+                      <Autocomplete
+                        multiple
+                        freeSolo
+                        value={values.tags}
+                        onChange={(event, newValue) => {
+                          setFieldValue('tags', newValue);
+                          console.log('newValue: ', newValue);
+                          // setFieldValue('tags', categories.filter(e => { if (e.name === newValue) return e._id }));
+                        }}
+                        options={categories?.map((option) => option.name)}
+                        renderTags={(value, getTagProps) =>
+                          value?.map((option, index) => (
+                            <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
+                          ))
+                        }
+                        renderInput={(params) => <TextField {...params} label="Tags" />}
+                      />
+                    )
+                  }
 
                   <TextField fullWidth label="Meta title" {...getFieldProps('metaTitle')} />
 

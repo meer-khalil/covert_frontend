@@ -127,19 +127,20 @@ export default function BlogNewPostForm() {
         formData.append("data", JSON.stringify(copy));
 
         if (id) {
-          const { data } = await api.put(`/admin/blog/${id}`, formData, {
+          const { data } = await api.put(`/blogs/admin/blog/${id}`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
           })
-          console.log('updated data: ', data);
+
+          toast("Blog Updated Successfuly!")
         } else {
           const { data } = await api.post('/admin/blog/new', formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
           })
-          console.log('data: ', data);
+          toast("Blog Created Successfuly!")
         }
 
         resetForm();
@@ -179,7 +180,7 @@ export default function BlogNewPostForm() {
 
   const getPostData = async (id) => {
     try {
-      const { data } = await api.get(`/blog/${id}`)
+      const { data } = await api.get(`/blogs/${id}`)
       const blog = data
       setFieldValue('title', blog.title);
       setFieldValue('description', blog.description);

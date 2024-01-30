@@ -23,7 +23,7 @@ const CardGrid = ({ blogs }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-10">
         {
           blogs?.map((card) => (
-            <Link key={card._id} to={`/blog/${card._id}`}>
+            <Link key={card._id} to={`/blog/${card.slug}`}>
               <div className="bg-white p-3 rounded-xl shadow-xl">
                 {/* <div style={{
                   backgroundImage: `url(${backend_resource}/images/blog/${card?.cover?.filename})`,

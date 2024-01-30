@@ -24,7 +24,7 @@ const SingleBlog = () => {
 
   const getBlogData = async () => {
     try {
-      const { data } = await api.get(`/blog/${blog_id}`)
+      const { data } = await api.get(`/blogs/${blog_id}`)
       console.log('data: ', data);
       setBlog(data);
     } catch (error) {
@@ -61,7 +61,7 @@ const SingleBlog = () => {
                 <div className='absolute right-4 top-5 cursor-pointer flex gap-4'>
                   <DeleteIcon className='cursor-pointer' onClick={() => deletePost(blog._id)} />
                   <EditIcon className='cursor-pointer' onClick={() => {
-                    navigate(`/admin/blog/edit/${blog?._id}`)
+                    navigate(`/admin/blog/edit/${blog?.slug}`)
                   }} />
                 </div>
               )

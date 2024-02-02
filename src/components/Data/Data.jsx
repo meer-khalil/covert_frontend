@@ -8,6 +8,7 @@ import DataSource from './components/DataSource';
 import Display from './components/Display';
 import DialogBox from '../Buy/DialogBox';
 import { UserContext } from '../../context/UserContext';
+import BackButton from '../Common/BackButton';
 
 
 export default function Data() {
@@ -21,8 +22,10 @@ export default function Data() {
 
 	return (
 		<Layout>
-			<div className=' mt-12 flex flex-col lg:flex-row gap-5'>
-
+			<div className=' my-3 pl-2'>
+				<BackButton />
+			</div>
+			<div className='flex flex-col lg:flex-row gap-5'>
 				<div className=' flex-[1]'>
 					<ZipForm
 						setZipcode={setZipcode}

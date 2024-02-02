@@ -18,7 +18,7 @@ const ListingGrid = () => {
 
   const navigate = useNavigate();
 
-  const [properties, setProperties] = useState(null)
+  const [properties, setProperties] = useState([])
 
   const [selectedOption, setSelectedOption] = useState('All');
   const [bulkData, setBulkData] = useState([])
@@ -26,7 +26,7 @@ const ListingGrid = () => {
   const [operation, setOperation] = useState('')
 
   // for pagination
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(localStorage.getItem('page') ? +localStorage.getItem('page') : 1);
   const [pages, setPages] = useState(1);
 
   const [category, setCategory] = useState('All');
@@ -37,25 +37,24 @@ const ListingGrid = () => {
   }
 
   const publish = (ids) => {
-    console.log('ids: ', ids);
-    let data = {
-      published: true
-    }
+
+    const formData = new FormData();
+    formData.append('property', JSON.stringify({ published: true }))
 
     ids.forEach(async (id, index) => {
 
       let url = `/admin/properties/${id}`;
 
       try {
-        const response = await api.put(url, data);
+        const response = await api.put(url, formData);
 
         console.log('Response(Publish): ', response);
         console.log('Data(Publish): ', response.data);
-
+        toast('published')
       } catch (error) {
         console.log(`Error While Publishing Property: ${id}`);
         console.log(`Error indx: ${index}: `, error.message);
-        alert(`Error While Publishing Property: ${id}`)
+        toast(`Error While Publishing Property: ${id}`)
       }
     });
 
@@ -63,16 +62,16 @@ const ListingGrid = () => {
   }
 
   const unPublish = (ids) => {
-    let data = {
-      published: false
-    }
+
+    const formData = new FormData();
+    formData.append('property', JSON.stringify({ published: false }))
 
     ids.forEach(async (id, index) => {
 
       let url = `/admin/properties/${id}`;
 
       try {
-        const response = await api.put(url, data);
+        const response = await api.put(url, formData);
 
         console.log('Response(UnPublish): ', response);
         console.log('Data(UnPublish): ', response.data);
@@ -126,7 +125,7 @@ const ListingGrid = () => {
     }
 
     try {
-      // console.log('Url: ', url);
+      console.log('Url: ', url);
       const { data } = await api.get(url, {
         headers: {
           'Content-Type': 'application/json'
@@ -141,7 +140,9 @@ const ListingGrid = () => {
       const pages = Math.ceil(filteredPropertiesCount / resultPerPage);
       setPages(pages)
       setProperties(properties)
-      console.log('Properties: ', data);
+      console.log('properties: ', properties)
+      localStorage.setItem('page', page);
+      navigate(`/buy?page=${page}`);
     } catch (error) {
       toast("Error while getting properties");
       console.log('Error: ', error);
@@ -149,6 +150,7 @@ const ListingGrid = () => {
   }
 
   useEffect(() => {
+    console.log('user: ', user)
     getPropertiesData();
   }, [selectedOption, page]);
 
@@ -165,7 +167,7 @@ const ListingGrid = () => {
       </div>
       <div className={`md:px-4 flex-1`}>
         {
-          ['buyer', 'admin'].includes(user?.role) && (
+          ['buyer', 'admin'].includes(user?.role) ? (
             <div>
               {
                 user?.role === 'admin' && (
@@ -213,6 +215,8 @@ const ListingGrid = () => {
                 <Pagination page={page} pages={pages} changePage={setPage} />
               </Box>
             </div>
+          ) : (
+            <div>Subscribe First</div>
           )
         }
       </div>

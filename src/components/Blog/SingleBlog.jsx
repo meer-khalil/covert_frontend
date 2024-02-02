@@ -59,7 +59,7 @@ const SingleBlog = () => {
             {
               user?.role == 'admin' && (
                 <div className='absolute right-4 top-5 cursor-pointer flex gap-4'>
-                  <DeleteIcon className='cursor-pointer' onClick={() => deletePost(blog._id)} />
+                  <DeleteIcon className='cursor-pointer' onClick={() => deletePost(blog.slug)} />
                   <EditIcon className='cursor-pointer' onClick={() => {
                     navigate(`/admin/blog/edit/${blog?.slug}`)
                   }} />

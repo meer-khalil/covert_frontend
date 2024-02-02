@@ -25,7 +25,7 @@ const Aside = () => {
             </Link>
           </li>
 
-          <li>
+          {/* <li>
             <Link
               to={"/admin/property"}
               className={`flex rounded-xl font-bold text-sm text-gray-900 py-3 px-4`}
@@ -42,7 +42,7 @@ const Aside = () => {
               </svg>
               Add Property
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               to={"/admin/blog/new"}

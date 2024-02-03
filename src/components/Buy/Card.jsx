@@ -144,7 +144,7 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
               className="absolute -right-7 cursor-pointer -top-4 text-3xl font-bold"
             >
               {
-                property?.showHome ?
+                !property?.showHome ?
                   <AddOutlinedIcon /> : <RemoveOutlinedIcon />
               }
             </div>

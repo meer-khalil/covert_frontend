@@ -4,6 +4,7 @@ import PageTitle from '../About/PageTitle'
 
 import image from '../../images/PageTitles/BuyPageTitle.webp';
 import Properteis from './Properteis';
+import BackButton from '../Common/BackButton';
 
 const SoldProperties = () => {
 
@@ -15,7 +16,12 @@ const SoldProperties = () => {
         image={image}
         small={true}
       />
-      <Properteis />
+      <div className='page-size'>
+        <div className=' pl-5 my-3'>
+          <BackButton />
+        </div>
+        <Properteis />
+      </div>
     </Layout>
   )
 }

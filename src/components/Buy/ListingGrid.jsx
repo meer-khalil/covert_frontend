@@ -125,7 +125,7 @@ const ListingGrid = () => {
     }
 
     try {
-      console.log('Url: ', url);
+
       const { data } = await api.get(url, {
         headers: {
           'Content-Type': 'application/json'

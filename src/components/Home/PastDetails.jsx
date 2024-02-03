@@ -1,8 +1,9 @@
 import Grid from "@mui/material/Grid";
 import MediaCard from "./MediaCard";
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import api from "../../util/api";
+import { Link } from "react-router-dom";
 
 
 export default function PastDetails() {
@@ -66,19 +67,21 @@ export default function PastDetails() {
               }}>Check Out Awesome Past Deals</Typography>
               <Divider sx={{ width: '50%', height: '5px', bgcolor: 'white' }} />
             </Box>
-            {/* <Button
-            variant="contained"
-            size="small"
-            sx={{
-              visibility: { xs: 'hidden', md: 'visible' },
-              bgcolor: "white",
-              color: "black",
-              fontSize: "16px",
-              "&:hover": { bgcolor: "white" },
-            }}
-          >
-            View More
-          </Button> */}
+            <Link to={`/properties/sold`}>
+              <Button
+                variant="contained"
+                size="small"
+                sx={{
+                  visibility: { xs: 'hidden', md: 'visible' },
+                  bgcolor: "white",
+                  color: "black",
+                  fontSize: "16px",
+                  "&:hover": { bgcolor: "white" },
+                }}
+              >
+                View More
+              </Button>
+            </Link>
           </Box>
           <div className="grid grid-cols-1 gap-y-3  md:grid-cols-3">
 

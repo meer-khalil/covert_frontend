@@ -6,6 +6,7 @@ import { Audio, Rings, Triangle } from 'react-loader-spinner'
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from "./components/Common/Loading";
+import SoldProperties from "./components/SoldProperties/SoldProperties";
 
 // components
 const Home = lazy(() => import('./components/Home/Home'));
@@ -74,6 +75,10 @@ export default function App() {
 
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword />} />
+
+
+        <Route path="/properties/sold" element={<SoldProperties />} />
+
       </Routes>
       <Footer />
       <CopyRight />

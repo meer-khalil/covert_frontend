@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from "./components/Common/Loading";
 import SoldProperties from "./components/SoldProperties/SoldProperties";
+import SchedualMeeting from "./components/SchedualMeeting/SchedualMeeting";
 
 // components
 const Home = lazy(() => import('./components/Home/Home'));
@@ -78,6 +79,7 @@ export default function App() {
 
 
         <Route path="/properties/sold" element={<SoldProperties />} />
+        <Route path="/schedual/meeting" element={<SchedualMeeting />} />
 
       </Routes>
       <Footer />

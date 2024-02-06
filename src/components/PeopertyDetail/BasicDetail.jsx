@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import api from '../../util/api';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const BasicDetail = ({ property }) => {
 
@@ -39,16 +40,19 @@ const BasicDetail = ({ property }) => {
           {property.address}
         </h2>
 
-        <div className=' flex gap-6'>
+        <div className=' flex items-center gap-6'>
           <h3 className=' text-blue-500 font-semibold text-[44px]'>
             ${property.price}
           </h3>
 
-          <button
-            className=' w-[180px] h-[61px] rounded-lg bg-primary text-white font-semibold text-[21px]'
-          >
-            BUY NOW
-          </button>
+          <Link to='/schedual/meeting'>
+            <Button
+              // className='rounded-lg bg-primary text-white font-semibold text-[21px]'
+              variant='contained'
+            >
+              Schedual Meeting
+            </Button>
+          </Link>
         </div>
       </div>
 

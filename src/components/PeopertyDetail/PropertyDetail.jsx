@@ -20,6 +20,7 @@ import api from '../../util/api';
 // images
 import image from '../../images/PageTitles/DetailPageTitle.webp'
 import BackButton from '../Common/BackButton';
+import Loader from '../Common/Loading';
 
 function PropertyDetails() {
 
@@ -71,70 +72,68 @@ function PropertyDetails() {
   }, [])
 
 
+  if (!property) return <Loader />
 
   return (
+    <PropertyProvider>
+      {
+        property ? (
+          <>
+            <PageTitle
+              title="Property Details"
+              image={image}
+              small={true}
+            />
 
-    <Layout>
-      <PropertyProvider>
-        {
-          property ? (
-            <>
-              <PageTitle
-                title="Property Details"
-                image={image}
-                small={true}
-              />
-
-              <div className='px-3 page-size'>
-                <div className='py-2'>
-                  <BackButton />
-                </div>
-                <div className=''>
-                  <Images property={property} setShowSlide={setShowSlide} />
-                  <BasicDetail property={property} />
+            <div className='px-3 page-size'>
+              <div className='py-2'>
+                <BackButton />
+              </div>
+              <div className=''>
+                <Images property={property} setShowSlide={setShowSlide} />
+                <BasicDetail property={property} />
 
 
-                  {
-                    zipData && (
-                      <Map zipCode={zipData?.zipcode} />
-                    )
-                  }
-
-                  <div className='flex mt-20 flex-col md:flex-row'>
-                    <MortgageCalculator price={property?.price} setDownPaymentCashFlow={setDownPaymentCashFlow} />
-                    {
-                      zipData &&
-                      <MarketAnalysis zipCode={property?.zipcode} data={zipData['medianGrossRent']} capData={zipData['capData']} />
-                    }
-                  </div>
-
-                  <FinancialAnalysis downPaymentCashFlow={downPaymentCashFlow} property={property} />
-
-                  <InvestmentPayback
-                    property={property}
-                  />
-                </div>
                 {
-                  showSlide && (
-                    <div className='absolute left-0 top-0 right-0 bottom-0 z-50'>
-                      <div className='absolute left-0 top-0 right-0 bottom-0 bg-gray-600 bg-opacity-50' onClick={() => setShowSlide(false)}>
-                      </div>
-                      <div className=' h-full w-full flex justify-center items-center'>
-                        <div className=' w-[60rem]'>
-                          <SlideShow images={property.images} />
-                        </div>
-                      </div>
-                    </div>
+                  zipData && (
+                    <Map zipCode={zipData?.zipcode} />
                   )
                 }
-              </div >
-            </>
-          ) : (
-            <PopUp />
-          )
-        }
-      </PropertyProvider>
-    </Layout>
+
+                <div className='flex mt-20 flex-col md:flex-row'>
+                  <MortgageCalculator price={property?.price} setDownPaymentCashFlow={setDownPaymentCashFlow} />
+                  {
+                    zipData &&
+                    <MarketAnalysis zipCode={property?.zipcode} data={zipData['medianGrossRent']} capData={zipData['capData']} />
+                  }
+                </div>
+
+                <FinancialAnalysis downPaymentCashFlow={downPaymentCashFlow} property={property} />
+
+                <InvestmentPayback
+                  property={property}
+                />
+              </div>
+              {
+                showSlide && (
+                  <div className='absolute left-0 top-0 right-0 bottom-0 z-50'>
+                    <div className='absolute left-0 top-0 right-0 bottom-0 bg-gray-600 bg-opacity-50' onClick={() => setShowSlide(false)}>
+                    </div>
+                    <div className=' h-full w-full flex justify-center items-center'>
+                      <div className=' w-[60rem]'>
+                        <SlideShow images={property.images} />
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
+            </div >
+          </>
+        ) : (
+          <PopUp />
+        )
+      }
+    </PropertyProvider>
   )
 }
 

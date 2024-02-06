@@ -45,10 +45,11 @@ const BasicDetail = ({ property }) => {
             ${property.price}
           </h3>
 
-          <Link to='/schedual/meeting'>
+          <Link to='/schedual/meeting' rel="noreferrer" target={'_blank'}>
             <Button
               // className='rounded-lg bg-primary text-white font-semibold text-[21px]'
               variant='contained'
+              size='large'
             >
               Schedual Meeting
             </Button>

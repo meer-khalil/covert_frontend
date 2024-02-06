@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AdminButtons from './AdminButtons';
 import Pagination from '../Blog/Pagination';
+import Loader from '../Common/Loading';
 
 const ListingGrid = () => {
 
@@ -154,10 +155,6 @@ const ListingGrid = () => {
     getPropertiesData();
   }, [selectedOption, page]);
 
-
-  if (!properties) return <div>Loading.....</div>
-
-
   return (
     <div className="flex mt-10 px-3">
       <div className=' max-h-min bg-transparent hidden md:block max-w-max'>
@@ -201,14 +198,18 @@ const ListingGrid = () => {
               }
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-5 relative">
                 {
-                  properties?.map((property) => (
-                    <Card
-                      getPropertiesData={getPropertiesData}
-                      property={property} key={property?._id}
-                      bulkData={bulkData}
-                      setBulkData={setBulkData}
-                    />
-                  ))
+                  properties ? (
+                    properties?.map((property) => (
+                      <Card
+                        getPropertiesData={getPropertiesData}
+                        property={property} key={property?._id}
+                        bulkData={bulkData}
+                        setBulkData={setBulkData}
+                      />
+                    ))
+                  ) : (
+                    <Loader />
+                  )
                 }
               </div>
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>

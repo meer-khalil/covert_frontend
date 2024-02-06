@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from "./components/Common/Loading";
 import SoldProperties from "./components/SoldProperties/SoldProperties";
 import SchedualMeeting from "./components/SchedualMeeting/SchedualMeeting";
+import Layout from "./components/Layouts/Layout";
 
 // components
 const Home = lazy(() => import('./components/Home/Home'));
@@ -41,47 +42,49 @@ export default function App() {
         showPopUp && <Popup />
       }
 
-      <Routes>
+      <Layout>
+        <Routes>
 
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
-        <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} />
 
-        <Route path="/upgrade" element={<Upgrade />} />
+          <Route path="/upgrade" element={<Upgrade />} />
 
-        <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About />} />
 
-        <Route path="/blogs" element={<Blog />} />
+          <Route path="/blogs" element={<Blog />} />
 
-        <Route path="/blog/:blog_id" element={<SingleBlog />} />
+          <Route path="/blog/:blog_id" element={<SingleBlog />} />
 
-        <Route path="/blogs/category/:id" element={<BlogCategory />} />
+          <Route path="/blogs/category/:id" element={<BlogCategory />} />
 
-        <Route path="/buy" element={<Buy />} />
+          <Route path="/buy" element={<Buy />} />
 
-        <Route path="/property-details/:slug" element={
-          <PropertyDetails />
-        } />
+          <Route path="/property-details/:slug" element={
+            <PropertyDetails />
+          } />
 
-        <Route path="/buy-property" element={<BuyProperty />} />
+          <Route path="/buy-property" element={<BuyProperty />} />
 
-        <Route path="/admin/*" element={<Admin />} />
+          <Route path="/admin/*" element={<Admin />} />
 
-        <Route path="/sell-property" element={<SellProperty />} />
+          <Route path="/sell-property" element={<SellProperty />} />
 
-        <Route path="/data" element={<Data />} />
-        <Route path="data/:zipcodet/:categoryt" element={<Data />} />
+          <Route path="/data" element={<Data />} />
+          <Route path="data/:zipcodet/:categoryt" element={<Data />} />
 
-        <Route path="/password/forgot" element={<ForgotPassword />} />
-        <Route path="/password/reset/:token" element={<ResetPassword />} />
+          <Route path="/password/forgot" element={<ForgotPassword />} />
+          <Route path="/password/reset/:token" element={<ResetPassword />} />
 
 
-        <Route path="/properties/sold" element={<SoldProperties />} />
-        <Route path="/schedual/meeting" element={<SchedualMeeting />} />
+          <Route path="/properties/sold" element={<SoldProperties />} />
+          <Route path="/schedual/meeting" element={<SchedualMeeting />} />
 
-      </Routes>
+        </Routes>
+      </Layout>
       <Footer />
       <CopyRight />
     </Suspense>

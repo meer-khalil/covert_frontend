@@ -9,7 +9,7 @@ import Layout from '../Layouts/Layout'
 function Buy() {
 
     return (
-        <Layout>
+        <>
             <PageTitle
                 title="Buy"
                 image={image}
@@ -18,7 +18,9 @@ function Buy() {
             <div className=' page-size'>
                 <ListingGrid />
             </div>
-        </Layout>
+        </>
+
+
     )
 }
 

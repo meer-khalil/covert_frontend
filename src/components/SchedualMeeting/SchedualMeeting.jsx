@@ -5,12 +5,12 @@ import BackButton from '../Common/BackButton'
 
 const SchedualMeeting = () => {
   return (
-    <Layout>
+    <>
       <div className=' max-w-[1080px] mx-auto mt-10'>
         <BackButton />
       </div>
       <Calendly />
-    </Layout>
+    </>
   )
 }
 

@@ -76,23 +76,28 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
                 {/* ${property.price} */}
               </h3>
               <div className='mt-3'>
-                <p>
-                  <b>Actuals CAP:</b> {property?.actualCAP}%
+                <p className="font-['Poppins'] mb-1">
+                  <span className=" font-semibold mr-2">Actuals CAP:</span> {property.actualCAP}%
                 </p>
-                <p>
-                  <b>Pro Forma CAP:</b> {property?.proFormaCAP}%
+
+                <p className="font-['Poppins'] mb-1">
+                  <span className=" font-semibold mr-2">Pro Forma CAP:</span> {property.proFormaCAP}%
                 </p>
-                <p>
-                  <b>Occupancy:</b> {property?.occupancy}%
+
+                <p className=" font-['Poppins']">
+                  <span className=" font-semibold mr-2">Occupancy:</span>{property.occupancy}%
                 </p>
-                <p>
-                  <b>Year Built:</b> {property?.builtYear}
+
+                <p className=" font-['Poppins']">
+                  <span className=" font-semibold mr-2">Year Built:</span>{property.builtYear}
                 </p>
-                <p>
-                  <b>Sqft:</b> {property?.sqFt}
+
+                <p className=" font-['Poppins']">
+                  <span className=" font-semibold mr-2">Sqft:</span>{property.sqFt}
                 </p>
-                <p>
-                  <b>Property Type:</b> {property?.propertyType}
+
+                <p className=" font-['Poppins']">
+                  <span className=" font-semibold mr-2">Property Type:</span>{property.propertyType}
                 </p>
               </div>
             </div>

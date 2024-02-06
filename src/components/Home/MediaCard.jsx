@@ -35,21 +35,31 @@ export default function MediaCard({ item }) {
             </p>
           </span>
         </div>
+
         <p className="font-['Poppins'] mb-1">
-          <span className=" font-semibold mr-2">Actuals CAP:</span> {item.actualCAP}%</p>
+          <span className=" font-semibold mr-2">Actuals CAP:</span> {item.actualCAP}%
+        </p>
+
         <p className="font-['Poppins'] mb-1">
-          <span className=" font-semibold mr-2">Pro Forma CAP:</span> {item.proFormaCAP}%</p>
+          <span className=" font-semibold mr-2">Pro Forma CAP:</span> {item.proFormaCAP}%
+        </p>
+
         <p className=" font-['Poppins']">
-          <span className=" font-semibold mr-2">Occupancy:</span>{item.occupancy}%</p>
-        <p>
-          <b>Year Built:</b> {item?.builtYear}
+          <span className=" font-semibold mr-2">Occupancy:</span>{item.occupancy}%
         </p>
-        <p>
-          <b>Sqft:</b> {item?.sqFt}
+
+        <p className=" font-['Poppins']">
+          <span className=" font-semibold mr-2">Year Built:</span>{item.builtYear}
         </p>
-        <p>
-          <b>Property Type:</b> {item?.propertyType}
+
+        <p className=" font-['Poppins']">
+          <span className=" font-semibold mr-2">Sqft:</span>{item.sqFt}
         </p>
+
+        <p className=" font-['Poppins']">
+          <span className=" font-semibold mr-2">Property Type:</span>{item.propertyType}
+        </p>
+
       </div>
       {
         item.sold && (

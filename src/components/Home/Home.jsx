@@ -6,10 +6,10 @@ import Devider from "./Devider";
 
 import api from "../../util/api";
 import { useEffect, useState } from "react";
-import Layout from "../Layouts/Layout";
 
 export default function Home() {
   const [home, setHome] = useState(null);
+  const [properties, setProperties] = useState([])
 
   const fetchHomeData = async () => {
     try {
@@ -23,8 +23,21 @@ export default function Home() {
     }
   };
 
+  const getPastDeals = async () => {
+    let url = `/properties?showHome=true`;
+
+    try {
+      const { data } = await api.get(url)
+      const { properties } = data
+      setProperties(properties)
+    } catch (error) {
+      console.log('Error While fetching Home Properties: ', error.message);
+    }
+  }
+
   useEffect(() => {
     fetchHomeData();
+    getPastDeals();
   }, []);
 
   return (
@@ -32,7 +45,7 @@ export default function Home() {
       <Hero />
       <BelowHero commingSoon={home?.commingSoon} />
       <Process cards={home?.cardsData} />
-      <PastDetails />
+      <PastDetails properties={properties} />
       <Devider />
     </div>
 

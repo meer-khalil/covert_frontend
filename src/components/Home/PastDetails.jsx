@@ -6,30 +6,7 @@ import api from "../../util/api";
 import { Link } from "react-router-dom";
 
 
-export default function PastDetails() {
-
-  const [properties, setProperties] = useState([])
-
-
-  const fetchData = async () => {
-    let url = `/properties?showHome=true`;
-
-    try {
-      const { data } = await api.get(url)
-      const { properties } = data
-      setProperties(properties)
-      console.log('Home data(show): ', properties);
-      // alert('Here is data')
-    } catch (error) {
-      console.log('Error While fetching Home Properties: ', error.message);
-    }
-  }
-
-
-  useEffect(() => {
-    fetchData();
-  }, [])
-
+export default function PastDetails({ properties }) {
 
   return (
     <div className=" page-size">
@@ -38,14 +15,12 @@ export default function PastDetails() {
         sx={{
           flexGrow: 1,
           bgcolor: " #716EDC",
-          // maxWidth: "1400px",
           marginLeft: "auto",
           marginRight: "auto",
-          marginTop: '50px'
+          marginTop: '20px'
         }}
-        py={12}
+        pt={7}
         px={{ md: 8 }}
-      // container
       >
         <Grid item xs={12}>
           <Box
@@ -54,7 +29,7 @@ export default function PastDetails() {
               flexDirection: { xs: "column", md: 'row' },
               justifyContent: "space-between",
               alignItems: { md: 'center' },
-              marginBottom: '80px'
+              marginBottom: '40px'
             }}
             px={1}
           >
@@ -64,7 +39,9 @@ export default function PastDetails() {
                 color: 'white',
                 fontWeight: 'bold',
                 letterSpacing: '2px'
-              }}>Check Out Awesome Past Deals</Typography>
+              }}>
+                Check Out Awesome Past Deals
+              </Typography>
               <Divider sx={{ width: '50%', height: '5px', bgcolor: 'white' }} />
             </Box>
             <Link to={`/properties/sold`}>
@@ -86,7 +63,6 @@ export default function PastDetails() {
           <div className="grid grid-cols-1 gap-y-3  md:grid-cols-3">
 
             {
-              // (properties?.length !== 0 ? properties : data)?
               properties?.map((item, index) => (
                 <div key={index}>
                   <MediaCard item={item} />

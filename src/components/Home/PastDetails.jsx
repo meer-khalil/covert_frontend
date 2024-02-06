@@ -1,8 +1,6 @@
 import Grid from "@mui/material/Grid";
 import MediaCard from "./MediaCard";
 import { Box, Button, Divider, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import api from "../../util/api";
 import { Link } from "react-router-dom";
 
 

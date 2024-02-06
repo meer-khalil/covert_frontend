@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import AdminButtons from './AdminButtons';
 import Pagination from '../Blog/Pagination';
 import Loader from '../Common/Loading';
+import TriangleLoader from '../Common/TriangleLoader';
 
 const ListingGrid = () => {
 
@@ -198,7 +199,7 @@ const ListingGrid = () => {
               }
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-5 relative">
                 {
-                  properties ? (
+                  properties?.length ? (
                     properties?.map((property) => (
                       <Card
                         getPropertiesData={getPropertiesData}
@@ -208,7 +209,9 @@ const ListingGrid = () => {
                       />
                     ))
                   ) : (
-                    <Loader />
+                    <div className='w-full col-span-2 h-full min-h-[600px]'>
+                      <Loader />
+                    </div>
                   )
                 }
               </div>

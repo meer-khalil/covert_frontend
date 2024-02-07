@@ -52,7 +52,6 @@ export default function App() {
           <Route path="/about" element={<About />} />
           {/* Responsive Done */}
 
-
           <Route path="/blogs" element={<Blog />} />
 
           <Route path="/blog/:blog_id" element={<SingleBlog />} />

@@ -54,7 +54,7 @@ function Blog() {
   }, [category, page]);
 
   return (
-    <Layout>
+    <>
 
       <PageTitle
         title="Blog"
@@ -62,7 +62,7 @@ function Blog() {
       />
 
       <Container>
-        <div className='px-5 pt-12'>
+        <div className=' px-3 md:px-5 pt-5 md:pt-12'>
           <div>
             <Title />
             <Categaries category={category} setCategory={setCategory} />
@@ -71,7 +71,7 @@ function Blog() {
           <Pagination page={page} pages={pages} changePage={setPage} />
         </div>
       </Container>
-    </Layout>
+    </>
   )
 }
 

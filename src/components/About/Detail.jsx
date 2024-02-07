@@ -8,7 +8,7 @@ const Detail = ({ whatWeDo }) => {
         <div className="my-10 px-5">
             <div className=" flex flex-col md:flex-row gap-3">
                 <div className=" flex-1 flex justify-center">
-                    <div className="rounded-xl max-h-min max-w-xl shadow-lg overflow-hidden"
+                    <div className="rounded-xl max-h-min max-w-xl overflow-hidden"
                         style={{ boxShadow: "25px 25px 0px #716EDC" }}
                     >
                         <img

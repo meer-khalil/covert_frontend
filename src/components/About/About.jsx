@@ -30,7 +30,7 @@ const About = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <PageTitle title="About Us" image={image} />
 
       <Container>
@@ -42,7 +42,7 @@ const About = () => {
       </Container>
 
       <Contact />
-    </Layout>
+    </>
   );
 };
 

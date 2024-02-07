@@ -46,9 +46,8 @@ export default function App() {
 
           {/* Responsive Done */}
           <Route path="/" element={<Home />} />
-          {/* Responsive Done */}
-
           <Route path="/login" element={<Login />} />
+          {/* Responsive Done */}
 
           <Route path="/signup" element={<Signup />} />
 

@@ -29,11 +29,6 @@ export default function Signup() {
 
   const { email, setEmail } = useContext(UserContext);
 
-  const [cardMonth, setCardMonth] = useState('');
-  const [cardYear, setCardYear] = useState('');
-  const [cardCVV, setCardCVV] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-
   const { register } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
@@ -45,10 +40,6 @@ export default function Signup() {
       toast('Password should be same!')
       return;
     }
-
-    // const stringWithSpaces = 'This is a string with spaces';
-    // const stringWithoutSpaces = stringWithSpaces.replace(/\s/g, '');
-    // console.log(stringWithoutSpaces); // Output: "Thisisastringwithspaces"
 
     const data = {
       firstName: formData.get('firstName'),
@@ -64,7 +55,6 @@ export default function Signup() {
     <div className=" max-w-[1440px] mx-auto h-screen lg:max-h-[800px]">
       <ThemeProvider theme={theme}>
         <Grid container component="main">
-          {/* <CssBaseline /> */}
           <Grid
             item
             xs={12}
@@ -77,14 +67,12 @@ export default function Signup() {
               alignItems: "start",
               justifyContent: "start",
             }}
-          // component={Paper}
-          // elevation={6}
-          // square
           >
             <Box sx={{ width: "150px", marginLeft: "5px", marginTop: "30px" }}>
               <Logo />
             </Box>
-            <Box
+            <div
+              className=" flex flex-col items-center justify-center mx-3 md:mx-4"
               sx={{
                 mt: 4,
                 mx: 4,
@@ -95,7 +83,7 @@ export default function Signup() {
               }}
             >
 
-              <Box sx={{ alignSelf: "start" }}>
+              <div className=" self-start mt-4">
                 <Typography
                   component="h1"
                   variant="h5"
@@ -113,21 +101,16 @@ export default function Signup() {
                   sx={{ width: "20%", height: "3px", bgcolor: "#3296ff", mb: 3 }}
                 />
                 <Typography>Enter the following details.</Typography>
-              </Box>
-              <Box
-                component="form"
-                noValidate
+              </div>
+              <form
+                className=" md:w-[600px] mt-3"
                 onSubmit={handleSubmit}
-                sx={{ mt: 2 }}
-                width={'600px'}
               >
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <div className=" flex flex-col gap-5 md:flex-row">
                   <TextField
                     label="First Name"
                     variant="outlined"
                     name="firstName"
-                    // onChange={(e) => setFirstName(e.target.value)}
-                    // fullWidth
                     autoComplete="off"
                     inputProps={{ style: { fontSize: 15 } }}
                     InputLabelProps={{
@@ -140,9 +123,6 @@ export default function Signup() {
                     label="Last Name"
                     variant="outlined"
                     name='lastName'
-
-                    // onChange={(e) => setFirstName(e.target.value)}
-                    // fullWidth
                     autoComplete="off"
                     inputProps={{ style: { fontSize: 15 } }}
                     InputLabelProps={{
@@ -150,7 +130,7 @@ export default function Signup() {
                     }}
                     sx={{ flex: 1 }}
                   />
-                </Box>
+                </div>
 
                 <TextField
                   margin="normal"
@@ -163,7 +143,6 @@ export default function Signup() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   autoFocus
-
                 />
                 <TextField
                   margin="normal"
@@ -273,9 +252,9 @@ export default function Signup() {
                 >
                   Sign UP
                 </Button>
-              </Box>
+              </form>
               <p>Already have an Account? <Link to="/login" className=" text-primary ml-3 text-lg">Login</Link></p>
-            </Box>
+            </div>
           </Grid>
           <Grid
             xs={false}

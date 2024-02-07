@@ -16,7 +16,6 @@ import Button from "@mui/material/Button";
 
 import Logo from '../Home/Logo'
 
-import logo from '../../images/logo.png'
 import person from '../../images/haris triston 2.jpeg';
 import { Link } from "react-router-dom";
 
@@ -45,17 +44,20 @@ function DrawerAppBar(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
+      <div className=" w-36 my-4 pl-3">
+        <Logo />
+      </div>
+
       <Divider />
       <List>
         {navItems?.map((item) => (
-          <ListItem key={item.item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item.item} />
-            </ListItemButton>
-          </ListItem>
+          <Link to={item.url}>
+            <ListItem key={item.item} disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary={item.item} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
     </Box>
@@ -69,8 +71,8 @@ function DrawerAppBar(props) {
       boxShadow: ' 0 5px 2px 2px rgba(209, 205, 208, 0.4)'
     }}>
       <nav className=" max-w-[1440px] mx-auto bg-white py-2">
-        <div className=" flex items-center px-4 justify-between">
-          {/* <IconButton
+        <div className=" flex items-center flex-row-reverse md:flex-row px-3 lg:px-4 justify-between">
+          <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
@@ -78,18 +80,8 @@ function DrawerAppBar(props) {
             sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
-          </IconButton> */}
-          {/* <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            MUI
-          </Typography> */}
-          <Box sx={{
-            width: "150px",
-            // display: { xs: "none", sm: "block"} 
-          }}>
+          </IconButton>
+          <Box sx={{ width: "150px" }}>
             <Logo />
           </Box>
           <Box sx={{ display: { xs: "none", sm: "flex" }, alignItems: 'center' }}>

@@ -6,10 +6,6 @@ import { Audio, Rings, Triangle } from 'react-loader-spinner'
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from "./components/Common/Loading";
-import SoldProperties from "./components/SoldProperties/SoldProperties";
-import SchedualMeeting from "./components/SchedualMeeting/SchedualMeeting";
-import Layout from "./components/Layouts/Layout";
-
 // components
 const Home = lazy(() => import('./components/Home/Home'));
 const Login = lazy(() => import('./components/Login/Login'));
@@ -30,6 +26,9 @@ const Popup = lazy(() => import("./components/Home/Popup"));
 const Data = lazy(() => import("./components/Data/Data"));
 const ForgotPassword = lazy(() => import('./components/Password/ForgotPassword'))
 const ResetPassword = lazy(() => import('./components/Password/ResetPassword'))
+const SoldProperties = lazy(() => import('./components/SoldProperties/SoldProperties'))
+const SchedualMeeting = lazy(() => import('./components/SchedualMeeting/SchedualMeeting'))
+const Layout = lazy(() => import('./components/Layouts/Layout'))
 
 export default function App() {
 
@@ -45,7 +44,9 @@ export default function App() {
       <Layout>
         <Routes>
 
+          {/* Responsive Done */}
           <Route path="/" element={<Home />} />
+          {/* Responsive Done */}
 
           <Route path="/login" element={<Login />} />
 

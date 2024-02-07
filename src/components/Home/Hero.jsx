@@ -10,7 +10,7 @@ const Hero = () => {
   return (
     <Box
       sx={{
-        height: { xs: "70vh", md: "80vh" },
+        height: { xs: "60vh", md: "80vh" },
         backgroundImage: `url(${heroBackground})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
@@ -24,7 +24,7 @@ const Hero = () => {
       <div className=" flex justify-center items-center flex-col max-w-[1440px]">
 
         <h1
-          className=" text-white px-4 md:px-0 font-medium font-jost leading-[50px] lg:leading-[80px] text-[30px] md:text-[45px] lg:text-[72px] text-center"
+          className=" text-white px-4 md:px-0 font-medium font-jost leading-[40px] lg:leading-[80px] text-[24px] md:text-[45px] lg:text-[72px] text-center"
         >
           Unbelievable Off Market Deal
           <br /> at a discounted Rate.

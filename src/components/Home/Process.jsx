@@ -23,7 +23,7 @@ const data = [
 
 const Process = ({ cards }) => {
   return (
-    <div className="md:px-[30px] pb-24 page-size">
+    <div className="md:px-[30px] md:pb-24 page-size">
 
       <div
         className=" h-[238px] relative flex items-center justify-center"

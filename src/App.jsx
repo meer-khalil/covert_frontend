@@ -50,15 +50,11 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/upgrade" element={<Upgrade />} />
           <Route path="/about" element={<About />} />
+          <Route path="/blogs" element={<Blog />} />
+          <Route path="/blog/:blog_id" element={<SingleBlog />} />
+          <Route path="/buy" element={<Buy />} />
           {/* Responsive Done */}
 
-          <Route path="/blogs" element={<Blog />} />
-
-          <Route path="/blog/:blog_id" element={<SingleBlog />} />
-
-          <Route path="/blogs/category/:id" element={<BlogCategory />} />
-
-          <Route path="/buy" element={<Buy />} />
 
           <Route path="/property-details/:slug" element={
             <PropertyDetails />

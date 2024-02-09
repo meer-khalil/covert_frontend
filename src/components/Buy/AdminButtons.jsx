@@ -7,7 +7,8 @@ const AdminButtons = ({ setOperation, setShowDialogue, selectedOption, bulkData 
   const navigate = useNavigate();
 
   return (
-    <div className='flex items-center justify-end gap-5 flex-1 '>
+    // <div className='flex items-center justify-end gap-5 flex-1 '>
+    <>
       <Button
         variant="contained"
         size="large"
@@ -55,7 +56,8 @@ const AdminButtons = ({ setOperation, setShowDialogue, selectedOption, bulkData 
       >
         Add
       </Button>
-    </div>
+    </>
+    // </div > 
   )
 }
 

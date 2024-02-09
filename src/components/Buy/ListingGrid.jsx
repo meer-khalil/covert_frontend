@@ -169,8 +169,8 @@ const ListingGrid = () => {
             <div>
               {
                 user?.role === 'admin' && (
-                  <div className='flex justify-between items-center gap-3 mb-5'>
-                    <div className=" mb-3">
+                  <div className='flex md:justify-between items-center flex-wrap gap-3 mb-12'>
+                    <div className=" mb-3 flex-1">
                       <FormControl fullWidth>
                         <InputLabel id="category-select-label">Property Type</InputLabel>
                         <Select

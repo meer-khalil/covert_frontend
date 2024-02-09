@@ -22,8 +22,6 @@ const Card = ({ card, index, cardsData, setCardsData }) => {
   };
 
   useEffect(() => {
-    console.log('Card: ', card);
-    console.log('CardData: ', cardsData);
     setTitle(card?.title)
     setDescription(card?.description)
   }, [])

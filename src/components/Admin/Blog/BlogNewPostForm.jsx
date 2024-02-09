@@ -210,7 +210,7 @@ export default function BlogNewPostForm() {
         <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={8}>
-              <Card sx={{ p: 3 }}>
+              <Card sx={{ p: { xs: 1, md: 3 } }}>
                 <Stack spacing={3}>
                   <TextField
                     fullWidth
@@ -273,7 +273,7 @@ export default function BlogNewPostForm() {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Card sx={{ p: 3 }}>
+              <Card sx={{ p: { xs: 1, md: 3 } }}>
                 <Stack spacing={3}>
                   <div>
                     <FormControlLabel

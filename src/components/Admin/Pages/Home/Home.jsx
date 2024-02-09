@@ -95,7 +95,7 @@ export default function Home() {
             </Typography>
 
             {
-              (cardsData.length > 0) && (
+              (cardsData.length > 0) ? (
                 <>
                   <Card
                     card={cardsData[0]}
@@ -116,7 +116,16 @@ export default function Home() {
                     setCardsData={setCardsData}
                   />
                 </>
-              )}
+              ) : (
+                <Card
+                  card={{ title: '', description: '' }}
+                  index={0}
+                  cardsData={[{ title: '', description: '' }]}
+                  setCardsData={setCardsData}
+                />
+              )
+
+            }
           </div>
 
           <Button

@@ -58,42 +58,42 @@ const Category = () => {
     }, []);
 
     return (
-        <div className='w-full md:max-w-xl border-gray-400 border rounded p-4'>
-            <h3 className="mb-5 font-bold">Category</h3>
-            <form onSubmit={handleSubmit}>
-                <div className=' flex items-center gap-3'>
-                    <TextField
-                        placeholder="Enter the Benefit"
-                        variant="outlined"
-                        name="benefit"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        fullWidth
-                        size='medium'
-                        autoComplete="off"
-                        inputProps={{ style: { fontSize: 15 } }}
-                        InputLabelProps={{
-                            style: { fontSize: 15, color: "GrayText" },
-                        }}
-                    />
-                    <Button
-                        type="submit"
-                        size='small'
-                        variant="contained"
-                        className=' h-[3.3rem] rounded'
-                        onClick={handleSubmit}
-                    >
-                        Update
-                    </Button>
-                </div>
-            </form>
-            <div>
-                <div className='flex flex-wrap mt-5 gap-3'>
-                    {
-                        categories?.map((el, i) => (
-                            <Chip label={el.name} onDelete={() => removeCategory(el._id)} />
-                        ))
-                    }
+        <div className=' flex justify-center'>
+            <div className='w-full md:max-w-xl border-gray-400 border rounded p-4'>
+                <h3 className="mb-5 font-bold">Category</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className=' flex items-center gap-3'>
+                        <TextField
+                            placeholder="Enter the Benefit"
+                            variant="outlined"
+                            name="benefit"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                            fullWidth
+                            autoComplete="off"
+                            inputProps={{ style: { fontSize: 15 } }}
+                            InputLabelProps={{
+                                style: { fontSize: 15, color: "GrayText" },
+                            }}
+                        />
+                        <Button
+                            type="submit"
+                            size='large'
+                            variant="contained"
+                            onClick={handleSubmit}
+                        >
+                            Update
+                        </Button>
+                    </div>
+                </form>
+                <div>
+                    <div className='flex flex-wrap mt-5 gap-3'>
+                        {
+                            categories?.map((el, i) => (
+                                <Chip label={el.name} onDelete={() => removeCategory(el._id)} />
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         </div>

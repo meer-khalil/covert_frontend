@@ -55,10 +55,10 @@ export default function App() {
           <Route path="/buy" element={<Buy />} />
           <Route path="/property-details/:slug" element={<PropertyDetails />} />
           <Route path="/buy-property" element={<BuyProperty />} />
+          <Route path="/admin/*" element={<Admin />} />
           {/* Responsive Done */}
 
 
-          <Route path="/admin/*" element={<Admin />} />
 
           <Route path="/sell-property" element={<SellProperty />} />
 

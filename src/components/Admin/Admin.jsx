@@ -23,17 +23,13 @@ const Admin = () => {
                 <Aside />
               </div>
 
-              <main className="mt-40 md:mt-0 flex-1">
-                <div className="px-2 md:px-6 py-8 flex justify-center">
+              <main className="mt-0 md:mt-0 flex-1">
+                <div className="px-2 md:px-6 py-8">
                   <Routes>
-
                     <Route index path="pages/*" element={<Pages />} />
-                    {/* <Route path="property" element={<PropertyForm />} /> */}
                     <Route path="property/edit/:slug" element={<PropertyForm />} />
-                    {/* <Route path="blog/new" element={<AddBlog />} /> */}
                     <Route path="blog/new" element={<BlogNewPostForm />} />
                     <Route path="blog/edit/:id" element={<BlogNewPostForm />} />
-                    {/* <Route path="blogs" element={<Blogs />} /> */}
                     <Route path="category" element={<Category />} />
                     <Route path="emails" element={<Emails />} />
 

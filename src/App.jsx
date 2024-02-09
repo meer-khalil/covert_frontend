@@ -53,12 +53,10 @@ export default function App() {
           <Route path="/blogs" element={<Blog />} />
           <Route path="/blog/:blog_id" element={<SingleBlog />} />
           <Route path="/buy" element={<Buy />} />
+          <Route path="/property-details/:slug" element={<PropertyDetails />} />
+          <Route path="/buy-property" element={<BuyProperty />} />
           {/* Responsive Done */}
 
-
-          <Route path="/property-details/:slug" element={<PropertyDetails />} />
-
-          <Route path="/buy-property" element={<BuyProperty />} />
 
           <Route path="/admin/*" element={<Admin />} />
 

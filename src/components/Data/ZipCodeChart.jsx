@@ -60,8 +60,8 @@ const ZipCodeChart = ({ zipcode, category }) => {
   return (
     chartData ? (
       <div>
-        <h2 className='text-2xl ml-10 text-[#123447] font-bold'>{`${category}`} Chart for Zip Code {zipcode}</h2>
-        <div>
+        <h2 className='text-2xl md:ml-10 mt-3 md:mt-auto text-[#123447] font-bold'>{`${category}`} Chart for Zip Code {zipcode}</h2>
+        <div className=' mt-7 md:mt-auto'>
           <Line
             data={chartData}
             options={{

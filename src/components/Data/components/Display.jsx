@@ -5,7 +5,7 @@ import ZipCodeChart from '../ZipCodeChart'
 const Display = ({ category, setCategory, zipcode }) => {
   return (
     <div className=' m-4'>
-      <div className=' flex  justify-center'>
+      <div className=' flex  md:justify-center'>
         <div className=' max-w-xs'>
           <DropDown
             category={category}

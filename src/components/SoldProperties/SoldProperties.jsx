@@ -10,7 +10,7 @@ const SoldProperties = () => {
 
 
   return (
-    <Layout>
+    <>
       <PageTitle
         title="Sold Properties"
         image={image}
@@ -22,7 +22,7 @@ const SoldProperties = () => {
         </div>
         <Properteis />
       </div>
-    </Layout>
+    </>
   )
 }
 

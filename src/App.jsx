@@ -59,18 +59,18 @@ export default function App() {
           <Route path="/sell-property" element={<SellProperty />} />
           <Route path="/data" element={<Data />} />
           <Route path="data/:zipcodet/:categoryt" element={<Data />} />
+          <Route path="/password/forgot" element={<ForgotPassword />} />
+          <Route path="/password/reset/:token" element={<ResetPassword />} />
+          <Route path="/properties/sold" element={<SoldProperties />} />
+          <Route path="/schedual/meeting" element={<SchedualMeeting />} />
           {/* Responsive Done */}
 
 
 
 
 
-          <Route path="/password/forgot" element={<ForgotPassword />} />
-          <Route path="/password/reset/:token" element={<ResetPassword />} />
 
 
-          <Route path="/properties/sold" element={<SoldProperties />} />
-          <Route path="/schedual/meeting" element={<SchedualMeeting />} />
 
         </Routes>
       </Layout>

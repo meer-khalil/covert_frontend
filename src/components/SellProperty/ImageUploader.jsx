@@ -51,7 +51,7 @@ const ImageUploader = () => {
 
   return (
     <>
-      <div className='flex gap-5 mt-4'>
+      <div className='flex flex-col md:flex-row gap-5 mt-4'>
         <div className="flex-1">
           <label for="fileInput" class="flex flex-col items-center justify-center px-4 py-12 bg-white border border-gray-300 rounded-lg shadow-sm cursor-pointer h-48">
             <svg class="w-12 h-12 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

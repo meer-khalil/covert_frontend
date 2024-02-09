@@ -56,11 +56,11 @@ export default function App() {
           <Route path="/property-details/:slug" element={<PropertyDetails />} />
           <Route path="/buy-property" element={<BuyProperty />} />
           <Route path="/admin/*" element={<Admin />} />
+          <Route path="/sell-property" element={<SellProperty />} />
           {/* Responsive Done */}
 
 
 
-          <Route path="/sell-property" element={<SellProperty />} />
 
           <Route path="/data" element={<Data />} />
           <Route path="data/:zipcodet/:categoryt" element={<Data />} />

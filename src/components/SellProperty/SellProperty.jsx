@@ -35,7 +35,7 @@ export default function SellProperty() {
                 small={true}
             />
             <PropertyProvider>
-                <div className='my-9 mx-20'>
+                <div className='my-9 md:mx-20'>
                     <Stepper activeStep={activeStep} alternativeLabel>
                         {steps.map((label) => (
                             <Step key={label}>
@@ -45,7 +45,7 @@ export default function SellProperty() {
                     </Stepper>
                 </div>
 
-                <div className='mx-16'>
+                <div className='md:mx-16'>
                     {(activeStep === 0) && <VerifyAddress />}
                     {(activeStep === 1) && <VerifyHomeFacts />}
                     {(activeStep === 2) && <ReviewInfo />}

@@ -38,11 +38,11 @@ function DetailForm({ data }) {
   }
 
   return (
-    <div className='p-9 max-w-max mx-auto rounded-xl' style={{ boxShadow: '2px 2px 4px 4px rgba(0, 0, 0, 0.05)' }}>
+    <div className='p-3 md:p-9 md:max-w-max mx-3 md:mx-auto rounded-xl' style={{ boxShadow: '2px 2px 4px 4px rgba(0, 0, 0, 0.05)' }}>
 
       <h1 className='font-semibold text-2xl mb-5'>Property Details</h1>
 
-      <div className="flex items-center gap-5">
+      <div className="flex flex-col md:flex-row md:items-center gap-5">
 
         <div className="flex-1">
           <TextField
@@ -106,7 +106,7 @@ function DetailForm({ data }) {
 
       </div>
 
-      <div className="flex gap-5 my-10">
+      <div className="flex flex-col md:flex-row gap-5 my-10">
         <div className="flex-1">
           <TextField
             fullWidth
@@ -188,7 +188,7 @@ function DetailForm({ data }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-5 mb-10">
+      <div className="flex flex-col md:flex-row md:items-center gap-5 mb-10">
 
         <div className="flex-1">
           <TextField
@@ -280,7 +280,7 @@ function DetailForm({ data }) {
 
 
       {/* Checkboxes */}
-      <div className="flex gap-4">
+      <div className="flex flex-col md:flex-row md:gap-4">
 
         <div>
           <FormGroup>

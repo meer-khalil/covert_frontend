@@ -68,7 +68,7 @@ const BasicDetail = ({ property }) => {
       </div>
 
 
-      <div className='flex text-[21px] flex-col md:flex-row gap-1 md:gap-8 my-4'>
+      <div className='flex text-[21px] flex-wrap flex-col md:flex-row gap-1 md:gap-8 my-4'>
         {
           [
             {
@@ -82,6 +82,14 @@ const BasicDetail = ({ property }) => {
             {
               text: 'Occupancy:',
               value: property.occupancy
+            },
+            {
+              text: 'Year Built:',
+              value: property.builtYear
+            },
+            {
+              text: 'Property Type',
+              value: property.propertyType
             }
           ].map((el, i) => (
             <>
@@ -133,13 +141,21 @@ const BasicDetail = ({ property }) => {
 
       <div className='mt-12 mb-5'>
         <Box>
-          <Typography sx={{
-            fontSize: '30px',
-            fontWeight: 'bold',
-            letterSpacing: '2px',
-          }}>
+          <h3 className=' text-2xl font-bold tracking-[2px]'>
+            Description
+          </h3>
+          <Divider sx={{ width: '4%', height: '5px', bgcolor: '#716EDC', borderRadius: '13px' }} />
+        </Box>
+      </div>
+      {
+        property?.description || 'If you are admin, add description'
+      }
+
+      <div className='mt-12 mb-5'>
+        <Box>
+          <h3 className=' text-2xl font-bold tracking-[2px]'>
             Details
-          </Typography>
+          </h3>
           <Divider sx={{ width: '4%', height: '5px', bgcolor: '#716EDC', borderRadius: '13px' }} />
         </Box>
       </div>

@@ -28,7 +28,7 @@ export default function SellProperty() {
     const [activeStep, setActiveStep] = useState(0)
 
     return (
-        <Layout>
+        <>
             <PageTitle
                 title="Sell Property"
                 image={image}
@@ -57,6 +57,6 @@ export default function SellProperty() {
                     }
                 </div>
             </PropertyProvider>
-        </Layout>
+        </>
     );
 }

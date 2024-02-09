@@ -42,6 +42,23 @@ function DetailForm({ data }) {
 
       <h1 className='font-semibold text-2xl mb-5'>Property Details</h1>
 
+      <div className=' mb-5'>
+        <TextField
+          label="Description"
+          variant="outlined"
+          name="description"
+          value={propertyData?.numberOfBeds}
+          onChange={handlePropertyData}
+          fullWidth
+          autoComplete="off"
+          inputProps={{ style: { fontSize: 15 } }}
+          InputLabelProps={{
+            style: { fontSize: 15, color: "GrayText" },
+          }}
+          multiline
+          rows={6}
+        />
+      </div>
       <div className="flex flex-col md:flex-row md:items-center gap-5">
 
         <div className="flex-1">

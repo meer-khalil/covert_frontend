@@ -57,13 +57,13 @@ export default function App() {
           <Route path="/buy-property" element={<BuyProperty />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/sell-property" element={<SellProperty />} />
+          <Route path="/data" element={<Data />} />
+          <Route path="data/:zipcodet/:categoryt" element={<Data />} />
           {/* Responsive Done */}
 
 
 
 
-          <Route path="/data" element={<Data />} />
-          <Route path="data/:zipcodet/:categoryt" element={<Data />} />
 
           <Route path="/password/forgot" element={<ForgotPassword />} />
           <Route path="/password/reset/:token" element={<ResetPassword />} />

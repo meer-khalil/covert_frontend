@@ -83,7 +83,7 @@ const MarketAnalysis = ({ zipCode, data, capData }) => {
   // }, []);
 
   return (
-    <div className='flex-1'>
+    <div className='md:flex-1'>
       <div className='mt-12 mb-12'>
         <Box>
           <Typography sx={{
@@ -97,7 +97,7 @@ const MarketAnalysis = ({ zipCode, data, capData }) => {
         </Box>
       </div>
 
-      <div className=' pr-32'>
+      <div className=' md:pr-32'>
         {
           [
             {

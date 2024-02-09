@@ -34,13 +34,13 @@ const BasicDetail = ({ property }) => {
 
   return (
     <>
-      <div className='flex flex-col md:flex-row md:items-center w-full'>
+      <div className='flex flex-col md:flex-row md:items-center w-full overflow-hidden'>
 
         <h2 className='text-[35px] font-semibold flex-1'>
           {property.address}
         </h2>
 
-        <div className=' flex items-center gap-6'>
+        <div className=' flex flex-col md:flex-row md:items-center gap-6'>
           <h3 className=' text-blue-500 font-semibold text-[44px]'>
             ${property.price}
           </h3>
@@ -71,18 +71,31 @@ const BasicDetail = ({ property }) => {
       <div className='flex text-[21px] flex-col md:flex-row gap-1 md:gap-8 my-4'>
         {
           [
-            `Actuals CAP: ${property.actualCAP}`,
-            `Pro Forma CAP: ${property.proFormaCAP}`,
-            `Occupancy: ${property.occupancy}% Occupied`
+            {
+              text: 'Actuals CAP:',
+              value: property.actualCAP
+            },
+            {
+              text: 'Pro Forma CAP:',
+              value: property.proFormaCAP
+            },
+            {
+              text: 'Occupancy:',
+              value: property.occupancy
+            }
           ].map((el, i) => (
             <>
               {
                 (i === 0) ? (
-                  <p>{el}</p>
+                  <p className="font-['Poppins'] mb-1">
+                    <span className=" font-semibold mr-2">{el.text}</span> {el.value}%
+                  </p>
                 ) : (
                   <>
                     <span className='hidden md:inline'>|</span>
-                    <p>{el}</p>
+                    <p className="font-['Poppins'] mb-1">
+                      <span className=" font-semibold mr-2">{el.text}</span> {el.value}%
+                    </p>
                   </>
                 )
               }

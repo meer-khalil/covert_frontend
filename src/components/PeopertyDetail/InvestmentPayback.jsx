@@ -59,20 +59,16 @@ const InvestmentPayback = ({ property }) => {
     <div>
       <div className='mt-20'>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Typography sx={{
-            fontSize: '30px',
-            fontWeight: 'bold',
-            letterSpacing: '2px'
-          }}>
+          <h3 className=' text-lg md:text-2xl text-center font-bold tracking-widest'>
             Investment Payback Balance Table (in Thousands)
-          </Typography>
-          <Divider sx={{ width: '25%', height: '5px', bgcolor: '#716EDC', borderRadius: '13px' }} />
+          </h3>
+          <Divider sx={{ width: '25%', height: '5px', bgcolor: '#716EDC', borderRadius: '13px', display: { xs: 'none', md: 'inline' } }} />
         </Box>
       </div>
 
 
       {/* Table */}
-      <div className=' mt-20'>
+      <div className=' mt-20 overflow-x-scroll md:overflow-auto'>
         <div className=' w-min px-5 py-3 text-white text-2xl -mb-5 rounded-md bg-primary'>
           Traditional
         </div>

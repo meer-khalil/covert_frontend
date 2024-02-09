@@ -82,7 +82,7 @@ const MortgageCalculator = ({ price, setDownPaymentCashFlow }) => {
 
 
   return (
-    <div className='flex-1'>
+    <div className='md:flex-1'>
 
       <div className='mt-12 mb-12'>
         <Box>
@@ -99,18 +99,6 @@ const MortgageCalculator = ({ price, setDownPaymentCashFlow }) => {
 
       {/* Card */}
       <div className='md:mr-44 border-2 border-blue-400 rounded-lg pb-5'>
-        {/* Switch */}
-        {/* <div className='border-2 border-blue-400 rounded-tl-lg rounded-tr-lg'>
-          <div className=' bg-blue-500 text-white flex justify-center items-center py-2 gap-4'>
-            <span>Cash</span>
-            <div class="relative inline-block w-10 mr-2 align-middle select-none">
-              <input type="checkbox" id="switch" name="switch" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-blue-500 border-4 appearance-none cursor-pointer" />
-              <label for="switch" class="toggle-label block overflow-hidden h-5 rounded-full bg-white cursor-pointer"></label>
-            </div>
-
-            <span>Mortgage</span>
-          </div>
-        </div> */}
         <div className='border-2 border-primary rounded-tl-lg rounded-tr-lg'>
           <div className=' bg-primary font-bold text-xl font-opensans text-white flex justify-center items-center py-4 gap-4'>
             Monthly Payment: $ {monthlyPayment}

@@ -85,7 +85,7 @@ function PropertyDetails() {
               small={true}
             />
 
-            <div className='px-3 page-size'>
+            <div className='px-3 page-size overflow-hidden'>
               <div className='py-2'>
                 <BackButton />
               </div>
@@ -100,7 +100,7 @@ function PropertyDetails() {
                   )
                 }
 
-                <div className='flex mt-20 flex-col md:flex-row'>
+                <div className=' w-full flex mt-20 flex-col md:flex-row overflow-hidden'>
                   <MortgageCalculator price={property?.price} setDownPaymentCashFlow={setDownPaymentCashFlow} />
                   {
                     zipData &&
@@ -119,8 +119,8 @@ function PropertyDetails() {
                   <div className='absolute left-0 top-0 right-0 bottom-0 z-50'>
                     <div className='absolute left-0 top-0 right-0 bottom-0 bg-gray-600 bg-opacity-50' onClick={() => setShowSlide(false)}>
                     </div>
-                    <div className=' h-full w-full flex justify-center items-center'>
-                      <div className=' w-[60rem]'>
+                    <div className=' h-[300px] mt-36 md:mt-auto md:h-full w-full flex justify-center items-center'>
+                      <div className=' w-full max-w-[60rem]'>
                         <SlideShow images={property.images} />
                       </div>
                     </div>

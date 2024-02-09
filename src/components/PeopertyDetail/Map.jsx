@@ -6,11 +6,8 @@ import React from 'react'
 import GoogleMap from './GoogleMap'
 
 const Map = ({ zipCode }) => {
-
-  console.log("Zipcode: ", zipCode);
-
   return (
-    <div className='h-[500px] rounded-[16px] relative'>
+    <div className='h-[500px] rounded-[16px] relative w-full'>
       <GoogleMap zipCode={zipCode} />
     </div>
   )

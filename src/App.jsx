@@ -56,9 +56,7 @@ export default function App() {
           {/* Responsive Done */}
 
 
-          <Route path="/property-details/:slug" element={
-            <PropertyDetails />
-          } />
+          <Route path="/property-details/:slug" element={<PropertyDetails />} />
 
           <Route path="/buy-property" element={<BuyProperty />} />
 

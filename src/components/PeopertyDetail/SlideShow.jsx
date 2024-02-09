@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 
@@ -19,6 +19,37 @@ const divStyle = {
 
 
 const SlideShow = ({ images: slideImages }) => {
+
+
+  const prevSlide = () => {
+    const button = document.querySelector('[aria-label="Previous Slide"]');
+    button.click();
+  }
+  const nextSlide = () => {
+    const button = document.querySelector('[aria-label="Next Slide"]');
+    button.click();
+  }
+
+  // Add event listeners for keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        nextSlide();
+      }
+    };
+
+    // Attach the event listener
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []); // Empty dependency array ensures this effect runs only once on mount
+
+
   return (
     <>
       <div className="slide-container">

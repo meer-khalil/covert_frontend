@@ -47,7 +47,7 @@ function DetailForm({ data }) {
           label="Description"
           variant="outlined"
           name="description"
-          value={propertyData?.numberOfBeds}
+          value={propertyData?.description}
           onChange={handlePropertyData}
           fullWidth
           autoComplete="off"

@@ -3,12 +3,16 @@ import {
   Button
 } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
-import { TextField } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 
 import { toast } from "react-toastify";
 import api from "../../util/api";
 
+
+// icons
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { useState } from "react";
 // style
 const FormStyle = styled("form")(({ theme }) => ({
   // root style
@@ -82,6 +86,8 @@ const FormStyle = styled("form")(({ theme }) => ({
 
 const ContactForm = () => {
 
+  const [banner, setBanner] = useState(false);
+
   // hook form
   const {
     register,
@@ -100,12 +106,17 @@ const ContactForm = () => {
   // prevent Default
   const preventDefault = (e) => e.preventDefault();
 
+  const hideBanner = () => {
+    setBanner(prev => !prev);
+  }
+
   // form submit
   const onSubmit = async (data) => {
     try {
       const res = await api.post('/contact', data);
       console.log('res', res);
-      toast('Sumbitted Successfuly!')
+      // toast('Sumbitted Successfuly!')
+      hideBanner();
       reset();
     } catch (error) {
       console.log('Error: ', error);
@@ -178,6 +189,16 @@ const ContactForm = () => {
           {...register("message", { required: true })}
         />
 
+        {
+          banner && (
+            <div className=" bg-white rounded-md flex justify-between items-center py-2 px-2">
+              <p className=" font-poppins">Your message has been sent successfully. We will reach you soon!</p>
+              <IconButton onClick={hideBanner}>
+                <CloseOutlinedIcon />
+              </IconButton>
+            </div>
+          )
+        }
         <div className=" flex flex-col md:flex-row md:justify-end">
           <Button type="submit" variant="contained" disableElevation>
             Submit

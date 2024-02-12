@@ -43,7 +43,6 @@ export default function App() {
 
       <Layout>
         <Routes>
-
           {/* Responsive Done */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -64,14 +63,6 @@ export default function App() {
           <Route path="/properties/sold" element={<SoldProperties />} />
           <Route path="/schedual/meeting" element={<SchedualMeeting />} />
           {/* Responsive Done */}
-
-
-
-
-
-
-
-
         </Routes>
       </Layout>
       <Footer />

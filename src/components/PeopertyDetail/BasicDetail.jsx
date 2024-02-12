@@ -73,15 +73,15 @@ const BasicDetail = ({ property }) => {
           [
             {
               text: 'Actuals CAP:',
-              value: property.actualCAP
+              value: `${property.actualCAP}%`
             },
             {
               text: 'Pro Forma CAP:',
-              value: property.proFormaCAP
+              value: `${property.proFormaCAP}%`
             },
             {
               text: 'Occupancy:',
-              value: property.occupancy
+              value: `${property.occupancy}%`
             },
             {
               text: 'Year Built:',
@@ -96,13 +96,13 @@ const BasicDetail = ({ property }) => {
               {
                 (i === 0) ? (
                   <p className="font-['Poppins'] mb-1">
-                    <span className=" font-semibold mr-2">{el.text}</span> {el.value}%
+                    <span className=" font-semibold mr-2">{el.text}</span> {el.value}
                   </p>
                 ) : (
                   <>
                     <span className='hidden md:inline'>|</span>
                     <p className="font-['Poppins'] mb-1">
-                      <span className=" font-semibold mr-2">{el.text}</span> {el.value}%
+                      <span className=" font-semibold mr-2">{el.text}</span> {el.value}
                     </p>
                   </>
                 )

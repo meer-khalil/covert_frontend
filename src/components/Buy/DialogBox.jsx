@@ -15,11 +15,7 @@ const DialogBox = () => {
   }
 
   const goHome = () => {
-    if (pathname.includes('buy')) {
-      navigate(-3);
-    } else {
-      navigate(-1);
-    }
+    navigate('/');
   }
 
   return (

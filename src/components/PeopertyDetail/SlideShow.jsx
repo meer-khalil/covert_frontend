@@ -55,10 +55,11 @@ const SlideShow = ({ images: slideImages }) => {
       <div className="slide-container">
         <Slide>
           {slideImages.map((slideImage, index) => (
-            <div key={index}>
-              <div style={{ ...divStyle, 'backgroundImage': `url(${process.env.REACT_APP_BACKEND_RESOURCE}/images/${slideImage?.filename})` }}>
-                {/* <span style={spanStyle}>{slideImage.caption}</span> */}
-              </div>
+            <div key={index} className=' h-[600px]'>
+              {/* <div style={{ ...divStyle, 'backgroundImage': `url(${process.env.REACT_APP_BACKEND_RESOURCE}/images/${slideImage?.filename})` }}>
+                <span style={spanStyle}>{slideImage.caption}</span>
+              </div> */}
+              <img className=' h-full w-full' src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/${slideImage?.filename}`} alt="" />
             </div>
           ))}
         </Slide>

@@ -91,7 +91,7 @@ const MortgageCalculator = ({ price, setDownPaymentCashFlow }) => {
             fontWeight: 'bold',
             letterSpacing: '2px',
           }}>
-            Mortgage Calcultor
+            Mortgage Calculator
           </Typography>
           <Divider sx={{ width: '15%', height: '5px', bgcolor: '#716EDC', borderRadius: '13px' }} />
         </Box>

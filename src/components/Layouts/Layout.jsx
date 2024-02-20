@@ -1,11 +1,8 @@
-import React, { PropsWithChildren } from "react";
-
-import Navbar from './Navbar';
+import React from "react";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Navbar />
       <div className=" pt-[30px] md:pt-[60px]">
         {children}
       </div>

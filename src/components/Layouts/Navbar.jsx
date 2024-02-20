@@ -17,21 +17,20 @@ import Button from "@mui/material/Button";
 import Logo from '../Home/Logo'
 
 import person from '../../images/haris triston 2.jpeg';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { UserContext } from '../../context/UserContext'
 
 const drawerWidth = 240;
+
 const navItems = [
   { item: "Home", url: `/` },
   { item: "Buy", url: `/buy` },
   { item: "Sell", url: `/sell-property` },
   { item: "Data", url: `/data` },
   { item: "About", url: "/about" },
-  { item: "Blog", url: "/blogs" },
+  { item: "Blog", url: "/blogs" }
 ];
-
-// const navItems = []
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -43,28 +42,52 @@ function DrawerAppBar(props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box sx={{ textAlign: "center" }} onClick={handleDrawerToggle}>
       <div className=" w-36 my-4 pl-3">
         <Logo />
       </div>
 
       <Divider />
+
       <List>
         {navItems?.map((item) => (
-          <Link to={item.url}>
-            <ListItem key={item.item} disablePadding>
+          <Link key={item.item} to={item.url}>
+            <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText primary={item.item} />
               </ListItemButton>
             </ListItem>
           </Link>
         ))}
+        {
+          user ? (
+            <ListItem onClick={logout} disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary="Logout" />
+              </ListItemButton>
+            </ListItem>
+          ) : (
+            <>
+              <Link to="/login">
+                <ListItem disablePadding>
+                  <ListItemButton sx={{ textAlign: "center" }}>
+                    <ListItemText primary="Login" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+              <Link to="/signup">
+                <ListItem disablePadding>
+                  <ListItemButton sx={{ textAlign: "center" }}>
+                    <ListItemText primary="Signup" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            </>
+          )
+        }
       </List>
     </Box>
   );
-
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className=" fixed top-0 right-0 left-0 z-40 bg-white" style={{
@@ -138,49 +161,14 @@ function DrawerAppBar(props) {
                 </>
               )
             }
-            {
-            /*
-              (
-                <>
-                  <Link
-                    to={`/login`}
-                    style={{
-                      color: "#000",
-                      letterSpacing: "2px",
-                      textDecoration: "none",
-                      marginRight: '30px'
-                    }}
-                  >
-                    Login
-                  </Link>
-
-                  <Link
-                    to={`/upgrade`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Button
-                      variant="contained"
-                      sx={{ bgcolor: "#716EDC", "&:hover": { bgcolor: "#716EDC" } }}
-                    >
-                      Upgrade
-                    </Button>
-                  </Link>
-                </>
-              )
-            } */}
-
           </Box>
         </div>
       </nav>
       <Box component="nav">
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
           sx={{
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
@@ -195,13 +183,5 @@ function DrawerAppBar(props) {
     </div>
   );
 }
-
-// DrawerAppBar.propTypes = {
-//   /**
-//    * Injected by the documentation to work in an iframe.
-//    * You won't need it on your project.
-//    */
-//   window: PropTypes.func,
-// };
 
 export default DrawerAppBar;

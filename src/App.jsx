@@ -6,6 +6,8 @@ import { Audio, Rings, Triangle } from 'react-loader-spinner'
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from "./components/Common/Loading";
+
+import Navbar from './components/Layouts/Navbar';
 // components
 const Home = lazy(() => import('./components/Home/Home'));
 const Login = lazy(() => import('./components/Login/Login'));
@@ -30,20 +32,19 @@ const SoldProperties = lazy(() => import('./components/SoldProperties/SoldProper
 const SchedualMeeting = lazy(() => import('./components/SchedualMeeting/SchedualMeeting'))
 const Layout = lazy(() => import('./components/Layouts/Layout'))
 
+
 export default function App() {
 
-  const { showPopUp, user } = useContext(UserContext)
+  const { showPopUp } = useContext(UserContext)
 
   return (
     <Suspense fallback={<Loader />}>
       <ToastContainer />
-      {
-        showPopUp && <Popup />
-      }
-
+      {showPopUp && <Popup />}
+      <Navbar />
       <Layout>
         <Routes>
-          {/* Responsive Done */}
+
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
@@ -62,7 +63,7 @@ export default function App() {
           <Route path="/password/reset/:token" element={<ResetPassword />} />
           <Route path="/properties/sold" element={<SoldProperties />} />
           <Route path="/schedual/meeting" element={<SchedualMeeting />} />
-          {/* Responsive Done */}
+
         </Routes>
       </Layout>
       <Footer />

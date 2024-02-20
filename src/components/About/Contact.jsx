@@ -32,7 +32,7 @@ function Contact() {
           Feel Free to Contact
         </h3>
         <p className=' px-6 md:px-0 text-base md:text-xl text-white text-center'>
-          Call at 385-337-4380 or fill out the details to connect with us.
+          Call at +1 813 215 9970 or fill out the details to connect with us.
         </p>
       </div>
 

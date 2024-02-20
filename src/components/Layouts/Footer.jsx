@@ -56,7 +56,7 @@ const Footer = () => {
                     Utah
                   </Typography>
                   <Typography variant="body2" sx={{ mt: 1 }}>
-                    Call Us: +1 385-337-4380
+                    Call Us: +1 813 215 9970
                   </Typography>
                 </Box>
               </Box>

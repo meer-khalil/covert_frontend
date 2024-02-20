@@ -59,13 +59,6 @@ const NewDrawer = ({ isOpen, setIsOpen }) => {
                   </ListItemButton>
                 </ListItem>
               </Link>
-              <Link to="/signup">
-                <ListItem disablePadding>
-                  <ListItemButton sx={{ textAlign: "center" }}>
-                    <ListItemText primary="Signup" />
-                  </ListItemButton>
-                </ListItem>
-              </Link>
               <Link
                 to={`/upgrade`}
                 style={{ textDecoration: "none" }}

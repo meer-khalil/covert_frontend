@@ -5,8 +5,11 @@ import image from '../../images/PageTitles/BuyPageTitle.webp';
 
 import ListingGrid from './ListingGrid'
 import Layout from '../Layouts/Layout'
+import { UserContext } from '../../context/UserContext';
+import LoginDialogBox from './LoginDialogBox';
 
 function Buy() {
+    const { user } = useContext(UserContext)
 
     return (
         <>
@@ -16,7 +19,13 @@ function Buy() {
                 small={true}
             />
             <div className=' page-size'>
-                <ListingGrid />
+                {
+                    user ? (
+                        <ListingGrid />
+                    ) : (
+                        <LoginDialogBox />
+                    )
+                }
             </div>
         </>
 

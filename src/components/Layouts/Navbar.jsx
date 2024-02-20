@@ -20,6 +20,7 @@ import person from '../../images/haris triston 2.jpeg';
 import { Link, useNavigate } from "react-router-dom";
 
 import { UserContext } from '../../context/UserContext'
+import NewDrawer from "./NewDrawer";
 
 const drawerWidth = 240;
 
@@ -34,60 +35,12 @@ const navItems = [
 
 function DrawerAppBar(props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false)
   const { user, logout } = useContext(UserContext)
 
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
-
-  const drawer = (
-    <Box sx={{ textAlign: "center" }} onClick={handleDrawerToggle}>
-      <div className=" w-36 my-4 pl-3">
-        <Logo />
-      </div>
-
-      <Divider />
-
-      <List>
-        {navItems?.map((item) => (
-          <Link key={item.item} to={item.url}>
-            <ListItem disablePadding>
-              <ListItemButton sx={{ textAlign: "center" }}>
-                <ListItemText primary={item.item} />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-        ))}
-        {
-          user ? (
-            <ListItem onClick={logout} disablePadding>
-              <ListItemButton sx={{ textAlign: "center" }}>
-                <ListItemText primary="Logout" />
-              </ListItemButton>
-            </ListItem>
-          ) : (
-            <>
-              <Link to="/login">
-                <ListItem disablePadding>
-                  <ListItemButton sx={{ textAlign: "center" }}>
-                    <ListItemText primary="Login" />
-                  </ListItemButton>
-                </ListItem>
-              </Link>
-              <Link to="/signup">
-                <ListItem disablePadding>
-                  <ListItemButton sx={{ textAlign: "center" }}>
-                    <ListItemText primary="Signup" />
-                  </ListItemButton>
-                </ListItem>
-              </Link>
-            </>
-          )
-        }
-      </List>
-    </Box>
-  );
+    setIsOpen(true)
+  }
 
   return (
     <div className=" fixed top-0 right-0 left-0 z-40 bg-white" style={{
@@ -164,22 +117,7 @@ function DrawerAppBar(props) {
           </Box>
         </div>
       </nav>
-      <Box component="nav">
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </Box>
+      <NewDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 }

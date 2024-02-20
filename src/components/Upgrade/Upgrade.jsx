@@ -85,9 +85,9 @@ export default function Upgrade() {
               justifyContent: "start",
             }}
           >
-            <Box sx={{ width: "150px", marginLeft: "5px", marginTop: "30px" }}>
+            <div className=" w-[150px] ml-1 mt-7 hidden md:block">
               <Logo />
-            </Box>
+            </div>
             <Box
               sx={{
                 mt: 4,

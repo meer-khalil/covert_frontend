@@ -14,7 +14,6 @@ import google from "../../images/google.svg";
 import { UserContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
 
-const icons = [twitter, facebook, google];
 
 export default function Login() {
 
@@ -27,7 +26,6 @@ export default function Login() {
       email: formData.get("email"),
       password: formData.get("password"),
     }
-    console.log(data);
     login(data)
   };
 
@@ -42,9 +40,7 @@ export default function Login() {
           <div
             className=" flex flex-col max-w-xl mx-2"
           >
-            <div
-              className=" w-[150px] mt-10"
-            >
+            <div className=" hidden md:block w-[150px] mt-10">
               <Logo />
             </div>
             <div className="mt-14">

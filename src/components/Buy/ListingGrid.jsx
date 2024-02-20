@@ -50,14 +50,10 @@ const ListingGrid = () => {
 
       try {
         const response = await api.put(url, formData);
-
-        console.log('Response(Publish): ', response);
-        console.log('Data(Publish): ', response.data);
         toast('published')
       } catch (error) {
-        console.log(`Error While Publishing Property: ${id}`);
-        console.log(`Error indx: ${index}: `, error.message);
-        toast(`Error While Publishing Property: ${id}`)
+        console.log(error.message);
+        toast(error.message)
       }
     });
 
@@ -76,12 +72,9 @@ const ListingGrid = () => {
       try {
         const response = await api.put(url, formData);
 
-        console.log('Response(UnPublish): ', response);
-        console.log('Data(UnPublish): ', response.data);
-
       } catch (error) {
-        console.log(`Error While UnPublishing Property: ${index}`);
-        alert(`Error While UnPublishing Property: ${index}`)
+        console.log(error.message);
+        toast(error.message)
       }
     });
 
@@ -100,8 +93,8 @@ const ListingGrid = () => {
         toast('Property Deleted Succuessfully');
         getPropertiesData();
       } catch (error) {
-        console.log(`Error While Delete Property: ${index}: `, error.message);
-        toast(`Error While Delete Property: ${index}: ${error.message}`)
+        console.log(error.message);
+        toast(error.message)
       }
     });
 
@@ -147,7 +140,6 @@ const ListingGrid = () => {
       localStorage.setItem('page', page);
       navigate(`/buy?page=${page}`);
     } catch (error) {
-      toast("Error while getting properties");
       console.log('Error: ', error);
     }
   }

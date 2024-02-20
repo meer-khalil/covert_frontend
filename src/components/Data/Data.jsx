@@ -9,6 +9,7 @@ import Display from './components/Display';
 import DialogBox from '../Buy/DialogBox';
 import { UserContext } from '../../context/UserContext';
 import BackButton from '../Common/BackButton';
+import LoginDialogBox from '../Buy/LoginDialogBox';
 
 
 export default function Data() {
@@ -38,14 +39,18 @@ export default function Data() {
 
 				<div className='w-full flex-[5]'>
 					{
-						['buyer', 'admin'].includes(user?.role) ? (
-							<Display
-								category={category}
-								setCategory={setCategory}
-								zipcode={zipcode}
-							/>
+						user ? (
+							['buyer', 'admin'].includes(user?.role) ? (
+								<Display
+									category={category}
+									setCategory={setCategory}
+									zipcode={zipcode}
+								/>
+							) : (
+								<DialogBox />
+							)
 						) : (
-							<DialogBox />
+							<LoginDialogBox />
 						)
 					}
 				</div>

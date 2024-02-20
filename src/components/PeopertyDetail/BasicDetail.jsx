@@ -13,6 +13,16 @@ const BasicDetail = ({ property }) => {
   const [info, setInfo] = useState('')
   const [city, setCity] = useState('')
 
+
+  const formatNumberAsCurrency = (number) => {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0
+    })
+    return formatter.format(number)
+  }
+
   const searchCityInfo = () => {
     api.get(`/properties/wikipedia?query=${property.zipcode}`)
       .then((response) => {
@@ -42,7 +52,7 @@ const BasicDetail = ({ property }) => {
 
         <div className=' flex flex-col md:flex-row md:items-center gap-6'>
           <h3 className=' text-blue-500 font-semibold text-[44px]'>
-            ${property.price}
+            {formatNumberAsCurrency(property.price)}
           </h3>
 
           <Link to='/schedual/meeting' rel="noreferrer" target={'_blank'}>
@@ -162,7 +172,7 @@ const BasicDetail = ({ property }) => {
 
 
       <div className=' mb-5'>
-        <p className=' text-justify text-[21px]'>
+        <p className=''>
           {
             (info?.length > 1000) ? (
               <>

@@ -16,7 +16,6 @@ export const UserProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const login = async (_user) => {
-    console.log("User For Login: ", _user);
 
     try {
       const { data } = await api.post("/user/login", {
@@ -74,10 +73,6 @@ export const UserProvider = ({ children }) => {
 
       if (userData) {
         setUser(JSON.parse(userData));
-      }
-    } else {
-      if (['buy', 'data', 'admin'].some((e) => window.location.href.includes(e))) {
-        navigate('/login')
       }
     }
   };

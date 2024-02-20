@@ -20,7 +20,7 @@ const Images = ({ property, setShowSlide }) => {
           <img onClick={visibleSlideShow} className='w-full h-full z-0' src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/${property?.images[property?.defaultImage !== 2 ? 2 : 1]?.filename}`} alt="" />
           {
             (property?.images?.length > 2) && (
-              <div className=' absolute left-0 top-0 right-0 bottom-0'>
+              <div className=' absolute left-0 top-0 right-0 bottom-0' onClick={visibleSlideShow}>
                 <div className='absolute left-0 top-0 right-0 bottom-0 bg-gray-400 opacity-75 z-0'></div>
                 <div className='text-7xl text-white font-bold flex justify-center items-center absolute left-0 top-0 right-0 bottom-0 z-10'>
                   {property?.images?.length - 1} +

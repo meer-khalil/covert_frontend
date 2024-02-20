@@ -3,7 +3,7 @@ import React from "react";
 const Layout = ({ children }) => {
   return (
     <>
-      <div className=" pt-[30px] md:pt-[60px]">
+      <div className=" pt-[60px] md:pt-[60px]">
         {children}
       </div>
     </>

@@ -1,27 +1,97 @@
-import React from 'react'
+import { Box, Button, Divider, List, ListItem, ListItemButton, ListItemText } from '@mui/material'
+import React, { useContext } from 'react'
 
 // import component 👇
 import Drawer from 'react-modern-drawer'
 
 //import styles 👇
 import 'react-modern-drawer/dist/index.css'
+import { Link } from 'react-router-dom'
+import Logo from '../Home/Logo'
+import { UserContext } from '../../context/UserContext'
 
-const NewDrawer = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
+const NewDrawer = ({ isOpen, setIsOpen }) => {
+  const { user, logout } = useContext(UserContext)
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState)
   }
 
+  const navItems = [
+    { item: "Home", url: `/` },
+    { item: "Buy", url: `/buy` },
+    { item: "Sell", url: `/sell-property` },
+    { item: "Data", url: `/data` },
+    { item: "About", url: "/about" },
+    { item: "Blog", url: "/blogs" }
+  ];
+
+  const drawer = (
+    <Box sx={{ textAlign: "center" }} onClick={toggleDrawer} >
+      <div className=" w-36 my-4 pl-3">
+        <Logo />
+      </div>
+
+      <Divider />
+
+      <List>
+        {navItems?.map((item) => (
+          <Link key={item.item} to={item.url}>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary={item.item} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        ))}
+        {
+          user ? (
+            <ListItem onClick={logout} disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary="Logout" />
+              </ListItemButton>
+            </ListItem>
+          ) : (
+            <>
+              <Link to="/login">
+                <ListItem disablePadding>
+                  <ListItemButton sx={{ textAlign: "center" }}>
+                    <ListItemText primary="Login" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+              <Link to="/signup">
+                <ListItem disablePadding>
+                  <ListItemButton sx={{ textAlign: "center" }}>
+                    <ListItemText primary="Signup" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+              <Link
+                to={`/upgrade`}
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  variant="contained"
+                  sx={{ bgcolor: "#716EDC", "&:hover": { bgcolor: "#716EDC" } }}
+                >
+                  Upgrade
+                </Button>
+              </Link>
+            </>
+          )
+        }
+      </List>
+    </Box >
+  );
   return (
     <>
-      <button onClick={toggleDrawer}>Show</button>
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}
-        direction='right'
+        direction='left'
         className='bla bla bla'
       >
-        <div>Hello World</div>
+        {drawer}
       </Drawer>
     </>
   )

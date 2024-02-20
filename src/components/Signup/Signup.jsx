@@ -68,9 +68,9 @@ export default function Signup() {
               justifyContent: "start",
             }}
           >
-            <Box sx={{ width: "150px", marginLeft: "5px", marginTop: "30px" }}>
+            <div className=" w-[150px] ml-1 mt-7 hidden md:block">
               <Logo />
-            </Box>
+            </div>
             <div
               className=" flex flex-col items-center justify-center mx-3 md:mx-4"
               sx={{

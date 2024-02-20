@@ -26,9 +26,9 @@ const LoginDialogBox = () => {
           <Button
             variant="contained"
             sx={{ bgcolor: "#716EDC", "&:hover": { bgcolor: "#716EDC" } }}
-            onClick={() => navigate('/signup')}
+            onClick={() => navigate('/upgrade')}
           >
-            Signup
+            Upgrade
           </Button>
         </div>
       </div>

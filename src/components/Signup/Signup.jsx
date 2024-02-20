@@ -108,6 +108,7 @@ export default function Signup() {
               >
                 <div className=" flex flex-col gap-5 md:flex-row">
                   <TextField
+                    required
                     label="First Name"
                     variant="outlined"
                     name="firstName"
@@ -117,9 +118,11 @@ export default function Signup() {
                       style: { fontSize: 15, color: "GrayText" },
                     }}
                     sx={{ flex: 1 }}
+                    autoFocus
                   />
 
                   <TextField
+                    required
                     label="Last Name"
                     variant="outlined"
                     name='lastName'
@@ -142,7 +145,6 @@ export default function Signup() {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  autoFocus
                 />
                 <TextField
                   margin="normal"

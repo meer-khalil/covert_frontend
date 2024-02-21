@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 
 import Button from "@mui/material/Button";
+import { LoadingButton } from '@mui/lab';
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 
@@ -27,13 +28,13 @@ const theme = createTheme();
 
 export default function Signup() {
 
+  const [loading, setLoading] = useState(false);
 
   const { email, setEmail } = useContext(UserContext);
 
-  const { register } = useContext(UserContext);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     const formData = new FormData(event.currentTarget);
 
@@ -51,9 +52,11 @@ export default function Signup() {
 
     try {
       const { data } = await api.post('/payment/process', userData)
+      setLoading(false);
       window.location.href = data.url
     } catch (error) {
       console.log(error);
+      setLoading(false)
       toast(error.response.data.message)
     }
   };
@@ -171,83 +174,12 @@ export default function Signup() {
                   type="password"
                   autoComplete="off"
                 />
-                {/* <Box sx={{ alignSelf: "start" }}>
-                  <Typography
-                    component="h1"
-                    variant="h5"
-                    sx={{
-                      fontWeight: "bold",
-                      letterSpacing: "2px",
-                      fontSize: 25,
-                      mt: 4,
-                      marginBottom: "5px",
-                    }}
-                  >
-                    Payment Details
-                  </Typography>
-                </Box> */}
 
-                {/* <TextField
-                  label="Name on Card"
-                  variant="outlined"
-                  name='cardName'
-                  fullWidth
-                  autoComplete="off"
-                  inputProps={{ style: { fontSize: 15 } }}
-                  InputLabelProps={{
-                    style: { fontSize: 15, color: "GrayText" },
-                  }}
-                />
-                <div className=" relative mt-10">
-                  <TextField
-                    label="Card Number"
-                    variant="outlined"
-                    name="cardNumber"
-                    placeholder="1234 5678 1234 3456"
-                    value={cardNumber}
-                    onChange={(e) => cardNumberFormat(e.target.value, setCardNumber)}
-                    fullWidth
-                    autoComplete="off"
-                    inputProps={{ style: { fontSize: 15 } }}
-                    InputLabelProps={{
-                      style: { fontSize: 15, color: "GrayText" },
-                    }}
-                  />
-                  <div className="absolute top-0 right-3 h-full">
-                    <div className="flex gap-2 items-center h-full">
-                      <input
-                        type="text"
-                        placeholder="MM"
-                        name="cardMonth"
-                        value={cardMonth}
-                        onChange={(e) => restrictTo2(e.target.value, setCardMonth)}
-                        className="max-w-[30px] focus:outline-none active:outline-none active:border-none border-b-2 border-black pl-1.5"
-                      />
-
-                      <input
-                        type="text"
-                        placeholder="YY"
-                        name="cardYear"
-                        value={cardYear}
-                        onChange={(e) => restrictTo2(e.target.value, setCardYear)}
-                        className=" max-w-[25px] focus:outline-none active:outline-none active:border-none border-b-2 border-black pl-1"
-                      />
-
-                      <input
-                        type="text"
-                        placeholder="CVV"
-                        value={cardCVV}
-                        name="cardCvv"
-                        onChange={(e) => restrictTo3(e.target.value, setCardCVV)}
-                        className=" max-w-[35px] focus:outline-none active:outline-none active:border-none border-b-2 border-black pl-1"
-                      />
-                    </div>
-                  </div>
-                </div> */}
-
-                <Button
+                <LoadingButton
                   type="submit"
                   fullWidth
+                  loading={loading}
+                  loadingPosition="start"
                   variant="contained"
                   sx={{
                     mt: 3,
@@ -259,8 +191,8 @@ export default function Signup() {
                     },
                   }}
                 >
-                  Sign UP
-                </Button>
+                  Signup
+                </LoadingButton>
               </form>
               <p>Already have an Account? <Link to="/login" className=" text-primary ml-3 text-lg">Login</Link></p>
             </div>

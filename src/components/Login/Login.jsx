@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
@@ -13,9 +13,11 @@ import google from "../../images/google.svg";
 
 import { UserContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
+import { LoadingButton } from "@mui/lab";
 
 
 export default function Login() {
+  const [loading, setLoading] = useState(false);
 
   const { login } = useContext(UserContext)
 
@@ -84,9 +86,24 @@ export default function Login() {
                 </Link>
               </div>
               <div className=" text-center mt-8 mb-4" >
-                <button class="bg-primary text-white font-medium w-full md:w-[464px] h-[42px] md:h-[54px] text-[16px] md:text-[21px]">
-                  Log In
-                </button>
+                <LoadingButton
+                  type="submit"
+                  fullWidth
+                  loading={loading}
+                  loadingPosition="start"
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    p: 1,
+                    bgcolor: "#716EDC",
+                    "&:hover": {
+                      backgroundColor: "#716EDC",
+                    },
+                  }}
+                >
+                  Login
+                </LoadingButton>
               </div>
 
               <p className=" text-center">

@@ -158,63 +158,59 @@ const ListingGrid = () => {
       </div>
       <div className={`md:px-4 flex-1`}>
         {
-          ['buyer', 'admin'].includes(user?.role) ? (
-            <div>
+          <div>
+            {
+              user?.role === 'admin' && (
+                <div className='flex md:justify-between items-center flex-wrap gap-3 mb-12'>
+                  <div className=" mb-3 flex-1">
+                    <FormControl fullWidth>
+                      <InputLabel id="category-select-label">Property Type</InputLabel>
+                      <Select
+                        labelId="category-select-label"
+                        id="category-select"
+                        value={selectedOption}
+                        label="Property Type"
+                        onChange={(e) => setSelectedOption(e.target.value)}
+                      >
+                        {
+                          ['All', 'Published', 'UnPublished', 'Past Deals'].map((e) => (
+                            <MenuItem value={e}>{e}</MenuItem>
+                          ))
+                        }
+                      </Select>
+                    </FormControl>
+                  </div>
+                  <AdminButtons
+                    setOperation={setOperation}
+                    setShowDialogue={setShowDialogue}
+                    selectedOption={selectedOption}
+                    bulkData={bulkData}
+                  />
+                </div>
+              )
+            }
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-5 relative">
               {
-                user?.role === 'admin' && (
-                  <div className='flex md:justify-between items-center flex-wrap gap-3 mb-12'>
-                    <div className=" mb-3 flex-1">
-                      <FormControl fullWidth>
-                        <InputLabel id="category-select-label">Property Type</InputLabel>
-                        <Select
-                          labelId="category-select-label"
-                          id="category-select"
-                          value={selectedOption}
-                          label="Property Type"
-                          onChange={(e) => setSelectedOption(e.target.value)}
-                        >
-                          {
-                            ['All', 'Published', 'UnPublished', 'Past Deals'].map((e) => (
-                              <MenuItem value={e}>{e}</MenuItem>
-                            ))
-                          }
-                        </Select>
-                      </FormControl>
-                    </div>
-                    <AdminButtons
-                      setOperation={setOperation}
-                      setShowDialogue={setShowDialogue}
-                      selectedOption={selectedOption}
+                properties?.length ? (
+                  properties?.map((property) => (
+                    <Card
+                      getPropertiesData={getPropertiesData}
+                      property={property} key={property?._id}
                       bulkData={bulkData}
+                      setBulkData={setBulkData}
                     />
+                  ))
+                ) : (
+                  <div className='w-full col-span-2 h-full min-h-[600px]'>
+                    <Loader />
                   </div>
                 )
               }
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-5 relative">
-                {
-                  properties?.length ? (
-                    properties?.map((property) => (
-                      <Card
-                        getPropertiesData={getPropertiesData}
-                        property={property} key={property?._id}
-                        bulkData={bulkData}
-                        setBulkData={setBulkData}
-                      />
-                    ))
-                  ) : (
-                    <div className='w-full col-span-2 h-full min-h-[600px]'>
-                      <Loader />
-                    </div>
-                  )
-                }
-              </div>
-              <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
-                <Pagination page={page} pages={pages} changePage={setPage} />
-              </Box>
             </div>
-          ) : (
-            <DialogBox />
-          )
+            <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+              <Pagination page={page} pages={pages} changePage={setPage} />
+            </Box>
+          </div>
         }
       </div>
       {

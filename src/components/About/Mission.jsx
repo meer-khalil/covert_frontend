@@ -14,8 +14,11 @@ function Mission({ mission }) {
             <div className=' my-5 mx-2 md:px-14'>
                 <div className="flex items-center justify-center py-28 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url(${image})` }}>
                 </div>
-                <p className=' font-[Poppins] font-normal text-lg text-justify mt-2'>
-                    {mission}
+                <p className=' font-[Poppins] font-normal text-justify mt-2'>
+                    {
+                        mission
+                        // || "Empowering Real Estate Investment Beyond Boundaries: Our mission at CovertNest is to revolutionize the way investors access and manage real estate opportunities. We are dedicated to unveiling the potential of off-market properties, facilitating seamless out-of-state investments, and providing a robust network of financial and professional support. Our commitment lies in enabling investors to confidently expand their portfolios, backed by an ecosystem of expertise and resources. We strive to be the cornerstone of innovation in real estate investment, breaking down geographical barriers and elevating the investment experience to new heights."
+                    }
                 </p>
             </div>
         </div>

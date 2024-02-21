@@ -40,15 +40,11 @@ export default function Data() {
 				<div className='w-full flex-[5]'>
 					{
 						user ? (
-							['buyer', 'admin'].includes(user?.role) ? (
-								<Display
-									category={category}
-									setCategory={setCategory}
-									zipcode={zipcode}
-								/>
-							) : (
-								<DialogBox />
-							)
+							<Display
+								category={category}
+								setCategory={setCategory}
+								zipcode={zipcode}
+							/>
 						) : (
 							<LoginDialogBox />
 						)

@@ -19,6 +19,7 @@ import { Divider } from "@mui/material";
 import { UserContext } from "../../context/UserContext";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import api from "../../util/api";
 
 // const icons = [twitter, facebook, google];
 
@@ -41,14 +42,20 @@ export default function Signup() {
       return;
     }
 
-    const data = {
+    const userData = {
       firstName: formData.get('firstName'),
       lastName: formData.get('lastName'),
       email: formData.get('email'),
       password: formData.get('password'),
     }
 
-    register(data)
+    try {
+      const { data } = await api.post('/payment/process', userData)
+      window.location.href = data.url
+    } catch (error) {
+      console.log(error);
+      toast(error.response.data.message)
+    }
   };
 
   return (

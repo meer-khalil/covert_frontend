@@ -58,7 +58,7 @@ const PropertyForm = () => {
 		const { data } = await api.get(url);
 
 		let property = data
-
+		console.log('property: ', property);
 		console.log('Property Updating: ', property);
 		const {
 			description,

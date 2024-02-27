@@ -7,37 +7,6 @@ const Buttons = ({ activeStep, setActiveStep }) => {
 
   const { propertyData, handleProperty } = useContext(PropertyContext);
 
-
-  const play = () => {
-    if (activeStep == 0 && propertyData?.hasOwnProperty('address') && propertyData?.address?.length > 10) {
-      return false
-    }
-    else if (
-      activeStep == 1 &&
-      propertyData?.hasOwnProperty('numberOfBeds') &&
-      propertyData?.hasOwnProperty('numberOfBaths') &&
-      propertyData?.hasOwnProperty('builtYear') &&
-      propertyData?.hasOwnProperty('sqFt') &&
-      propertyData?.hasOwnProperty('lotSqft') &&
-      propertyData?.hasOwnProperty('actualCAP') &&
-      propertyData?.hasOwnProperty('proFormaCAP') &&
-      propertyData?.hasOwnProperty('units') &&
-      propertyData?.hasOwnProperty('propertyType') &&
-      propertyData?.hasOwnProperty('zipcode') &&
-      propertyData?.hasOwnProperty('propertyCondition') &&
-      propertyData?.hasOwnProperty('occupancy') &&
-      propertyData?.hasOwnProperty('rentalIncome') &&
-      propertyData?.hasOwnProperty('hasHoa') &&
-      propertyData?.hasOwnProperty('finance_cash') &&
-      propertyData?.hasOwnProperty('finance_sellerFinance') &&
-      propertyData?.hasOwnProperty('finance_mortgage')
-    ) {
-      return false
-    }
-    else {
-      return true
-    }
-  }
   return (
     <div className=' flex gap-5 justify-center'>
       <Button
@@ -77,6 +46,7 @@ const Buttons = ({ activeStep, setActiveStep }) => {
             disabled={activeStep == 4}
             onClick={() => {
               handleProperty();
+              console.log('submitted');
               setActiveStep(prev => prev + 1);
             }}
           >
@@ -97,8 +67,8 @@ const Buttons = ({ activeStep, setActiveStep }) => {
                 backgroundColor: "#716EDC",
               },
             }}
-            disabled={activeStep == 4 || play()}
-            onClick={() => setActiveStep(prev => prev + 1)}
+            disabled={activeStep == 4 || !(propertyData?.hasOwnProperty('address') && propertyData?.address?.length > 10)}
+            onClick={() => { setActiveStep(prev => prev + 1); console.log('next'); }}
           >
             Next
           </Button>

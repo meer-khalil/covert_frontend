@@ -49,6 +49,7 @@ export const PropertyProvider = ({ children }) => {
   const handleProperty = async () => {
     const formData = new FormData();
     propertyData.defaultImage = defaultImage
+    console.log('propety data: ', propertyData);
     formData.append('property', JSON.stringify(propertyData))
     for (let i = 0; i < images.length; i++) {
       formData.append('images', images[i]);

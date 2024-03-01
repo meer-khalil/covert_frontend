@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { Chip } from "@mui/material";
+import { formatNumberAsCurrency } from "../../util/formatNumber";
 
 export default function MediaCard({ item }) {
 
@@ -36,6 +37,13 @@ export default function MediaCard({ item }) {
           </span>
         </div>
 
+        {
+          item?.rentalIncome && (
+            <p className="font-['Poppins'] mb-1">
+              <span className=" font-semibold mr-2">Rent:</span> {formatNumberAsCurrency(item?.rentalIncome)}
+            </p>
+          )
+        }
         <p className="font-['Poppins'] mb-1">
           <span className=" font-semibold mr-2">Actuals CAP:</span> {item?.actualCAP}%
         </p>

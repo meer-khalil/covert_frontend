@@ -7,21 +7,12 @@ import { useEffect } from 'react';
 import api from '../../util/api';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { formatNumberAsCurrency } from '../../util/formatNumber';
 
 const BasicDetail = ({ property }) => {
 
   const [info, setInfo] = useState('')
   const [city, setCity] = useState('')
-
-
-  const formatNumberAsCurrency = (number) => {
-    const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0
-    })
-    return formatter.format(number)
-  }
 
   const searchCityInfo = () => {
     api.get(`/properties/wikipedia?query=${property.zipcode}`)

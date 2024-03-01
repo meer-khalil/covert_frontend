@@ -21,11 +21,11 @@ export default function MediaCard({ item }) {
 
       <div className="mt-4 px-4 pb-3">
         <h5 className=" text-2xl font-bold">
-          {item.address}
+          {item?.address}
         </h5>
         <div className=" flex flex-row justify-between items-center mb-3 mt-1">
           <span>
-            $ {item.price}
+            $ {item?.price}
           </span>
           <span className="flex items-center gap-1">
             <p>
@@ -37,32 +37,32 @@ export default function MediaCard({ item }) {
         </div>
 
         <p className="font-['Poppins'] mb-1">
-          <span className=" font-semibold mr-2">Actuals CAP:</span> {item.actualCAP}%
+          <span className=" font-semibold mr-2">Actuals CAP:</span> {item?.actualCAP}%
         </p>
 
         <p className="font-['Poppins'] mb-1">
-          <span className=" font-semibold mr-2">Pro Forma CAP:</span> {item.proFormaCAP}%
+          <span className=" font-semibold mr-2">Pro Forma CAP:</span> {item?.proFormaCAP}%
         </p>
 
         <p className=" font-['Poppins']">
-          <span className=" font-semibold mr-2">Occupancy:</span>{item.occupancy}%
+          <span className=" font-semibold mr-2">Occupancy:</span>{item?.occupancy}%
         </p>
 
         <p className=" font-['Poppins']">
-          <span className=" font-semibold mr-2">Year Built:</span>{item.builtYear}
+          <span className=" font-semibold mr-2">Year Built:</span>{item?.builtYear}
         </p>
 
         <p className=" font-['Poppins']">
-          <span className=" font-semibold mr-2">Sqft:</span>{item.sqFt}
+          <span className=" font-semibold mr-2">Sqft:</span>{item?.sqFt}
         </p>
 
         <p className=" font-['Poppins']">
-          <span className=" font-semibold mr-2">Property Type:</span>{item.propertyType}
+          <span className=" font-semibold mr-2">Property Type:</span>{item?.propertyType}
         </p>
 
       </div>
       {
-        item.sold && (
+        item?.sold && (
           <Chip
             label='sold'
             color='primary'

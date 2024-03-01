@@ -24,7 +24,7 @@ export default function Home() {
   };
 
   const getPastDeals = async () => {
-    let url = `/properties?showHome=true`;
+    let url = `/properties/past-deals`;
 
     try {
       const { data } = await api.get(url)

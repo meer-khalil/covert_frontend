@@ -15,12 +15,12 @@ const Properteis = () => {
   const navigate = useNavigate();
 
   // for pagination
-  const [page, setPage] = useState(localStorage.getItem('page') ? +localStorage.getItem('page') : 1);
+  const [page, setPage] = useState(localStorage.getItem('sold_page') ? +localStorage.getItem('sold_page') : 1);
   const [pages, setPages] = useState(1);
 
 
   const getPropertiesData = async () => {
-    let url = `/properties?sold=true`
+    let url = `/properties/sold`
     try {
       const { data } = await api.get(url, {
         headers: {
@@ -36,7 +36,7 @@ const Properteis = () => {
       setPages(pages)
       setProperties(properties)
       console.log('properties: ', properties)
-      localStorage.setItem('page', page);
+      localStorage.setItem('sold_page', page);
       navigate(`/properties/sold?page=${page}`);
     } catch (error) {
       toast('Error')

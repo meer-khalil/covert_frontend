@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -21,6 +21,7 @@ import api from '../../util/api';
 import image from '../../images/PageTitles/DetailPageTitle.webp'
 import BackButton from '../Common/BackButton';
 import Loader from '../Common/Loading';
+import { UserContext } from '../../context/UserContext';
 
 function PropertyDetails() {
 
@@ -30,6 +31,7 @@ function PropertyDetails() {
   const [zipData, setZipData] = useState(null)
   const [showSlide, setShowSlide] = useState(false);
 
+  const { user } = useContext(UserContext);
   const [downPaymentCashFlow, setDownPaymentCashFlow] = useState(1);
 
   const getZipCodeData = async (zipcode) => {
@@ -68,7 +70,11 @@ function PropertyDetails() {
   }
 
   useEffect(() => {
-    getPropertyData()
+    if (user) {
+      getPropertyData()
+    } else {
+      navigate('/login')
+    }
   }, [])
 
 

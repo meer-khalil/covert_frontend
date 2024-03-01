@@ -3,20 +3,11 @@ import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFil
 import StarIcon from '@mui/icons-material/Star';
 
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../context/UserContext';
-import api from '../../util/api';
-import { toast } from 'react-toastify';
-
 
 // Icons
-import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
-import { Button, Chip } from '@mui/material';
+import { Chip } from '@mui/material';
 
 function Card({ property }) {
-
-  const { user } = useContext(UserContext)
 
   return (
 

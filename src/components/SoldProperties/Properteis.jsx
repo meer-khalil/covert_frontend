@@ -51,24 +51,20 @@ const Properteis = () => {
   return (
     <div className=' mt-5 mx-5'>
       {
-        ['buyer', 'admin'].includes(user?.role) ? (
-          <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 md:gap-6 relative">
-              {
-                properties?.map((property) => (
-                  <Card
-                    property={property} key={property?._id}
-                  />
-                ))
-              }
-            </div>
-            <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
-              <Pagination page={page} pages={pages} changePage={setPage} />
-            </Box>
+        <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 md:gap-6 relative">
+            {
+              properties?.map((property) => (
+                <Card
+                  property={property} key={property?._id}
+                />
+              ))
+            }
           </div>
-        ) : (
-          <div>Subscribe First</div>
-        )
+          <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+            <Pagination page={page} pages={pages} changePage={setPage} />
+          </Box>
+        </div>
       }
     </div>
   )

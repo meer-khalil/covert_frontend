@@ -26,9 +26,11 @@ const BasicDetail = ({ property }) => {
   const searchCityInfo = () => {
     api.get(`/properties/wikipedia?query=${property.zipcode}`)
       .then((response) => {
+        console.log('response: wiki: ', response);
         let { data, city } = response.data;
         const pageId = Object.keys(data.query.pages)[0];
         const content = data.query.pages[pageId].extract;
+        console.log('content is not there: ', content);
         setInfo(content);
         setCity(city);
       })

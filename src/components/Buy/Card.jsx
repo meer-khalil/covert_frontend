@@ -43,6 +43,7 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
 
     try {
       const response = await api.put(url, formData);
+      console.log('property(showHome): ', response.data);
       toast("Property Updated")
       getPropertiesData();
     } catch (error) {
@@ -144,7 +145,7 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
                 </a>
               </div>
             </div>
-            <div
+            {/* <div
               onClick={() => handleClick({ showHome: !property.showHome }, property.slug)}
               className="absolute -right-7 cursor-pointer -top-4 text-3xl font-bold"
             >
@@ -152,16 +153,20 @@ function Card({ getPropertiesData, property, bulkData, setBulkData }) {
                 !property?.showHome ?
                   <AddOutlinedIcon /> : <RemoveOutlinedIcon />
               }
-            </div>
+            </div> */}
             {
               user?.role === 'admin' && (
-                <div className="absolute right-2 -top-10 cursor-pointer text-3xl font-bold">
+                <div className="absolute right-2 -top-9 cursor-pointer text-3xl font-bold flex gap-5">
+                  <Button size='small' variant='contained' onClick={() => handleClick({ showHome: !property.showHome }, property.slug)}>
+                    {property.showHome ? 'Remove From home' : 'Add To Home'}
+                  </Button>
                   <Button size='small' variant='contained' onClick={() => handleClick({ sold: !property.sold }, property.slug)}>
                     {property.sold ? 'Unsold' : 'Sold'}
                   </Button>
                 </div>
               )
             }
+
           </>
         )
       }

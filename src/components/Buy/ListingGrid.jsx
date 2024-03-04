@@ -189,7 +189,7 @@ const ListingGrid = () => {
                 </div>
               )
             }
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-5 relative">
+            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-5 ${user?.role === 'admin' ? 'md:gap-y-16' : ''} relative`}>
               {
                 properties?.length ? (
                   properties?.map((property) => (

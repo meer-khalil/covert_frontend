@@ -54,7 +54,7 @@ const BasicDetail = ({ property }) => {
               variant='contained'
               size='large'
             >
-              Schedual Meeting
+              Schedule Meeting
             </Button>
           </Link>
         </div>

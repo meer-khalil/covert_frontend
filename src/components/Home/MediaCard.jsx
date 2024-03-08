@@ -18,7 +18,7 @@ export default function MediaCard({ item }) {
   return (
     <div className=" mx-5 md:mx-0 mb-5 rounded-2xl overflow-hidden md:max-w-[320px] bg-white relative">
 
-      <CardMedia sx={{ height: 235 }} image={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/${item?.images[0]?.filename}`} title="green iguana" />
+      <CardMedia sx={{ height: 235 }} image={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/${item?.images[item?.defaultImage || 0]?.filename}`} title="green iguana" />
 
       <div className="mt-4 px-4 pb-3">
         <h5 className=" text-2xl font-bold">

@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import Markdown from './Markdown'
 import { UserContext } from '../../context/UserContext'
 import Container from '../Layouts/Container'
+import ReactGA from "react-ga4";
 
 // icons
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -22,11 +23,20 @@ const SingleBlog = () => {
 
   const { user } = useContext(UserContext);
 
+  function sendPageViewEventToGA(blogTitle) {
+    ReactGA.send({
+      hitType: 'pageview',
+      page: window.location.pathname,
+      title: blogTitle,
+    })
+  }
+
   const getBlogData = async () => {
     try {
       const { data } = await api.get(`/blogs/${blog_id}`)
       console.log('data: ', data);
       setBlog(data);
+      sendPageViewEventToGA(data.title)
     } catch (error) {
       console.log(error);
       toast(error?.message);

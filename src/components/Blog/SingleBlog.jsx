@@ -75,7 +75,7 @@ const SingleBlog = () => {
               </h3>
 
               <div className=' w-full  h-[300px] overflow-hidden rounded-tl-lg rounded-tr-lg'>
-                <img src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${blog?.cover?.filename}`} alt="blog image" className=' w-full h-full' />
+                <img src={`${process.env.REACT_APP_BACKEND_RESOURCE}/images/blog/${blog?.cover?.filename}`} alt="blog image" className=' w-full h-full object-cover' />
               </div>
               <div className='flex flex-wrap gap-4 py-3'>
                 {

@@ -43,3 +43,11 @@
   background: #ddd;
   /* Color of the scrollbar track on hover */
 }
+
+ul {
+  @apply list-disc
+}
+
+ol {
+  @apply list-decimal
+}

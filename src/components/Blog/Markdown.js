@@ -11,6 +11,8 @@ import { Link, Typography, Divider } from '@mui/material';
 const MarkdownWrapperStyle = styled('div')(({ theme }) => {
   const isLight = theme.palette.mode === 'light';
 
+  // Add list style to ul
+
   return {
     // List
     '& ul, & ol': {

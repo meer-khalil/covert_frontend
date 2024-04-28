@@ -76,6 +76,10 @@ const BasicDetail = ({ property }) => {
       <div className="flex text-[21px] flex-wrap flex-col md:flex-row gap-1 md:gap-8 my-4">
         {[
           {
+            text: "Rental Property Income:",
+            value: `$${property.rentalIncome}`
+          },
+          {
             text: "Actuals CAP:",
             value: `${property.actualCAP}%`,
           },

@@ -117,7 +117,7 @@ const OneTimeExpenses = () => {
                   name={item.name}
                   value={values[item.name]}
                   onChange={handleChange}
-                  className="pl-12 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 w-24" placeholder="500" />
+                  className="pl-12 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 w-24" placeholder="0" />
               </div>
             </div>
           ))

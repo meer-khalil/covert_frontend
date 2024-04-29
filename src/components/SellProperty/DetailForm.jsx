@@ -1,48 +1,57 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from "react";
 
-import { PropertyContext } from '../../context/PropertyContext'
-import ImageUploader from './ImageUploader';
-import { Checkbox, FormControlLabel, FormGroup } from '@material-ui/core';
-import { Autocomplete, IconButton, InputAdornment, TextField } from '@mui/material';
-import { useEffect } from 'react';
-import BasicDatePicker from './components/BasicDatePicker';
+import { PropertyContext } from "../../context/PropertyContext";
+import ImageUploader from "./ImageUploader";
+import { Checkbox, FormControlLabel, FormGroup } from "@material-ui/core";
+import {
+  Autocomplete,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
+import { useEffect } from "react";
+import BasicDatePicker from "./components/BasicDatePicker";
+import { BiFileBlank } from "react-icons/bi";
 
 // icons
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import PercentIcon from '@mui/icons-material/Percent';
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import PercentIcon from "@mui/icons-material/Percent";
 // custom css
-import './DetailForm.css';
-import ShowDatePicker from './components/ShowDatePicker';
+import "./DetailForm.css";
+import ShowDatePicker from "./components/ShowDatePicker";
 
 function DetailForm({ data }) {
-
   const [defaultImage, setDefaultImage] = useState(0);
 
-  const { propertyData, selectedImages, handlePropertyData } = useContext(PropertyContext);
-
+  const { propertyData, selectedImages, handlePropertyData, fileLabels, files } =
+    useContext(PropertyContext);
 
   const handlePropertyTypeChange = (event, newValue) => {
-    handlePropertyData({ target: { name: 'propertyType', value: newValue } });
+    handlePropertyData({ target: { name: "propertyType", value: newValue } });
   };
 
   const handlePropertyConditionChange = (event, newValue) => {
-    handlePropertyData({ target: { name: 'propertyCondition', value: newValue } });
+    handlePropertyData({
+      target: { name: "propertyCondition", value: newValue },
+    });
   };
 
   const handleHOAChange = (event, newValue) => {
-    handlePropertyData({ target: { name: 'hasHoa', value: newValue } });
+    handlePropertyData({ target: { name: "hasHoa", value: newValue } });
   };
 
   const handleChange = (idx) => {
-    setDefaultImage(idx)
-  }
+    setDefaultImage(idx);
+  };
 
   return (
-    <div className='p-3 md:p-9 md:max-w-max mx-3 md:mx-auto rounded-xl' style={{ boxShadow: '2px 2px 4px 4px rgba(0, 0, 0, 0.05)' }}>
+    <div
+      className="p-3 md:p-9 md:max-w-max mx-3 md:mx-auto rounded-xl"
+      style={{ boxShadow: "2px 2px 4px 4px rgba(0, 0, 0, 0.05)" }}
+    >
+      <h1 className="font-semibold text-2xl mb-5">Property Details</h1>
 
-      <h1 className='font-semibold text-2xl mb-5'>Property Details</h1>
-
-      <div className=' mb-5'>
+      <div className=" mb-5">
         <TextField
           label="Description"
           variant="outlined"
@@ -60,11 +69,10 @@ function DetailForm({ data }) {
         />
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-5">
-
         <div className="flex-1">
           <TextField
             fullWidth
-            name='numberOfBeds'
+            name="numberOfBeds"
             onChange={handlePropertyData}
             label="Number of Beds"
             type="number"
@@ -75,7 +83,7 @@ function DetailForm({ data }) {
         <div className="flex-1">
           <TextField
             fullWidth
-            name='numberOfBaths'
+            name="numberOfBaths"
             onChange={handlePropertyData}
             label="Number of Baths"
             type="number"
@@ -83,26 +91,21 @@ function DetailForm({ data }) {
           />
         </div>
 
-        <div className='flex-1'>
-          {
-            data ? (
-              <ShowDatePicker
-                propertyData={propertyData}
-              />
-            ) : (
-              <BasicDatePicker
-                handlePropertyData={handlePropertyData}
-                propertyData={propertyData}
-              />
-            )
-          }
-
+        <div className="flex-1">
+          {data ? (
+            <ShowDatePicker propertyData={propertyData} />
+          ) : (
+            <BasicDatePicker
+              handlePropertyData={handlePropertyData}
+              propertyData={propertyData}
+            />
+          )}
         </div>
 
         <div className="flex-1">
           <TextField
             fullWidth
-            name='sqFt'
+            name="sqFt"
             onChange={handlePropertyData}
             label="SqFt"
             type="number"
@@ -113,31 +116,30 @@ function DetailForm({ data }) {
         <div className="flex-1">
           <TextField
             fullWidth
-            name='lotSqft'
+            name="lotSqft"
             onChange={handlePropertyData}
             label="Lot SqFt"
             type="number"
             value={propertyData?.lotSqft}
           />
         </div>
-
       </div>
 
       <div className="flex flex-col md:flex-row gap-5 my-10">
         <div className="flex-1">
           <TextField
             fullWidth
-            name='price'
+            name="price"
             onChange={handlePropertyData}
             label="Price"
             type="number"
             value={propertyData?.price}
             InputProps={{
               startAdornment: (
-                <InputAdornment position='start'>
-                  <AttachMoneyIcon fontSize='small' />
+                <InputAdornment position="start">
+                  <AttachMoneyIcon fontSize="small" />
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
@@ -145,7 +147,7 @@ function DetailForm({ data }) {
         <div className="flex-1">
           <TextField
             fullWidth
-            name='actualCAP'
+            name="actualCAP"
             onChange={handlePropertyData}
             label="Actual CAP"
             type="number"
@@ -154,10 +156,10 @@ function DetailForm({ data }) {
               endAdornment: (
                 <InputAdornment>
                   <IconButton>
-                    <PercentIcon fontSize='small' />
+                    <PercentIcon fontSize="small" />
                   </IconButton>
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
@@ -165,7 +167,7 @@ function DetailForm({ data }) {
         <div className="flex-1">
           <TextField
             fullWidth
-            name='proFormaCAP'
+            name="proFormaCAP"
             onChange={handlePropertyData}
             label="Pro Forma CAP"
             type="number"
@@ -174,10 +176,10 @@ function DetailForm({ data }) {
               endAdornment: (
                 <InputAdornment>
                   <IconButton>
-                    <PercentIcon fontSize='small' />
+                    <PercentIcon fontSize="small" />
                   </IconButton>
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
@@ -185,36 +187,42 @@ function DetailForm({ data }) {
         <div className="flex-1">
           <TextField
             fullWidth
-            name='units'
+            name="units"
             onChange={handlePropertyData}
             label="Units"
             type="number"
             value={propertyData?.units}
           />
         </div>
-        <div className='flex-1'>
+        <div className="flex-1">
           <Autocomplete
             disablePortal
             fullWidth
             id="combo-box-for-property-type"
-            options={['Single Family', 'Townhomes', 'Multifamily', 'Apartments']}
+            options={[
+              "Single Family",
+              "Townhomes",
+              "Multifamily",
+              "Apartments",
+            ]}
             onChange={handlePropertyTypeChange}
             value={propertyData?.propertyType}
-            renderInput={(params) => <TextField {...params} label="Property Type" />}
+            renderInput={(params) => (
+              <TextField {...params} label="Property Type" />
+            )}
           />
         </div>
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center gap-5 mb-10">
-
         <div className="flex-1">
           <TextField
-            name='zipcode'
+            name="zipcode"
             fullWidth
             value={propertyData?.zipcode}
             onChange={(e) => {
               if (e.target.value.length <= 5) {
-                handlePropertyData(e)
+                handlePropertyData(e);
               }
             }}
             label="Zipcode"
@@ -222,31 +230,33 @@ function DetailForm({ data }) {
           />
         </div>
 
-        <div className='flex-1'>
+        <div className="flex-1">
           <Autocomplete
             disablePortal
             fullWidth
             id="combo-box-for-property-condition"
             options={[
-              'Move-In Ready',
-              'Good Condition',
-              'Fair Condition',
-              'Fixer-Upper',
-              'Distressed Property',
-              'As-Is',
-              'Needs TLC (Tender Loving Care)',
-              'New Construction',
-              'Renovated/Updated'
+              "Move-In Ready",
+              "Good Condition",
+              "Fair Condition",
+              "Fixer-Upper",
+              "Distressed Property",
+              "As-Is",
+              "Needs TLC (Tender Loving Care)",
+              "New Construction",
+              "Renovated/Updated",
             ]}
             onChange={handlePropertyConditionChange}
             value={propertyData?.propertyCondition}
-            renderInput={(params) => <TextField {...params} label="Property Condition" />}
+            renderInput={(params) => (
+              <TextField {...params} label="Property Condition" />
+            )}
           />
         </div>
 
         <div className="flex-1">
           <TextField
-            name='occupancy'
+            name="occupancy"
             fullWidth
             value={propertyData?.occupancy}
             onChange={handlePropertyData}
@@ -256,10 +266,10 @@ function DetailForm({ data }) {
               endAdornment: (
                 <InputAdornment>
                   <IconButton>
-                    <PercentIcon fontSize='small' />
+                    <PercentIcon fontSize="small" />
                   </IconButton>
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
@@ -267,27 +277,27 @@ function DetailForm({ data }) {
         <div className="flex-1">
           <TextField
             fullWidth
-            name='rentalIncome'
+            name="rentalIncome"
             value={propertyData?.rentalIncome}
             onChange={handlePropertyData}
             label="Rental Income"
             type="number"
             InputProps={{
               startAdornment: (
-                <InputAdornment position='start'>
-                  <AttachMoneyIcon fontSize='small' />
+                <InputAdornment position="start">
+                  <AttachMoneyIcon fontSize="small" />
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
 
-        <div className='flex-1'>
+        <div className="flex-1">
           <Autocomplete
             disablePortal
             fullWidth
             id="combo-box-for-hoa"
-            options={['Yes', 'No', 'Maybe']}
+            options={["Yes", "No", "Maybe"]}
             onChange={handleHOAChange}
             value={propertyData?.hasHoa}
             renderInput={(params) => <TextField {...params} label="Has HOA" />}
@@ -295,21 +305,19 @@ function DetailForm({ data }) {
         </div>
       </div>
 
-
       {/* Checkboxes */}
       <div className="flex flex-col md:flex-row md:gap-4">
-
         <div>
           <FormGroup>
             <FormControlLabel
               control={
                 <Checkbox
-                  name='finance_cash'
+                  name="finance_cash"
                   onChange={handlePropertyData}
                   checked={propertyData?.finance_cash}
                 />
               }
-              label={'Cash'}
+              label={"Cash"}
             />
           </FormGroup>
         </div>
@@ -319,12 +327,12 @@ function DetailForm({ data }) {
             <FormControlLabel
               control={
                 <Checkbox
-                  name='finance_sellerFinance'
+                  name="finance_sellerFinance"
                   onChange={handlePropertyData}
                   checked={propertyData?.finance_sellerFinance}
                 />
               }
-              label={'Seller Finance'}
+              label={"Seller Finance"}
             />
           </FormGroup>
         </div>
@@ -334,11 +342,13 @@ function DetailForm({ data }) {
             <FormControlLabel
               control={
                 <Checkbox
-                  name='finance_mortgage'
+                  name="finance_mortgage"
                   onChange={handlePropertyData}
                   checked={propertyData?.finance_mortgage}
                 />
-              } label={'Mortgage'} />
+              }
+              label={"Mortgage"}
+            />
           </FormGroup>
         </div>
 
@@ -347,46 +357,65 @@ function DetailForm({ data }) {
             <FormControlLabel
               control={
                 <Checkbox
-                  name='one_percent'
+                  name="one_percent"
                   onChange={handlePropertyData}
                   checked={propertyData?.one_percent}
                 />
-              } label={'1 %'} />
+              }
+              label={"1 %"}
+            />
           </FormGroup>
         </div>
       </div>
 
-      {
-        !data && (
-          <ImageUploader />
-        )
-      }
+      {!data && <ImageUploader />}
 
-      {
-        data && (
-          <div className='mt-10'>
-            <h1 className='font-semibold text-2xl mb-5'>Images</h1>
-            <div className="flex gap-5 mt-5 flex-wrap">
-              {selectedImages.map((image, index) => (
-                <div key={index} className=" h-44 w-44">
-                  <img src={image} alt={`Image ${index}`} />
-                  <FormControlLabel
-                    label="Default"
-                    control={
-                      <Checkbox
-                        checked={defaultImage === index}
-                        onChange={() => handleChange(index)}
-                      />
-                    }
-                  />
-                </div>
-              ))}
+      {data && (
+        <div className="mt-10">
+          {/* Images Viewer */}
+          {selectedImages?.length > 0 && (
+            <div>
+              <h1 className="font-semibold text-2xl mb-5">Images</h1>
+              <div className="flex gap-5 mt-5 flex-wrap">
+                {selectedImages.map((image, index) => (
+                  <div key={index} className=" h-44 w-44">
+                    <img src={image} alt={`Image ${index}`} />
+                    <FormControlLabel
+                      label="Default"
+                      control={
+                        <Checkbox
+                          checked={defaultImage === index}
+                          onChange={() => handleChange(index)}
+                        />
+                      }
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        )
-      }
+          )}
+          {/* Files Viewer */}
+          {files?.length > 0 && (
+            <div>
+              <h1 className="font-semibold text-2xl mb-5">Files</h1>
+              <div className="flex gap-5 mt-5 flex-wrap">
+                {files?.map((file, index) => {
+                  console.log(`file-${index}: `, file);
+                  return (
+                    <div key={index} className="flex flex-col items-center">
+                      <BiFileBlank className="w-16 h-16 mx-auto text-gray-500" />
+                      <p className="text-xs text-gray-500">{file.name}</p>
+                      <p className="text-center text-sm">{fileLabels[index]}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default DetailForm
+export default DetailForm;

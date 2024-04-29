@@ -15,10 +15,15 @@ import api from "../../util/api";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { formatNumberAsCurrency } from "../../util/formatNumber";
+import { BiFileBlank } from "react-icons/bi";
 
 const BasicDetail = ({ property }) => {
   const [info, setInfo] = useState("");
   const [city, setCity] = useState("");
+
+  useEffect(() => {
+    console.log("[BasicDetail] Property: ", property);
+  }, []);
 
   const searchCityInfo = () => {
     api
@@ -77,7 +82,7 @@ const BasicDetail = ({ property }) => {
         {[
           {
             text: "Rental Property Income:",
-            value: `$${property.rentalIncome}`
+            value: `$${property.rentalIncome}`,
           },
           {
             text: "Actuals CAP:",
@@ -157,7 +162,9 @@ const BasicDetail = ({ property }) => {
           />
         </Box>
       </div>
-      <p className="whitespace-pre">{property?.description || "If you are admin, add description"}</p>
+      <p className="whitespace-pre">
+        {property?.description || "If you are admin, add description"}
+      </p>
 
       <div className="mt-12 mb-5">
         <Box>
@@ -192,6 +199,33 @@ const BasicDetail = ({ property }) => {
           )}
         </p>
       </div>
+
+      {property?.files?.length > 0 && (
+        <div className="mt-12 mb-5">
+          <Box>
+            <h3 className=" text-2xl font-bold tracking-[2px]">Files</h3>
+            <Divider
+              sx={{
+                width: "4%",
+                height: "5px",
+                bgcolor: "#716EDC",
+                borderRadius: "13px",
+              }}
+            />
+            <div className="flex flex-col gap-1 mt-2">
+              {property.files.map((file, index) => {
+                // If file has a label, show the label, otherwise show the filename
+                return (
+                  <div className="flex items-center gap-1 w-full">
+                    <BiFileBlank className="w-8 h-8 text-gray-600" />
+                    <p className="w-full text-ellipsis text-gray-800">{file.label || file.filename}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </Box>
+        </div>
+      )}
     </>
   );
 };

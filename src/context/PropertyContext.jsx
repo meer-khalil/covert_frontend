@@ -21,6 +21,7 @@ export const PropertyProvider = ({ children }) => {
   const [defaultImage, setDefaultImage] = useState(0);
   const [selectedImages, setSelectedImages] = useState([]);
   const [files, setFiles] = useState([]);
+  const [fileLabels, setFileLabels] = useState([]);
 
 
   const [monthlyExpense, setMonthlyExpense] = useState(0)
@@ -49,6 +50,7 @@ export const PropertyProvider = ({ children }) => {
   const handleProperty = async () => {
     const formData = new FormData();
     propertyData.defaultImage = defaultImage
+    propertyData.fileLabels = fileLabels;
     console.log('propety data: ', propertyData);
     formData.append('property', JSON.stringify(propertyData))
     for (let i = 0; i < images.length; i++) {
@@ -81,6 +83,7 @@ export const PropertyProvider = ({ children }) => {
         defaultImage, setDefaultImage,
         images, setImages,
         files, setFiles,
+        fileLabels, setFileLabels,
         selectedImages, setSelectedImages,
         handleProperty,
         monthlyExpense, setMonthlyExpense,

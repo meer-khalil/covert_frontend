@@ -17,7 +17,9 @@ import { ThemeProvider } from "@material-ui/core";
 import theme from "./theme/theme.js"; // import ThemeConfig from './theme';
 import ReactGA from "react-ga4";
 
-ReactGA.initialize("G-31JF54KL2X");
+ReactGA.initialize("G-31JF54KL2X", {
+  debug: true
+});
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(

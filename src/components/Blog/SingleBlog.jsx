@@ -23,7 +23,7 @@ const SingleBlog = () => {
 
   const { user } = useContext(UserContext);
 
-  function sendPageViewEventToGA(blogTitle) {
+  async function sendPageViewEventToGA(blogTitle) {
     await ReactGA.send({
       hitType: 'pageview',
       page: window.location.pathname,

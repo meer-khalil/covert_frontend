@@ -17,8 +17,7 @@ import { ThemeProvider } from "@material-ui/core";
 import theme from "./theme/theme.js"; // import ThemeConfig from './theme';
 import ReactGA from "react-ga4";
 
-// TODO Create a GA Account, get a measurement ID and initialize it
-ReactGA.initialize("G-K9KMN73F6E");
+ReactGA.initialize("G-LJRCG12TQ8");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(

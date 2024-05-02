@@ -88,7 +88,7 @@ const OneTimeExpenses = () => {
         {
           [
             {
-              title: 'inspections',
+              title: 'Inspection',
               name: 'inspections'
             },
             {

@@ -51,3 +51,7 @@ ul {
 ol {
   @apply list-decimal
 }
+
+li {
+  padding-bottom: 10px;
+}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -11,7 +11,6 @@ import { toast } from "react-toastify";
 import api from "../../../../util/api";
 
 export default function Home() {
-
   const [commingSoon, setCommingSoon] = useState("");
   const [cardsData, setCardsData] = useState([]);
 
@@ -30,10 +29,10 @@ export default function Home() {
     try {
       const { data } = await api.put(`/pages/home`, _data);
       console.log("Home Updated: ", data);
-      toast("Updated")
+      toast("Updated");
     } catch (error) {
       console.log("Error While Updating Home Data: ", error?.message);
-      toast("Error")
+      toast("Error");
     }
   }
 
@@ -50,9 +49,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='flex justify-center'>
-      <div className='w-full max-w-2xl'>
-
+    <div className="flex justify-center">
+      <div className="w-full max-w-2xl">
         <div>
           <p className=" text-primary font-bold tracking-[2px] text-lg mb-1">
             Home Data
@@ -61,8 +59,7 @@ export default function Home() {
             sx={{ width: "20%", height: "3px", bgcolor: "#3296ff", mb: 3 }}
           />
         </div>
-        <form onSubmit={handleSubmit} className='flex-1'>
-
+        <form onSubmit={handleSubmit} className="flex-1">
           <div>
             <TextField
               label="Comming Soon Text"
@@ -94,38 +91,35 @@ export default function Home() {
               Card Details
             </Typography>
 
-            {
-              (cardsData.length > 0) ? (
-                <>
-                  <Card
-                    card={cardsData[0]}
-                    index={0}
-                    cardsData={cardsData}
-                    setCardsData={setCardsData}
-                  />
-                  <Card
-                    card={cardsData[1]}
-                    index={1}
-                    cardsData={cardsData}
-                    setCardsData={setCardsData}
-                  />
-                  <Card
-                    card={cardsData[2]}
-                    index={2}
-                    cardsData={cardsData}
-                    setCardsData={setCardsData}
-                  />
-                </>
-              ) : (
+            {cardsData.length > 0 ? (
+              <>
                 <Card
-                  card={{ title: '', description: '' }}
+                  card={cardsData[0]}
                   index={0}
-                  cardsData={[{ title: '', description: '' }]}
+                  cardsData={cardsData}
                   setCardsData={setCardsData}
                 />
-              )
-
-            }
+                <Card
+                  card={cardsData[1]}
+                  index={1}
+                  cardsData={cardsData}
+                  setCardsData={setCardsData}
+                />
+                <Card
+                  card={cardsData[2]}
+                  index={2}
+                  cardsData={cardsData}
+                  setCardsData={setCardsData}
+                />
+              </>
+            ) : (
+              <Card
+                card={{ title: "", description: "" }}
+                index={0}
+                cardsData={[{ title: "", description: "" }]}
+                setCardsData={setCardsData}
+              />
+            )}
           </div>
 
           <Button
@@ -145,8 +139,6 @@ export default function Home() {
             Update
           </Button>
         </form>
-
-
       </div>
     </div>
   );

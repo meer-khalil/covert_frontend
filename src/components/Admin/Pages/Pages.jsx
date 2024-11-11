@@ -1,5 +1,4 @@
 import React from "react";
-import Aside from "./Aside";
 import { Route, Routes } from "react-router-dom";
 
 import Home from "./Home/Home";
@@ -14,7 +13,7 @@ const Pages = () => {
           <div className="px-2 md:px-6 md:py-8">
             <Routes>
               <Route index path="home" element={<Home />} />
-              <Route path='upgrade' element={<Upgrade />} />
+              <Route path="upgrade" element={<Upgrade />} />
               <Route path="about" element={<About />} />
             </Routes>
           </div>

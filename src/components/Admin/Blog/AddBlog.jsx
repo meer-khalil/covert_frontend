@@ -1,44 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 
 import ImageSelector from "./ImageSelector";
 import api from "../../../util/api";
 import HandleTags from "./HandleTags.jsx";
 import { toast } from "react-toastify";
 
-
 const AddBlog = () => {
   const [title, setTitle] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [longDescription, setLongDescription] = useState("");
   const [image, setImage] = useState("");
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
   const [options, setOptions] = useState([]);
 
   const handleCategory = (e) => {
-    setCategories(prev => [...(new Set([...prev, e.target.value]))])
-    setCategory('');
-  }
+    setCategories((prev) => [...new Set([...prev, e.target.value])]);
+    setCategory("");
+  };
 
   const addCategory = () => {
-    setCategories(prev => [...(new Set([...prev, category]))])
-    setCategory('');
-  }
+    setCategories((prev) => [...new Set([...prev, category])]);
+    setCategory("");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let categoryIds = categories.map((e) => e._id)
+    let categoryIds = categories.map((e) => e._id);
 
-    console.log('Ids: ', categoryIds);
+    console.log("Ids: ", categoryIds);
 
     const postData = {
       title,
       shortDescription,
       longDescription,
       image,
-      tags: categoryIds
+      tags: categoryIds,
     };
 
     try {
@@ -51,7 +50,7 @@ const AddBlog = () => {
         setShortDescription("");
         setLongDescription("");
         setImage("");
-        setCategories([])
+        setCategories([]);
       }
     } catch (error) {
       toast("Error while creating the blog");
@@ -60,15 +59,14 @@ const AddBlog = () => {
   };
 
   const removeCategory = (category) => {
-    setCategories((prev) => prev.filter((e) => e._id !== category._id))
-  }
+    setCategories((prev) => prev.filter((e) => e._id !== category._id));
+  };
 
   const fetchCategories = async () => {
     try {
       const { data } = await api.get("/categories");
       setOptions(data.categories);
-      console.log('Categories: ', data);
-
+      console.log("Categories: ", data);
     } catch (error) {
       console.error("Failed to Get the Home Data:", error.message);
     }
@@ -76,11 +74,10 @@ const AddBlog = () => {
 
   useEffect(() => {
     fetchCategories();
-  }, [])
+  }, []);
 
   return (
     <div>
-
       <h1 className="text-center text-4xl font-extrabold mb-10">
         Create Blog Post
       </h1>
@@ -117,7 +114,6 @@ const AddBlog = () => {
             multiline
             rows={3}
           />
-
         </div>
 
         <HandleTags
@@ -144,7 +140,6 @@ const AddBlog = () => {
             multiline
             rows={5}
           />
-
         </div>
 
         <ImageSelector image={image} setImage={setImage} />

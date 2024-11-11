@@ -1,14 +1,19 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { Button, IconButton } from '@mui/material';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { Button } from "@mui/material";
 
 const BackButton = () => {
   const navigate = useNavigate();
 
-  const back = () => navigate(-1)
+  const back = () => navigate(-1);
   return (
-    <Button variant="contained" size='small' onClick={back} startIcon={<KeyboardBackspaceIcon />}>
+    <Button
+      variant="contained"
+      size="small"
+      onClick={back}
+      startIcon={<KeyboardBackspaceIcon />}
+    >
       Back
     </Button>
     // <Button>
@@ -17,7 +22,7 @@ const BackButton = () => {
     //   </IconButton>
     //   Back
     // </Button>
-  )
-}
+  );
+};
 
-export default BackButton
+export default BackButton;

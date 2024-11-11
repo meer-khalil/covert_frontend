@@ -2,24 +2,19 @@ import React, { useContext, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-import loginPic from '../../images/login/login.webp';
-import Logo from '../Home/Logo';
+import loginPic from "../../images/login/login.webp";
+import Logo from "../Home/Logo";
 
 import Typography from "@mui/material/Typography";
-
-import twitter from "../../images/twitter.svg";
-import facebook from "../../images/facebook.svg";
-import google from "../../images/google.svg";
 
 import { UserContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
 import { LoadingButton } from "@mui/lab";
 
-
 export default function Login() {
   const [loading, setLoading] = useState(false);
 
-  const { login } = useContext(UserContext)
+  const { login } = useContext(UserContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,28 +22,20 @@ export default function Login() {
     const data = {
       email: formData.get("email"),
       password: formData.get("password"),
-    }
-    login(data)
+    };
+    login(data);
   };
 
   return (
-
     <div className=" grid grid-cols-12 md:h-screen lg:max-h-[800px] page-size">
-      <div
-        className=" items-start md:pl-12 col-span-12 sm:col-span-8 md:col-span-6 flex flex-col gap-0"
-      >
-
+      <div className=" items-start md:pl-12 col-span-12 sm:col-span-8 md:col-span-6 flex flex-col gap-0">
         <div className="flex justify-center w-full">
-          <div
-            className=" flex flex-col max-w-xl mx-2"
-          >
+          <div className=" flex flex-col max-w-xl mx-2">
             <div className=" hidden md:block w-[150px] mt-10">
               <Logo />
             </div>
             <div className="mt-14">
-              <h3
-                className=" font-bold tracking-[2px] text-4xl"
-              >
+              <h3 className=" font-bold tracking-[2px] text-4xl">
                 Welcome Back
               </h3>
               <Typography>Reach back to your account.</Typography>
@@ -81,11 +68,9 @@ export default function Login() {
                 autoComplete="current-password"
               />
               <div className="text-end">
-                <Link to="/password/forgot">
-                  Forgot password?
-                </Link>
+                <Link to="/password/forgot">Forgot password?</Link>
               </div>
-              <div className=" text-center mt-8 mb-4" >
+              <div className=" text-center mt-8 mb-4">
                 <LoadingButton
                   type="submit"
                   fullWidth
@@ -109,11 +94,7 @@ export default function Login() {
               <p className=" text-center">
                 Don't have an account?
                 <Link to="/signup">
-                  <span
-                    className=" font-bold ml-2 text-primary"
-                  >
-                    Sign Up
-                  </span>
+                  <span className=" font-bold ml-2 text-primary">Sign Up</span>
                 </Link>
               </p>
 
@@ -134,7 +115,6 @@ export default function Login() {
             </Box>
           </div>
         </div>
-
       </div>
       <div className=" hidden py-8 sm:block col-span-12 sm:col-span-4 md:col-span-6">
         <div className=" max-w-xl h-full">

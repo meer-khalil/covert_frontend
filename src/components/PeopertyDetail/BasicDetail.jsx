@@ -1,18 +1,8 @@
 import React from "react";
-import StarIcon from "@mui/icons-material/Star";
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
-import {
-  Autocomplete,
-  Box,
-  Button,
-  Divider,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Divider } from "@mui/material";
 import { useState } from "react";
 import { useEffect } from "react";
 import api from "../../util/api";
-import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { formatNumberAsCurrency } from "../../util/formatNumber";
 import { BiFileBlank } from "react-icons/bi";
@@ -218,7 +208,9 @@ const BasicDetail = ({ property }) => {
                 return (
                   <div className="flex items-center gap-1 w-full">
                     <BiFileBlank className="w-8 h-8 text-gray-600" />
-                    <p className="w-full text-ellipsis text-gray-800">{file.label || file.filename}</p>
+                    <p className="w-full text-ellipsis text-gray-800">
+                      {file.label || file.filename}
+                    </p>
                   </div>
                 );
               })}

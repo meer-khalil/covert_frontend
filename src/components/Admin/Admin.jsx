@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import PropertyForm from "./Property/PropertyForm";
 import Aside from "./Aside";
 import Pages from "./Pages/Pages";
@@ -10,14 +10,13 @@ import BlogNewPostForm from "./Blog/BlogNewPostForm";
 import { UserContext } from "../../context/UserContext";
 
 const Admin = () => {
-
   const { user } = useContext(UserContext);
 
   return (
     <Layout>
       <div className=" max-w-[1440px] mx-auto">
-        {user && (
-          user?.role === "admin" ? (
+        {user &&
+          (user?.role === "admin" ? (
             <div className="flex flex-col md:flex-row">
               <div className="pt-4">
                 <Aside />
@@ -27,20 +26,21 @@ const Admin = () => {
                 <div className="px-2 md:px-6 py-8">
                   <Routes>
                     <Route index path="pages/*" element={<Pages />} />
-                    <Route path="property/edit/:slug" element={<PropertyForm />} />
+                    <Route
+                      path="property/edit/:slug"
+                      element={<PropertyForm />}
+                    />
                     <Route path="blog/new" element={<BlogNewPostForm />} />
                     <Route path="blog/edit/:id" element={<BlogNewPostForm />} />
                     <Route path="category" element={<Category />} />
                     <Route path="emails" element={<Emails />} />
-
                   </Routes>
                 </div>
               </main>
             </div>
           ) : (
-            <Navigate to={'/'} />
-          )
-        )}
+            <Navigate to={"/"} />
+          ))}
       </div>
     </Layout>
   );

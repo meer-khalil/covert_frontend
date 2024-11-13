@@ -46,7 +46,7 @@ export default function Signup() {
     };
 
     try {
-      const { data } = await api.post("/payment/process", userData);
+      const { data } = await api.post("/register", userData);
       setLoading(false);
       window.location.href = data.url;
     } catch (error) {

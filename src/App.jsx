@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "./components/Common/Loading";
 
 import Navbar from "./components/Layouts/Navbar";
+import WhatsAppButton from "./components/Home/WhatsAppButton";
 // components
 const Home = lazy(() => import("./components/Home/Home"));
 const Login = lazy(() => import("./components/Login/Login"));
@@ -47,6 +48,7 @@ export default function App() {
     <Suspense fallback={<Loader />}>
       <ToastContainer />
       {showPopUp && <Popup />}
+
       <Navbar />
       <Layout>
         <Routes>
@@ -72,6 +74,7 @@ export default function App() {
       </Layout>
       <Footer />
       <CopyRight />
+      <WhatsAppButton />
     </Suspense>
   );
 }

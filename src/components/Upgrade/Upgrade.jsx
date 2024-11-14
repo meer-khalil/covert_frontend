@@ -44,12 +44,25 @@ export default function Upgrade() {
     fetchPageData();
   }, []);
 
+  // firstName: Joi.string().max(50).required(),
+  // lastName: Joi.string().max(255).required(),
+  // password: Joi.string().min(5).max(255).required(),
+  // email
+
   const handleClick = async () => {
     if (!user) {
       navigate("/signup");
     } else {
-      const { data } = await api.post("/payment/process");
-      window.location.href = data.url;
+      try {
+        const { data } = await api.post("/payment/process", {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+        });
+        window.location.href = data.url; // Redirects to Stripe Checkout
+      } catch (error) {
+        console.error("Error initiating payment:", error.message);
+      }
     }
   };
 

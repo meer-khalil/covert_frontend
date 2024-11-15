@@ -1,15 +1,8 @@
-
-
-const ImageUploader2 = ({
-  setImages,
-  setSelectedImages
-}) => {
-
-
+const ImageUploader2 = ({ setImages, setSelectedImages }) => {
   const handleImageChange = (e) => {
     const files = e.target.files;
 
-    setImages(prev => [...prev, ...files])
+    setImages((prev) => [...prev, ...files]);
 
     const imageArray = [];
 
@@ -18,7 +11,7 @@ const ImageUploader2 = ({
       reader.onload = (event) => {
         imageArray.push(event.target.result);
         if (imageArray.length === files.length) {
-          setSelectedImages(prev => [...prev, ...imageArray]);
+          setSelectedImages((prev) => [...prev, ...imageArray]);
         }
       };
       reader.readAsDataURL(files[i]);
@@ -32,7 +25,6 @@ const ImageUploader2 = ({
   //   setImages(newImages)
   // };
 
-
   // const handleFileChange = (e) => {
   //   const files = e.target.files;
   //   setFiles(prev => [...prev, ...files])
@@ -45,11 +37,25 @@ const ImageUploader2 = ({
   // };
   return (
     <>
-      <div className='flex gap-5 mt-10'>
+      <div className="flex gap-5 mt-10">
         <div className="flex-1">
-          <label for="fileInput" class="flex flex-col items-center justify-center px-4 py-12 bg-white border border-gray-300 rounded-lg shadow-sm cursor-pointer h-48">
-            <svg class="w-12 h-12 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          <label
+            for="fileInput"
+            class="flex flex-col items-center justify-center px-4 py-12 bg-white border border-gray-300 rounded-lg shadow-sm cursor-pointer h-48"
+          >
+            <svg
+              class="w-12 h-12 mr-2 text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              ></path>
             </svg>
             <span class="text-gray-600">Upload a file</span>
             <input
@@ -71,8 +77,7 @@ const ImageUploader2 = ({
           </div> */}
         </div>
       </div>
-      <div>
-      </div>
+      <div></div>
     </>
   );
 };

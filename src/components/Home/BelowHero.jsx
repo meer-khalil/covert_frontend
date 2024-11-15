@@ -1,10 +1,9 @@
-import { Box, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Grid } from "@mui/material";
+import React from "react";
 
 import image from "../../images/webp/home/below_hero.webp";
 
 const BelowHero = ({ commingSoon }) => {
-
   return (
     <div
       className="
@@ -14,21 +13,16 @@ const BelowHero = ({ commingSoon }) => {
     >
       <Grid container spacing={6}>
         <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
-          <h3 className=" font-[Poppins] font-semibold text-[38px] leading-[3rem] pt-[21px]" >
+          <h3 className=" font-[Poppins] font-semibold text-[38px] leading-[3rem] pt-[21px]">
             Great off Market deals across mutiple States.
           </h3>
 
-          <p
-            className=" text-[31px] text-primary font-semibold"
-          >
+          <p className=" text-[31px] text-primary font-semibold">
             More States coming soon
           </p>
           <p className=" font-[Poppins] font-normal text-lg text-justify mt-2">
-            {
-              commingSoon
-              ||
-              "When you sign up you’ll get deals with information catered specifically to your choice of State or City. Each deal is personally designed by our team to meet the needs of indivitual investor. We only send deals we would recommend to our family and friends."
-            }
+            {commingSoon ||
+              "When you sign up you’ll get deals with information catered specifically to your choice of State or City. Each deal is personally designed by our team to meet the needs of indivitual investor. We only send deals we would recommend to our family and friends."}
           </p>
         </Grid>
         <Grid
@@ -60,7 +54,6 @@ const BelowHero = ({ commingSoon }) => {
         </Grid>
       </Grid>
     </div>
-
   );
 };
 

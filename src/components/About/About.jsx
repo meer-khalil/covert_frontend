@@ -5,13 +5,10 @@ import Mission from "./Mission";
 import Contact from "./Contact";
 import api from "../../util/api";
 import Container from "../Layouts/Container";
-import Layout from "../Layouts/Layout";
-
 
 import image from "../../images/PageTitles/AboutPageTitle.webp";
 
 const About = () => {
-
   const [about, setAbout] = useState(null);
 
   const fetchAboutData = async () => {
@@ -19,7 +16,7 @@ const About = () => {
       const { data } = await api.get("/pages/about");
       setAbout(data);
 
-      console.log("About Data: ", data);
+      // console.log("About Data: ", data);
     } catch (error) {
       console.error("Failed to Get the Home Data:", error.message);
     }

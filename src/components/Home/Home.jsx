@@ -9,15 +9,14 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [home, setHome] = useState(null);
-  const [properties, setProperties] = useState([])
+  const [properties, setProperties] = useState([]);
 
   const fetchHomeData = async () => {
     try {
       const { data } = await api.get("/pages/home");
       setHome(data);
 
-      console.log('Home Data: ', data);
-
+      // console.log('Home Data: ', data);
     } catch (error) {
       console.error("Failed to Get the Home Data:", error.message);
     }
@@ -27,13 +26,13 @@ export default function Home() {
     let url = `/properties/past-deals`;
 
     try {
-      const { data } = await api.get(url)
-      const { properties } = data
-      setProperties(properties)
+      const { data } = await api.get(url);
+      const { properties } = data;
+      setProperties(properties);
     } catch (error) {
-      console.log('Error While fetching Home Properties: ', error.message);
+      console.log("Error While fetching Home Properties: ", error.message);
     }
-  }
+  };
 
   useEffect(() => {
     fetchHomeData();
@@ -48,6 +47,5 @@ export default function Home() {
       <PastDetails properties={properties} />
       <Devider />
     </div>
-
   );
 }

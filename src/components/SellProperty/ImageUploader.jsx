@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { PropertyContext } from "../../context/PropertyContext";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { BiFileBlank } from "react-icons/bi";
@@ -169,14 +169,16 @@ const ImageUploader = () => {
               <div key={index} className="flex flex-col items-center w-[120px]">
                 {/* <img src={image} alt={`Image ${index}`} /> */}
                 <BiFileBlank className="w-16 h-16 mx-auto text-gray-500" />
-                <p className="text-xs text-center text-gray-500 mb-1 w-full truncate">{f.name}</p>
+                <p className="text-xs text-center text-gray-500 mb-1 w-full truncate">
+                  {f.name}
+                </p>
                 <input
                   placeholder="Enter Label"
                   className="border rounded px-2 py-1 w-[100px] text-xs"
                   value={fileLabels[index]}
                   onChange={(e) => handleFileLabelChange(e.target.value, index)}
                 />
-                
+
                 <button
                   onClick={() => handleFileRemove(index)}
                   className=" bg-gray-400 px-3 py-1 my-1 rounded text-white"

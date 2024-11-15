@@ -9,7 +9,6 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material";
-import { useEffect } from "react";
 import BasicDatePicker from "./components/BasicDatePicker";
 import { BiFileBlank } from "react-icons/bi";
 
@@ -23,8 +22,13 @@ import ShowDatePicker from "./components/ShowDatePicker";
 function DetailForm({ data }) {
   const [defaultImage, setDefaultImage] = useState(0);
 
-  const { propertyData, selectedImages, handlePropertyData, fileLabels, files } =
-    useContext(PropertyContext);
+  const {
+    propertyData,
+    selectedImages,
+    handlePropertyData,
+    fileLabels,
+    files,
+  } = useContext(PropertyContext);
 
   const handlePropertyTypeChange = (event, newValue) => {
     handlePropertyData({ target: { name: "propertyType", value: newValue } });
@@ -402,10 +406,17 @@ function DetailForm({ data }) {
                 {files?.map((file, index) => {
                   console.log(`file-${index}: `, file);
                   return (
-                    <div key={index} className="flex flex-col items-center w-[100px]">
+                    <div
+                      key={index}
+                      className="flex flex-col items-center w-[100px]"
+                    >
                       <BiFileBlank className="w-16 h-16 mx-auto text-gray-500" />
-                      <p className="text-xs text-gray-500 truncate w-full text-center">{file.name}</p>
-                      <p className="text-center text-sm truncate">{fileLabels[index]}</p>
+                      <p className="text-xs text-gray-500 truncate w-full text-center">
+                        {file.name}
+                      </p>
+                      <p className="text-center text-sm truncate">
+                        {fileLabels[index]}
+                      </p>
                     </div>
                   );
                 })}

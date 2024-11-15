@@ -1,12 +1,8 @@
 import React, { useContext, useState } from "react";
 
-import Button from "@mui/material/Button";
-import { LoadingButton } from '@mui/lab';
-import CssBaseline from "@mui/material/CssBaseline";
+import { LoadingButton } from "@mui/lab";
 import TextField from "@mui/material/TextField";
 
-
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
@@ -27,7 +23,6 @@ import api from "../../util/api";
 const theme = createTheme();
 
 export default function Signup() {
-
   const [loading, setLoading] = useState(false);
 
   const { email, setEmail } = useContext(UserContext);
@@ -38,26 +33,26 @@ export default function Signup() {
 
     const formData = new FormData(event.currentTarget);
 
-    if (formData.get('password') !== formData.get('confirmPassword')) {
-      toast('Password should be same!')
+    if (formData.get("password") !== formData.get("confirmPassword")) {
+      toast("Password should be same!");
       return;
     }
 
     const userData = {
-      firstName: formData.get('firstName'),
-      lastName: formData.get('lastName'),
-      email: formData.get('email'),
-      password: formData.get('password'),
-    }
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
 
     try {
-      const { data } = await api.post('/payment/process', userData)
+      const { data } = await api.post("/register", userData);
       setLoading(false);
-      window.location.href = data.url
+      window.location.href = data.url;
     } catch (error) {
       console.log(error);
-      setLoading(false)
-      toast(error.response.data.message)
+      setLoading(false);
+      toast(error.response.data.message);
     }
   };
 
@@ -92,7 +87,6 @@ export default function Signup() {
                 justifyContent: "center",
               }}
             >
-
               <div className=" self-start mt-4">
                 <Typography
                   component="h1"
@@ -108,14 +102,16 @@ export default function Signup() {
                   Buy
                 </Typography>
                 <Divider
-                  sx={{ width: "20%", height: "3px", bgcolor: "#3296ff", mb: 3 }}
+                  sx={{
+                    width: "20%",
+                    height: "3px",
+                    bgcolor: "#3296ff",
+                    mb: 3,
+                  }}
                 />
                 <Typography>Enter the following details.</Typography>
               </div>
-              <form
-                className=" md:w-[600px] mt-3"
-                onSubmit={handleSubmit}
-              >
+              <form className=" md:w-[600px] mt-3" onSubmit={handleSubmit}>
                 <div className=" flex flex-col gap-5 md:flex-row">
                   <TextField
                     required
@@ -135,7 +131,7 @@ export default function Signup() {
                     required
                     label="Last Name"
                     variant="outlined"
-                    name='lastName'
+                    name="lastName"
                     autoComplete="off"
                     inputProps={{ style: { fontSize: 15 } }}
                     InputLabelProps={{
@@ -194,30 +190,29 @@ export default function Signup() {
                   Signup
                 </LoadingButton>
               </form>
-              <p>Already have an Account? <Link to="/login" className=" text-primary ml-3 text-lg">Login</Link></p>
+              <p>
+                Already have an Account?{" "}
+                <Link to="/login" className=" text-primary ml-3 text-lg">
+                  Login
+                </Link>
+              </p>
             </div>
           </Grid>
-          <Grid
-            xs={false}
-            sm={4}
-            md={6}
-            pt={4}
-            px={3}
-            item
-          >
-            <Box sx={{
-              // backgroundImage: "url(https://source.unsplash.com/random)",
-              backgroundImage: `url(${login})`,
-              backgroundRepeat: "no-repeat",
-              backgroundColor: (t) =>
-                t.palette.mode === "light"
-                  ? t.palette.grey[50]
-                  : t.palette.grey[900],
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              width: '100%',
-              height: '100%'
-            }}
+          <Grid xs={false} sm={4} md={6} pt={4} px={3} item>
+            <Box
+              sx={{
+                // backgroundImage: "url(https://source.unsplash.com/random)",
+                backgroundImage: `url(${login})`,
+                backgroundRepeat: "no-repeat",
+                backgroundColor: (t) =>
+                  t.palette.mode === "light"
+                    ? t.palette.grey[50]
+                    : t.palette.grey[900],
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "100%",
+                height: "100%",
+              }}
               borderRadius={5}
             />
           </Grid>
@@ -226,8 +221,6 @@ export default function Signup() {
     </div>
   );
 }
-
-
 
 /*
             <Box sx={{ alignSelf: "start" }}>

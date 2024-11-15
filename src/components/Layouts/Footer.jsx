@@ -1,24 +1,11 @@
 import React, { useContext } from "react";
 import { Box, Button, Grid, List, ListItem, Typography } from "@mui/material";
 import EmailInput from "../Home/EmailInput";
-import Logo from '../Home/Logo'
-import { Link } from "react-router-dom";
+import Logo from "../Home/Logo";
 import { UserContext } from "../../context/UserContext";
 
 const Footer = () => {
-
-  const { email, setEmail, storeEmail } = useContext(UserContext)
-
-  const menuList1 = ["Home", "Services", "Pricing", "Contact"];
-
-  const menuList2 = ["Our Team", "Projects", "Blog", "FAQ"];
-
-  const menuList3 = [
-    "Terms and Conditions",
-    "Privacy Policy",
-    "Refund Policy",
-    "Support",
-  ];
+  const { email, storeEmail } = useContext(UserContext);
 
   const menusList = [
     // { title: "Features", menu: menuList1 },
@@ -26,13 +13,11 @@ const Footer = () => {
     // { title: "Popular Search", menu: menuList3 },
   ];
 
-
   const hanldeSubmit = () => {
     storeEmail(email);
-  }
+  };
   return (
     <div className=" page-size">
-
       <Box py={10} className="px-5">
         <Box sx={{ maxWidth: "1200px", mx: "auto", pt: 5, pb: 2 }}>
           <Grid container spacing={3}>
@@ -61,15 +46,15 @@ const Footer = () => {
                 </Box>
               </Box>
             </Grid>
-            {menusList.map((menu) => (
-              <Grid item xs={6} md={2}>
+            {menusList.map((menu, index) => (
+              <Grid key={index} item xs={6} md={2}>
                 <Typography variant="h6" sx={{ mb: 2 }}>
                   {menu.title}
                 </Typography>
 
                 <List sx={{ listStyleType: "none", padding: 0 }}>
-                  {menu.menu.map((item) => (
-                    <ListItem key={item} sx={{ marginTop: 1, paddingLeft: 0 }}>
+                  {menu.menu.map((item, index) => (
+                    <ListItem key={index} sx={{ marginTop: 1, paddingLeft: 0 }}>
                       <Typography variant="body2" sx={{ marginLeft: 0 }}>
                         {item}
                       </Typography>
@@ -86,7 +71,6 @@ const Footer = () => {
                 Subscribe to get the latest news from us
               </Typography>
               <div className="flex gap-2" onSubmit={hanldeSubmit}>
-
                 <EmailInput />
                 <Button
                   variant="contained"
@@ -95,7 +79,6 @@ const Footer = () => {
                 >
                   Sign Up
                 </Button>
-
               </div>
 
               {/* <div className="flex flex-col gap-6">
@@ -112,9 +95,8 @@ const Footer = () => {
             </Grid>
           </Grid>
         </Box>
-      </Box >
+      </Box>
     </div>
-
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -15,32 +15,17 @@ import Logo from "../../components/Home/Logo";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import twitter from "../../images/twitter.svg";
-import facebook from "../../images/facebook.svg";
-import google from "../../images/google.svg";
-
 import login from "../../images/upgrade.webp";
 import { Divider } from "@mui/material";
 import api from "../../util/api";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
-const icons = [twitter, facebook, google];
-
-const data = [
-  "Have access to complete list of off market deals",
-  "Never miss a deal",
-  "All deal sent to you directly via email",
-  "Renew automatially, cancel anytime.",
-  "Secret access to handful of bonus deals",
-];
-
 const theme = createTheme();
 
 export default function Upgrade() {
-
-  const navigate = useNavigate()
-  const { user } = useContext(UserContext)
+  const navigate = useNavigate();
+  const { user } = useContext(UserContext);
   const [upgrade, setUpgrade] = React.useState(null);
 
   const fetchPageData = async () => {
@@ -59,14 +44,27 @@ export default function Upgrade() {
     fetchPageData();
   }, []);
 
+  // firstName: Joi.string().max(50).required(),
+  // lastName: Joi.string().max(255).required(),
+  // password: Joi.string().min(5).max(255).required(),
+  // email
+
   const handleClick = async () => {
     if (!user) {
-      navigate("/signup")
+      navigate("/signup");
     } else {
-      const { data } = await api.post('/payment/process')
-      window.location.href = data.url
+      try {
+        const { data } = await api.post("/payment/process", {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+        });
+        window.location.href = data.url; // Redirects to Stripe Checkout
+      } catch (error) {
+        console.error("Error initiating payment:", error.message);
+      }
     }
-  }
+  };
 
   return (
     <div className=" max-w-[1440px] mx-auto lg:max-h-[800px]">
@@ -116,15 +114,24 @@ export default function Upgrade() {
                   {upgrade?.title}
                 </Typography>
                 <Divider
-                  sx={{ width: "20%", height: "3px", bgcolor: "#3296ff", mb: 3 }}
+                  sx={{
+                    width: "20%",
+                    height: "3px",
+                    bgcolor: "#3296ff",
+                    mb: 3,
+                  }}
                 />
               </Box>
 
               <List
-                sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+                sx={{
+                  width: "100%",
+                  maxWidth: 360,
+                  bgcolor: "background.paper",
+                }}
               >
-                {upgrade?.benefits.map((item) => (
-                  <ListItem>
+                {upgrade?.benefits.map((item, index) => (
+                  <ListItem key={index}>
                     <ListItemAvatar>
                       <Avatar
                         sx={{
@@ -164,7 +171,6 @@ export default function Upgrade() {
             md={6}
             mt={2}
             pr={3}
-
             sx={{
               // backgroundImage: "url(https://source.unsplash.com/random)",
               backgroundImage: `url(${login})`,
@@ -196,8 +202,9 @@ export default function Upgrade() {
                 fontSize: "40px",
               }}
             >
-              {["PREMIUM", "$49", "Billed Anually"].map((item) => (
+              {["PREMIUM", "$49", "Billed Anually"].map((item, index) => (
                 <Typography
+                  key={index}
                   sx={{ fontSize: "20px", fontWeight: "bold", color: "white" }}
                 >
                   {item}

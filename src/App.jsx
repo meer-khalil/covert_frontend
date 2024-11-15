@@ -8,6 +8,7 @@ import Loader from "./components/Common/Loading";
 
 import Navbar from "./components/Layouts/Navbar";
 import WhatsAppButton from "./components/Home/WhatsAppButton";
+import Subscription from "./components/subcription/Subscription";
 // components
 const Home = lazy(() => import("./components/Home/Home"));
 const Login = lazy(() => import("./components/Login/Login"));
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/subscription" element={<Subscription />} />
           <Route path="/upgrade" element={<Upgrade />} />
           <Route path="/about" element={<About />} />
           <Route path="/blogs" element={<Blog />} />

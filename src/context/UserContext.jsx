@@ -10,13 +10,12 @@ export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  const [showPopUp, setShowPopUp] = useState(false)
+  const [showPopUp, setShowPopUp] = useState(false);
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
 
   const login = async (_user) => {
-
     try {
       const { data } = await api.post("/user/login", {
         ..._user,
@@ -29,6 +28,10 @@ export const UserProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(user));
 
       setAuthToken(jwt);
+
+      // Log the subscription status
+      console.log("User has subscription: ", user.hasSubscription);
+
       navigate("/buy");
     } catch (error) {
       console.error(error);
@@ -42,25 +45,19 @@ export const UserProvider = ({ children }) => {
 
   const register = async (data) => {
     try {
-      const response = await api.post(
-        "/user/register",
-        {
-          ...data,
-        }
-      );
+      const response = await api.post("/user/register", {
+        ...data,
+      });
 
       setUser(response.data.user);
       let token = response.data.token;
       localStorage.setItem("realstate_token", token);
-      toast(response.data.message)
+      toast(response.data.message);
       setAuthToken(token);
       navigate("/");
-
     } catch (error) {
-
       console.error(error);
       toast(error.response.data.message);
-
     }
   };
 
@@ -84,28 +81,23 @@ export const UserProvider = ({ children }) => {
     navigate("/");
   };
 
-
   const storeEmail = async () => {
-
-
     if (isValidEmail(email)) {
-
       try {
-        const res = await api.post('/email', { email })
-        console.log('Response: ', res);
-        setShowPopUp(true)
-        setEmail('');
-        setError(null)
+        const res = await api.post("/email", { email });
+        console.log("Response: ", res);
+        setShowPopUp(true);
+        setEmail("");
+        setError(null);
       } catch (error) {
-        console.log('Error While Storing Email');
-        alert('Error While storing the email')
+        console.log("Error While Storing Email");
+        alert("Error While storing the email");
         // toast("Error While Storing Email!")
       }
     } else {
-      setError("Your Email is Not Valid")
+      setError("Your Email is Not Valid");
     }
-
-  }
+  };
 
   function isValidEmail(email) {
     // Regular expression pattern to validate email format
@@ -127,7 +119,7 @@ export const UserProvider = ({ children }) => {
         setShowPopUp,
         storeEmail,
         error,
-        setError
+        setError,
       }}
     >
       {children}

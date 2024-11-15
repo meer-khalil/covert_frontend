@@ -15,7 +15,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const { login } = useContext(UserContext);
-
+  console.log("login data: ", login);
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -23,7 +23,14 @@ export default function Login() {
       email: formData.get("email"),
       password: formData.get("password"),
     };
-    login(data);
+
+    login(data).then(() => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      console.log(
+        "Subscription status at frontend: ",
+        user?.hasSubscription.status
+      );
+    });
   };
 
   return (

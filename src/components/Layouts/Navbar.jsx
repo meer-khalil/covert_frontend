@@ -97,16 +97,16 @@ function DrawerAppBar(props) {
                 >
                   Login
                 </Link>
-
-                <Link to={`/upgrade`} style={{ textDecoration: "none" }}>
+                <Link to={`/subscription`} style={{ textDecoration: "none" }}>
                   <Button
                     variant="contained"
                     sx={{
                       bgcolor: "#716EDC",
+                      marginRight: "30px",
                       "&:hover": { bgcolor: "#716EDC" },
                     }}
                   >
-                    Upgrade
+                    Subscription
                   </Button>
                 </Link>
               </>

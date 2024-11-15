@@ -72,6 +72,18 @@ function DrawerAppBar(props) {
             ))}
             {user ? (
               <>
+                <Link to={`/subscription`} style={{ textDecoration: "none" }}>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      bgcolor: "#716EDC",
+                      marginRight: "30px",
+                      "&:hover": { bgcolor: "#716EDC" },
+                    }}
+                  >
+                    Subscription
+                  </Button>
+                </Link>
                 <div
                   className="mr-5 tracking-[2px] cursor-pointer"
                   onClick={logout}

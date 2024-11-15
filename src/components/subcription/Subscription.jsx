@@ -35,6 +35,7 @@ export default function Subscription() {
       setUpgrade(data);
 
       console.log("Upgrade Data: ", data);
+      console.log("user: ", user);
     } catch (error) {
       console.error("Failed to Get the Home Data:", error.message);
     }
@@ -143,21 +144,118 @@ export default function Subscription() {
                   bgcolor: "background.paper",
                 }}
               >
-                {upgrade?.benefits.map((item, index) => (
-                  <ListItem key={index}>
-                    <ListItemAvatar>
-                      <Avatar
-                        sx={{
-                          color: "blue",
-                          bgcolor: "rgba(113, 110, 220, 0.19)",
-                        }}
-                      >
-                        <AssignmentTurnedInOutlinedIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary={item} />
-                  </ListItem>
-                ))}
+                {user?.hasSubscription.status ? (
+                  <>
+                    {/* Display payment details */}
+                    <Typography variant="h6" gutterBottom>
+                      Subscription Details
+                    </Typography>
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar
+                          sx={{
+                            color: "blue",
+                            bgcolor: "rgba(113, 110, 220, 0.19)",
+                          }}
+                        >
+                          <AssignmentTurnedInOutlinedIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        // primary={`Total Amount: $${user?.hasSubscription.status.payment.amount_total}`}
+                        primary={`Total Amount: $${(
+                          user?.hasSubscription.status.payment.amount_total /
+                          100
+                        ).toFixed(
+                          2
+                        )} ${user?.hasSubscription.status.payment.currency.toUpperCase()}`}
+                      />
+                    </ListItem>
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar
+                          sx={{
+                            color: "blue",
+                            bgcolor: "rgba(113, 110, 220, 0.19)",
+                          }}
+                        >
+                          <AssignmentTurnedInOutlinedIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={`Start Date: ${new Date(
+                          user.hasSubscription.status.payment.created * 1000
+                        ).toLocaleDateString()}`}
+                      />
+                    </ListItem>
+
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar
+                          sx={{
+                            color: "blue",
+                            bgcolor: "rgba(113, 110, 220, 0.19)",
+                          }}
+                        >
+                          <AssignmentTurnedInOutlinedIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={`Expiry Date: ${new Date(
+                          user.hasSubscription.status.payment.expires_at * 1000
+                        ).toLocaleDateString()}`}
+                      />
+                    </ListItem>
+
+                    <ListItem>
+                      <ListItemAvatar>
+                        <Avatar
+                          sx={{
+                            color: "blue",
+                            bgcolor: "rgba(113, 110, 220, 0.19)",
+                          }}
+                        >
+                          <AssignmentTurnedInOutlinedIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <a
+                            href={
+                              user.hasSubscription.status.payment.cancel_url
+                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Manage Subscription
+                          </a>
+                        }
+                      />
+                    </ListItem>
+                  </>
+                ) : (
+                  <>
+                    {/* Display upgrade benefits if no active subscription */}
+                    <Typography variant="h6" gutterBottom>
+                      Subscription Benefits
+                    </Typography>
+                    {upgrade?.benefits.map((item, index) => (
+                      <ListItem key={index}>
+                        <ListItemAvatar>
+                          <Avatar
+                            sx={{
+                              color: "blue",
+                              bgcolor: "rgba(113, 110, 220, 0.19)",
+                            }}
+                          >
+                            <AssignmentTurnedInOutlinedIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary={item} />
+                      </ListItem>
+                    ))}
+                  </>
+                )}
               </List>
               {user?.hasSubscription.status ? (
                 <Button

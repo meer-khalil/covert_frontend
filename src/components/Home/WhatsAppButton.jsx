@@ -32,8 +32,8 @@ const WhatsAppButton = () => {
             y1="100%"
             y2="0%"
           >
-            <stop offset="0%" stop-color="#1faf38" />
-            <stop offset="100%" stop-color="#60d669" />
+            <stop offset="0%" stopColor="#1faf38" />
+            <stop offset="100%" stopColor="#60d669" />
           </linearGradient>
           <linearGradient
             id="logosWhatsappIcon1"
@@ -42,8 +42,8 @@ const WhatsAppButton = () => {
             y1="100%"
             y2="0%"
           >
-            <stop offset="0%" stop-color="#f9f9f9" />
-            <stop offset="100%" stop-color="#fff" />
+            <stop offset="0%" stopColor="#f9f9f9" />
+            <stop offset="100%" stopColor="#fff" />
           </linearGradient>
         </defs>
         <path
